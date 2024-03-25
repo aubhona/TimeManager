@@ -28,6 +28,16 @@
 		012F961E2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F961D2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift */; };
 		012F96202BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F961F2BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift */; };
 		012F96222BB19CF40012B8EE /* CoreDataTagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96212BB19CF40012B8EE /* CoreDataTagRepository.swift */; };
+		012F96242BB19D850012B8EE /* SpecificTaskListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96232BB19D850012B8EE /* SpecificTaskListPresenter.swift */; };
+		012F96272BB19DDD0012B8EE /* SpecificTaskDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96262BB19DDD0012B8EE /* SpecificTaskDto.swift */; };
+		012F96292BB19E850012B8EE /* SpecificTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96282BB19E850012B8EE /* SpecificTaskListViewController.swift */; };
+		012F962B2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F962A2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift */; };
+		012F962D2BB19EE30012B8EE /* AddSpecificTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F962C2BB19EE30012B8EE /* AddSpecificTaskViewController.swift */; };
+		012F962F2BB19F190012B8EE /* WeekDayViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F962E2BB19F190012B8EE /* WeekDayViewCell.swift */; };
+		012F96312BB19F2E0012B8EE /* WeekCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96302BB19F2E0012B8EE /* WeekCollectionViewCell.swift */; };
+		012F96332BB19F410012B8EE /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96322BB19F410012B8EE /* TaskCollectionViewCell.swift */; };
+		012F96352BB19F740012B8EE /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96342BB19F740012B8EE /* MainTabBarViewController.swift */; };
+		012F96372BB1AE080012B8EE /* SpecificTaskDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96362BB1AE080012B8EE /* SpecificTaskDescriptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +65,16 @@
 		012F961D2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSpecificTaskRepository.swift; sourceTree = "<group>"; };
 		012F961F2BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGeneralTaskRepository.swift; sourceTree = "<group>"; };
 		012F96212BB19CF40012B8EE /* CoreDataTagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTagRepository.swift; sourceTree = "<group>"; };
+		012F96232BB19D850012B8EE /* SpecificTaskListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTaskListPresenter.swift; sourceTree = "<group>"; };
+		012F96262BB19DDD0012B8EE /* SpecificTaskDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTaskDto.swift; sourceTree = "<group>"; };
+		012F96282BB19E850012B8EE /* SpecificTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTaskListViewController.swift; sourceTree = "<group>"; };
+		012F962A2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpecificTaskPresenter.swift; sourceTree = "<group>"; };
+		012F962C2BB19EE30012B8EE /* AddSpecificTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpecificTaskViewController.swift; sourceTree = "<group>"; };
+		012F962E2BB19F190012B8EE /* WeekDayViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayViewCell.swift; sourceTree = "<group>"; };
+		012F96302BB19F2E0012B8EE /* WeekCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCollectionViewCell.swift; sourceTree = "<group>"; };
+		012F96322BB19F410012B8EE /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
+		012F96342BB19F740012B8EE /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		012F96362BB1AE080012B8EE /* SpecificTaskDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTaskDescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +158,9 @@
 		0127D3D22BB195CC004C5233 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				012F96252BB19DCB0012B8EE /* Dtos */,
+				012F96232BB19D850012B8EE /* SpecificTaskListPresenter.swift */,
+				012F962A2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -183,6 +206,9 @@
 		0127D3D62BB196C2004C5233 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				012F962E2BB19F190012B8EE /* WeekDayViewCell.swift */,
+				012F96302BB19F2E0012B8EE /* WeekCollectionViewCell.swift */,
+				012F96322BB19F410012B8EE /* TaskCollectionViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -190,8 +216,20 @@
 		0127D3D72BB196CE004C5233 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				012F96282BB19E850012B8EE /* SpecificTaskListViewController.swift */,
+				012F962C2BB19EE30012B8EE /* AddSpecificTaskViewController.swift */,
+				012F96342BB19F740012B8EE /* MainTabBarViewController.swift */,
+				012F96362BB1AE080012B8EE /* SpecificTaskDescriptionView.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		012F96252BB19DCB0012B8EE /* Dtos */ = {
+			isa = PBXGroup;
+			children = (
+				012F96262BB19DDD0012B8EE /* SpecificTaskDto.swift */,
+			);
+			path = Dtos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,9 +303,14 @@
 			files = (
 				012F96112BB19C090012B8EE /* SpecificTask+CoreDataClass.swift in Sources */,
 				012F96222BB19CF40012B8EE /* CoreDataTagRepository.swift in Sources */,
+				012F96272BB19DDD0012B8EE /* SpecificTaskDto.swift in Sources */,
+				012F962B2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift in Sources */,
 				0127D3B72BB192F1004C5233 /* ViewController.swift in Sources */,
+				012F96332BB19F410012B8EE /* TaskCollectionViewCell.swift in Sources */,
+				012F96352BB19F740012B8EE /* MainTabBarViewController.swift in Sources */,
 				012F96202BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift in Sources */,
 				012F96182BB19C680012B8EE /* SpecificTaskRepository.swift in Sources */,
+				012F96242BB19D850012B8EE /* SpecificTaskListPresenter.swift in Sources */,
 				012F961C2BB19CAC0012B8EE /* TagRepository.swift in Sources */,
 				012F96152BB19C090012B8EE /* Task+CoreDataClass.swift in Sources */,
 				012F96142BB19C090012B8EE /* Tag+CoreDataProperties.swift in Sources */,
@@ -276,13 +319,18 @@
 				012F961A2BB19C950012B8EE /* GeneralTaskRepository.swift in Sources */,
 				0127D3CF2BB194D5004C5233 /* UIView+Pin.swift in Sources */,
 				012F96102BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift in Sources */,
+				012F96292BB19E850012B8EE /* SpecificTaskListViewController.swift in Sources */,
 				012F96062BB19AE60012B8EE /* TimeManager.xcdatamodeld in Sources */,
+				012F96372BB1AE080012B8EE /* SpecificTaskDescriptionView.swift in Sources */,
 				0127D3B32BB192F1004C5233 /* AppDelegate.swift in Sources */,
 				012F961E2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift in Sources */,
+				012F962D2BB19EE30012B8EE /* AddSpecificTaskViewController.swift in Sources */,
 				0127D3B52BB192F1004C5233 /* SceneDelegate.swift in Sources */,
 				012F96132BB19C090012B8EE /* Tag+CoreDataClass.swift in Sources */,
+				012F96312BB19F2E0012B8EE /* WeekCollectionViewCell.swift in Sources */,
 				012F96122BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift in Sources */,
 				012F960F2BB19C090012B8EE /* GeneralTask+CoreDataClass.swift in Sources */,
+				012F962F2BB19F190012B8EE /* WeekDayViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
