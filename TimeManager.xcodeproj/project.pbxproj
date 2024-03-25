@@ -10,10 +10,24 @@
 		0127D3B32BB192F1004C5233 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3B22BB192F1004C5233 /* AppDelegate.swift */; };
 		0127D3B52BB192F1004C5233 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3B42BB192F1004C5233 /* SceneDelegate.swift */; };
 		0127D3B72BB192F1004C5233 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3B62BB192F1004C5233 /* ViewController.swift */; };
-		0127D3BD2BB192F1004C5233 /* TimeManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3BB2BB192F1004C5233 /* TimeManager.xcdatamodeld */; };
 		0127D3BF2BB192F2004C5233 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0127D3BE2BB192F2004C5233 /* Assets.xcassets */; };
 		0127D3CD2BB194BC004C5233 /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3CC2BB194BC004C5233 /* UIColor+HEX.swift */; };
 		0127D3CF2BB194D5004C5233 /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3CE2BB194D5004C5233 /* UIView+Pin.swift */; };
+		012F96062BB19AE60012B8EE /* TimeManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 012F96042BB19AE60012B8EE /* TimeManager.xcdatamodeld */; };
+		012F960F2BB19C090012B8EE /* GeneralTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96072BB19C090012B8EE /* GeneralTask+CoreDataClass.swift */; };
+		012F96102BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96082BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift */; };
+		012F96112BB19C090012B8EE /* SpecificTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96092BB19C090012B8EE /* SpecificTask+CoreDataClass.swift */; };
+		012F96122BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F960A2BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift */; };
+		012F96132BB19C090012B8EE /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F960B2BB19C090012B8EE /* Tag+CoreDataClass.swift */; };
+		012F96142BB19C090012B8EE /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F960C2BB19C090012B8EE /* Tag+CoreDataProperties.swift */; };
+		012F96152BB19C090012B8EE /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F960D2BB19C090012B8EE /* Task+CoreDataClass.swift */; };
+		012F96162BB19C090012B8EE /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F960E2BB19C090012B8EE /* Task+CoreDataProperties.swift */; };
+		012F96182BB19C680012B8EE /* SpecificTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96172BB19C680012B8EE /* SpecificTaskRepository.swift */; };
+		012F961A2BB19C950012B8EE /* GeneralTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96192BB19C950012B8EE /* GeneralTaskRepository.swift */; };
+		012F961C2BB19CAC0012B8EE /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F961B2BB19CAC0012B8EE /* TagRepository.swift */; };
+		012F961E2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F961D2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift */; };
+		012F96202BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F961F2BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift */; };
+		012F96222BB19CF40012B8EE /* CoreDataTagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96212BB19CF40012B8EE /* CoreDataTagRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,12 +35,26 @@
 		0127D3B22BB192F1004C5233 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0127D3B42BB192F1004C5233 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0127D3B62BB192F1004C5233 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0127D3BC2BB192F1004C5233 /* TimeManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeManager.xcdatamodel; sourceTree = "<group>"; };
 		0127D3BE2BB192F2004C5233 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0127D3C32BB192F2004C5233 /* TimeManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeManager.entitlements; sourceTree = "<group>"; };
 		0127D3C42BB192F2004C5233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0127D3CC2BB194BC004C5233 /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
 		0127D3CE2BB194D5004C5233 /* UIView+Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Pin.swift"; sourceTree = "<group>"; };
+		012F96052BB19AE60012B8EE /* TimeManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeManager.xcdatamodel; sourceTree = "<group>"; };
+		012F96072BB19C090012B8EE /* GeneralTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		012F96082BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		012F96092BB19C090012B8EE /* SpecificTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpecificTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		012F960A2BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpecificTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		012F960B2BB19C090012B8EE /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
+		012F960C2BB19C090012B8EE /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		012F960D2BB19C090012B8EE /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		012F960E2BB19C090012B8EE /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		012F96172BB19C680012B8EE /* SpecificTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTaskRepository.swift; sourceTree = "<group>"; };
+		012F96192BB19C950012B8EE /* GeneralTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskRepository.swift; sourceTree = "<group>"; };
+		012F961B2BB19CAC0012B8EE /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
+		012F961D2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSpecificTaskRepository.swift; sourceTree = "<group>"; };
+		012F961F2BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGeneralTaskRepository.swift; sourceTree = "<group>"; };
+		012F96212BB19CF40012B8EE /* CoreDataTagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTagRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +154,15 @@
 		0127D3D42BB195F6004C5233 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0127D3BB2BB192F1004C5233 /* TimeManager.xcdatamodeld */,
+				012F96072BB19C090012B8EE /* GeneralTask+CoreDataClass.swift */,
+				012F96082BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift */,
+				012F96092BB19C090012B8EE /* SpecificTask+CoreDataClass.swift */,
+				012F960A2BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift */,
+				012F960B2BB19C090012B8EE /* Tag+CoreDataClass.swift */,
+				012F960C2BB19C090012B8EE /* Tag+CoreDataProperties.swift */,
+				012F960D2BB19C090012B8EE /* Task+CoreDataClass.swift */,
+				012F960E2BB19C090012B8EE /* Task+CoreDataProperties.swift */,
+				012F96042BB19AE60012B8EE /* TimeManager.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -134,6 +170,12 @@
 		0127D3D52BB196AA004C5233 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				012F96172BB19C680012B8EE /* SpecificTaskRepository.swift */,
+				012F96192BB19C950012B8EE /* GeneralTaskRepository.swift */,
+				012F961B2BB19CAC0012B8EE /* TagRepository.swift */,
+				012F961D2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift */,
+				012F961F2BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift */,
+				012F96212BB19CF40012B8EE /* CoreDataTagRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -221,12 +263,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				012F96112BB19C090012B8EE /* SpecificTask+CoreDataClass.swift in Sources */,
+				012F96222BB19CF40012B8EE /* CoreDataTagRepository.swift in Sources */,
 				0127D3B72BB192F1004C5233 /* ViewController.swift in Sources */,
+				012F96202BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift in Sources */,
+				012F96182BB19C680012B8EE /* SpecificTaskRepository.swift in Sources */,
+				012F961C2BB19CAC0012B8EE /* TagRepository.swift in Sources */,
+				012F96152BB19C090012B8EE /* Task+CoreDataClass.swift in Sources */,
+				012F96142BB19C090012B8EE /* Tag+CoreDataProperties.swift in Sources */,
+				012F96162BB19C090012B8EE /* Task+CoreDataProperties.swift in Sources */,
 				0127D3CD2BB194BC004C5233 /* UIColor+HEX.swift in Sources */,
+				012F961A2BB19C950012B8EE /* GeneralTaskRepository.swift in Sources */,
 				0127D3CF2BB194D5004C5233 /* UIView+Pin.swift in Sources */,
+				012F96102BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift in Sources */,
+				012F96062BB19AE60012B8EE /* TimeManager.xcdatamodeld in Sources */,
 				0127D3B32BB192F1004C5233 /* AppDelegate.swift in Sources */,
-				0127D3BD2BB192F1004C5233 /* TimeManager.xcdatamodeld in Sources */,
+				012F961E2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift in Sources */,
 				0127D3B52BB192F1004C5233 /* SceneDelegate.swift in Sources */,
+				012F96132BB19C090012B8EE /* Tag+CoreDataClass.swift in Sources */,
+				012F96122BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift in Sources */,
+				012F960F2BB19C090012B8EE /* GeneralTask+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,16 +413,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = TimeManager/TimeManager.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TimeManager/App/TimeManager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7N7ZCU7GNB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TimeManager/Info.plist;
+				INFOPLIST_FILE = TimeManager/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,16 +442,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = TimeManager/TimeManager.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TimeManager/App/TimeManager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7N7ZCU7GNB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TimeManager/Info.plist;
+				INFOPLIST_FILE = TimeManager/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,13 +490,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0127D3BB2BB192F1004C5233 /* TimeManager.xcdatamodeld */ = {
+		012F96042BB19AE60012B8EE /* TimeManager.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				0127D3BC2BB192F1004C5233 /* TimeManager.xcdatamodel */,
+				012F96052BB19AE60012B8EE /* TimeManager.xcdatamodel */,
 			);
-			currentVersion = 0127D3BC2BB192F1004C5233 /* TimeManager.xcdatamodel */;
-			path = TimeManager.xcdatamodeld;
+			currentVersion = 012F96052BB19AE60012B8EE /* TimeManager.xcdatamodel */;
+			name = TimeManager.xcdatamodeld;
+			path = ../../TimeManager.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

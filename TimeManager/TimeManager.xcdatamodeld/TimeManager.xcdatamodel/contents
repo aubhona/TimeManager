@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23E214" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="GeneralTask" representedClassName="GeneralTask" parentEntity="Task" syncable="YES">
+        <attribute name="deadlineDate" attributeType="Date" allowsCloudEncryption="YES" usesScalarValueType="NO"/>
+        <relationship name="specificTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpecificTask" inverseName="generalTask" inverseEntity="SpecificTask"/>
+    </entity>
+    <entity name="SpecificTask" representedClassName="SpecificTask" parentEntity="Task" syncable="YES">
+        <attribute name="duration" attributeType="Integer 64" minValueString="0" maxValueString="1440" defaultValueString="0" allowsCloudEncryption="YES" usesScalarValueType="YES"/>
+        <attribute name="scheduledDate" optional="YES" attributeType="Date" allowsCloudEncryption="YES" usesScalarValueType="NO"/>
+        <relationship name="generalTask" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="GeneralTask" inverseName="specificTasks" inverseEntity="GeneralTask"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="scheduledDate"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES">
+        <attribute name="color" attributeType="String" allowsCloudEncryption="YES"/>
+        <attribute name="id" attributeType="UUID" allowsCloudEncryption="YES" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" allowsCloudEncryption="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="tags" inverseEntity="Task"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+                <constraint value="color"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Task" representedClassName="Task" isAbstract="YES" syncable="YES">
+        <attribute name="id" attributeType="UUID" allowsCloudEncryption="YES" usesScalarValueType="NO"/>
+        <attribute name="isCompleted" attributeType="Boolean" allowsCloudEncryption="YES" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" minValueString="1" maxValueString="100" allowsCloudEncryption="YES"/>
+        <attribute name="taskDescription" attributeType="String" minValueString="1" maxValueString="500" allowsCloudEncryption="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="tasks" inverseEntity="Tag"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+</model>
