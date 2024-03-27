@@ -32,7 +32,9 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tasksCollectionView.reloadData()
+        tasksCollectionView.performBatchUpdates({
+            tasksCollectionView.reloadSections(IndexSet(integer: 0))
+        }, completion: nil)
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -148,7 +150,9 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
         }
         let uniqueIndexPathsToUpdate = Array(Set(indexPathsToUpdate))
         weekCollectionView.reloadItems(at: uniqueIndexPathsToUpdate)
-        tasksCollectionView.reloadData()
+        tasksCollectionView.performBatchUpdates({
+            tasksCollectionView.reloadSections(IndexSet(integer: 0))
+        }, completion: nil)
     }
     
     @objc private func addSpecificTaskTapped() {
@@ -186,6 +190,9 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
     
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if (collectionView == weekCollectionView) {
+            return
+        }
         let specificTaskDescriptionView = SpecificTaskDescriptionView(task: presenter!.getTask(index: indexPath.row))
         specificTaskDescriptionView.modalPresentationStyle = .custom
         specificTaskDescriptionView.transitioningDelegate = self
@@ -201,27 +208,22 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
 
 extension SpecificTaskListViewController: UIScrollViewDelegate {
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if (scrollView == tasksCollectionView) {
+            return
+        }
         presenter?.addWeekToSelectedDay(weekIndex: weekCollectionView.indexPathsForVisibleItems.max()?.row ?? .zero)
         presenter?.setCurrentMonth()
-        tasksCollectionView.reloadData()
+        tasksCollectionView.performBatchUpdates({
+            tasksCollectionView.reloadSections(IndexSet(integer: 0))
+        }, completion: nil)
     }
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
 extension SpecificTaskListViewController: UIViewControllerTransitioningDelegate {
+    
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        let presentationController = TaskDescriptionPresentationController(presentedViewController: presented, presenting: presenting)
+        let presentationController = PopUpPresentationController(presentedViewController: presented, presenting: presenting)
         return presentationController
     }
 }
-
-// MARK: - UIPresentationController
-class TaskDescriptionPresentationController: UIPresentationController {
-    override var frameOfPresentedViewInContainerView: CGRect {
-        guard let containerViewBounds = containerView?.bounds else { return .zero }
-        let height = containerViewBounds.height / 3
-        return CGRect(x: 0, y: containerViewBounds.height - height, width: containerViewBounds.width, height: height)
-    }
-
-}
-

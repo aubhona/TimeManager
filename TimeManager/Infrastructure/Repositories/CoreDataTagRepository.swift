@@ -24,7 +24,14 @@ public final class CoreDataTagRepository: TagRepository {
     }
     
     func createTag(id: UUID, name: String, color: String, tasks: NSSet?) {
-        return
+        guard let tagEntityDescription = NSEntityDescription.entity(forEntityName: "Tag", in: context) else { return }
+        let tag = Tag(entity: tagEntityDescription, insertInto: context)
+        tag.id = id
+        tag.name = name
+        tag.color = color
+        tag.tasks = tasks
+        
+        appDelegate.saveContext()
     }
     
     func deleteTag(id: UUID) {
@@ -32,7 +39,14 @@ public final class CoreDataTagRepository: TagRepository {
     }
     
     func getAllTags() -> [Tag] {
-        return []
+        let fetchRequest: NSFetchRequest<Tag> = Tag.fetchRequest()
+        do {
+            let tags = try context.fetch(fetchRequest)
+            return tags
+        } catch let error as NSError {
+            print("Error fetching tags: \(error), \(error.userInfo)")
+            return []
+        }
     }
     
     func getTagById() -> Tag? {

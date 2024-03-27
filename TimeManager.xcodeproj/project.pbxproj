@@ -38,6 +38,18 @@
 		012F96332BB19F410012B8EE /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96322BB19F410012B8EE /* TaskCollectionViewCell.swift */; };
 		012F96352BB19F740012B8EE /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96342BB19F740012B8EE /* MainTabBarViewController.swift */; };
 		012F96372BB1AE080012B8EE /* SpecificTaskDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96362BB1AE080012B8EE /* SpecificTaskDescriptionView.swift */; };
+		01B18ABC2BB2D8350019F040 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ABB2BB2D8350019F040 /* TagView.swift */; };
+		01B18ABF2BB2E9D40019F040 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ABE2BB2E9D40019F040 /* CalendarManager.swift */; };
+		01B18AC12BB2E9EF0019F040 /* CalendarEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AC02BB2E9EF0019F040 /* CalendarEventModel.swift */; };
+		01B18AC32BB2EA160019F040 /* CalendarManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AC22BB2EA160019F040 /* CalendarManaging.swift */; };
+		01B18AC52BB2ED900019F040 /* ReminderEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AC42BB2ED900019F040 /* ReminderEventModel.swift */; };
+		01B18AC72BB2EDB30019F040 /* ReminderManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AC62BB2EDB30019F040 /* ReminderManaging.swift */; };
+		01B18AC92BB2EDD10019F040 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AC82BB2EDD10019F040 /* ReminderManager.swift */; };
+		01B18ACB2BB31FC20019F040 /* TagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ACA2BB31FC20019F040 /* TagViewCell.swift */; };
+		01B18ACD2BB326390019F040 /* TagDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ACC2BB326390019F040 /* TagDto.swift */; };
+		01B18AD32BB3C3940019F040 /* AddTagPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AD22BB3C3940019F040 /* AddTagPresenter.swift */; };
+		01B18AD52BB3C7980019F040 /* AddTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AD42BB3C7980019F040 /* AddTagViewController.swift */; };
+		01B18AD72BB3D0E90019F040 /* PopUpPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AD62BB3D0E90019F040 /* PopUpPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +87,18 @@
 		012F96322BB19F410012B8EE /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		012F96342BB19F740012B8EE /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		012F96362BB1AE080012B8EE /* SpecificTaskDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTaskDescriptionView.swift; sourceTree = "<group>"; };
+		01B18ABB2BB2D8350019F040 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		01B18ABE2BB2E9D40019F040 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		01B18AC02BB2E9EF0019F040 /* CalendarEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventModel.swift; sourceTree = "<group>"; };
+		01B18AC22BB2EA160019F040 /* CalendarManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManaging.swift; sourceTree = "<group>"; };
+		01B18AC42BB2ED900019F040 /* ReminderEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEventModel.swift; sourceTree = "<group>"; };
+		01B18AC62BB2EDB30019F040 /* ReminderManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManaging.swift; sourceTree = "<group>"; };
+		01B18AC82BB2EDD10019F040 /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
+		01B18ACA2BB31FC20019F040 /* TagViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCell.swift; sourceTree = "<group>"; };
+		01B18ACC2BB326390019F040 /* TagDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDto.swift; sourceTree = "<group>"; };
+		01B18AD22BB3C3940019F040 /* AddTagPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagPresenter.swift; sourceTree = "<group>"; };
+		01B18AD42BB3C7980019F040 /* AddTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagViewController.swift; sourceTree = "<group>"; };
+		01B18AD62BB3D0E90019F040 /* PopUpPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,9 +182,11 @@
 		0127D3D22BB195CC004C5233 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				01B18ABD2BB2E9830019F040 /* Manager */,
 				012F96252BB19DCB0012B8EE /* Dtos */,
 				012F96232BB19D850012B8EE /* SpecificTaskListPresenter.swift */,
 				012F962A2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift */,
+				01B18AD22BB3C3940019F040 /* AddTagPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -168,6 +194,7 @@
 		0127D3D32BB195D9004C5233 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				01B18ABA2BB2D8210019F040 /* CustomViews */,
 				0127D3D72BB196CE004C5233 /* Screens */,
 				0127D3D62BB196C2004C5233 /* CustomCells */,
 			);
@@ -209,6 +236,7 @@
 				012F962E2BB19F190012B8EE /* WeekDayViewCell.swift */,
 				012F96302BB19F2E0012B8EE /* WeekCollectionViewCell.swift */,
 				012F96322BB19F410012B8EE /* TaskCollectionViewCell.swift */,
+				01B18ACA2BB31FC20019F040 /* TagViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -220,6 +248,7 @@
 				012F962C2BB19EE30012B8EE /* AddSpecificTaskViewController.swift */,
 				012F96342BB19F740012B8EE /* MainTabBarViewController.swift */,
 				012F96362BB1AE080012B8EE /* SpecificTaskDescriptionView.swift */,
+				01B18AD42BB3C7980019F040 /* AddTagViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -228,8 +257,31 @@
 			isa = PBXGroup;
 			children = (
 				012F96262BB19DDD0012B8EE /* SpecificTaskDto.swift */,
+				01B18AC02BB2E9EF0019F040 /* CalendarEventModel.swift */,
+				01B18AC42BB2ED900019F040 /* ReminderEventModel.swift */,
+				01B18ACC2BB326390019F040 /* TagDto.swift */,
 			);
 			path = Dtos;
+			sourceTree = "<group>";
+		};
+		01B18ABA2BB2D8210019F040 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				01B18ABB2BB2D8350019F040 /* TagView.swift */,
+				01B18AD62BB3D0E90019F040 /* PopUpPresentationController.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		01B18ABD2BB2E9830019F040 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				01B18ABE2BB2E9D40019F040 /* CalendarManager.swift */,
+				01B18AC22BB2EA160019F040 /* CalendarManaging.swift */,
+				01B18AC62BB2EDB30019F040 /* ReminderManaging.swift */,
+				01B18AC82BB2EDD10019F040 /* ReminderManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,18 +356,25 @@
 				012F96112BB19C090012B8EE /* SpecificTask+CoreDataClass.swift in Sources */,
 				012F96222BB19CF40012B8EE /* CoreDataTagRepository.swift in Sources */,
 				012F96272BB19DDD0012B8EE /* SpecificTaskDto.swift in Sources */,
+				01B18ABC2BB2D8350019F040 /* TagView.swift in Sources */,
 				012F962B2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift in Sources */,
+				01B18ABF2BB2E9D40019F040 /* CalendarManager.swift in Sources */,
 				0127D3B72BB192F1004C5233 /* ViewController.swift in Sources */,
+				01B18ACB2BB31FC20019F040 /* TagViewCell.swift in Sources */,
 				012F96332BB19F410012B8EE /* TaskCollectionViewCell.swift in Sources */,
 				012F96352BB19F740012B8EE /* MainTabBarViewController.swift in Sources */,
 				012F96202BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift in Sources */,
 				012F96182BB19C680012B8EE /* SpecificTaskRepository.swift in Sources */,
 				012F96242BB19D850012B8EE /* SpecificTaskListPresenter.swift in Sources */,
 				012F961C2BB19CAC0012B8EE /* TagRepository.swift in Sources */,
+				01B18AC32BB2EA160019F040 /* CalendarManaging.swift in Sources */,
 				012F96152BB19C090012B8EE /* Task+CoreDataClass.swift in Sources */,
+				01B18AC92BB2EDD10019F040 /* ReminderManager.swift in Sources */,
 				012F96142BB19C090012B8EE /* Tag+CoreDataProperties.swift in Sources */,
+				01B18AD32BB3C3940019F040 /* AddTagPresenter.swift in Sources */,
 				012F96162BB19C090012B8EE /* Task+CoreDataProperties.swift in Sources */,
 				0127D3CD2BB194BC004C5233 /* UIColor+HEX.swift in Sources */,
+				01B18AD52BB3C7980019F040 /* AddTagViewController.swift in Sources */,
 				012F961A2BB19C950012B8EE /* GeneralTaskRepository.swift in Sources */,
 				0127D3CF2BB194D5004C5233 /* UIView+Pin.swift in Sources */,
 				012F96102BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift in Sources */,
@@ -326,7 +385,12 @@
 				012F961E2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift in Sources */,
 				012F962D2BB19EE30012B8EE /* AddSpecificTaskViewController.swift in Sources */,
 				0127D3B52BB192F1004C5233 /* SceneDelegate.swift in Sources */,
+				01B18ACD2BB326390019F040 /* TagDto.swift in Sources */,
 				012F96132BB19C090012B8EE /* Tag+CoreDataClass.swift in Sources */,
+				01B18AC72BB2EDB30019F040 /* ReminderManaging.swift in Sources */,
+				01B18AC12BB2E9EF0019F040 /* CalendarEventModel.swift in Sources */,
+				01B18AD72BB3D0E90019F040 /* PopUpPresentationController.swift in Sources */,
+				01B18AC52BB2ED900019F040 /* ReminderEventModel.swift in Sources */,
 				012F96312BB19F2E0012B8EE /* WeekCollectionViewCell.swift in Sources */,
 				012F96122BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift in Sources */,
 				012F960F2BB19C090012B8EE /* GeneralTask+CoreDataClass.swift in Sources */,

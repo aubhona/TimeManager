@@ -13,7 +13,7 @@ final class SpecificTaskDescriptionView: UIViewController {
     private var panGestureRecognizer: UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var swipeIndicatorView: UIView = UIView()
     private var titleLabel: UILabel = UILabel()
-    private var descriptionTextField: UITextField = UITextField()
+    private var descriptionLabel: UILabel = UILabel()
     private var descriptionImage: UIImageView = UIImageView()
     private var timeLabel: UILabel = UILabel()
     private var timeImage: UIImageView = UIImageView()
@@ -21,7 +21,14 @@ final class SpecificTaskDescriptionView: UIViewController {
     private var deleteButton: UIButton = UIButton()
     private var editButton: UIButton = UIButton()
     private var actionStackView: UIStackView = UIStackView()
-    
+    private var scrollView: UIScrollView = UIScrollView()
+    private var contentView = UIView()
+    private var deleteButtonLabel: UILabel = UILabel()
+    private var editButtonLabel: UILabel = UILabel()
+    private var deleteButtonStackView: UIStackView = UIStackView()
+    private var editButtonStackView: UIStackView = UIStackView()
+    private var tagsStackView: UIStackView = UIStackView()
+    private var tagImage: UIImageView = UIImageView()
     
     init(task: SpecificTaskDto) {
         self.task = task
@@ -45,59 +52,135 @@ final class SpecificTaskDescriptionView: UIViewController {
     }
     
     private func configureViews() {
+        scrollView = UIScrollView()
+        view.addSubview(scrollView)
+        scrollView.pinHorizontal(to: view)
+        scrollView.pinBottom(to: view)
+        scrollView.pinTop(to: swipeIndicatorView.bottomAnchor, 5)
+        
+        contentView = UIView()
+        scrollView.addSubview(contentView)
+        contentView.pin(to: scrollView)
+        contentView.setWidth(view.frame.width)
+        
+        scrollView.isScrollEnabled = true
+        
         titleLabel = UILabel()
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        view.addSubview(titleLabel)
-        titleLabel.pinTop(to: swipeIndicatorView, 20)
-        titleLabel.pinLeft(to: view, 20)
-        titleLabel.setWidth(view.bounds.width)
+        contentView.addSubview(titleLabel)
+        titleLabel.pinTop(to: contentView, 20)
+        titleLabel.pinLeft(to: contentView, 20)
+        titleLabel.setWidth(contentView.bounds.width)
         
         descriptionImage = UIImageView(image: UIImage(systemName: "text.quote"))
-        view.addSubview(descriptionImage)
+        contentView.addSubview(descriptionImage)
         descriptionImage.pinLeft(to: titleLabel)
         descriptionImage.pinTop(to: titleLabel.bottomAnchor, 10)
         descriptionImage.tintColor = .red
         
-        descriptionTextField = UITextField()
-        view.addSubview(descriptionTextField)
-        descriptionTextField.text = task.taskDescription
-        descriptionTextField.pinLeft(to: descriptionImage.trailingAnchor, 5)
-        descriptionTextField.pinTop(to: titleLabel.bottomAnchor, 10)
+        descriptionLabel = UILabel()
+        contentView.addSubview(descriptionLabel)
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.text = task.taskDescription
+        descriptionLabel.pinLeft(to: descriptionImage.trailingAnchor, 5)
+        descriptionLabel.pinTop(to: titleLabel.bottomAnchor, 10)
         
         timeImage = UIImageView(image: UIImage(systemName: "clock.arrow.circlepath"))
-        view.addSubview(timeImage)
+        contentView.addSubview(timeImage)
         timeImage.tintColor = .red
-        timeImage.pinTop(to: descriptionImage.bottomAnchor, 10)
+        timeImage.pinTop(to: descriptionLabel.bottomAnchor, 10)
         timeImage.pinLeft(to: descriptionImage)
         
         timeLabel = UILabel()
         timeLabel.text = task.scheduledDate
-        view.addSubview(timeLabel)
-        timeLabel.pinTop(to: descriptionImage.bottomAnchor, 10)
-        timeLabel.pinLeft(to: descriptionTextField)
-        timeLabel.setWidth(view.bounds.width)
+        contentView.addSubview(timeLabel)
+        timeLabel.pinTop(to: descriptionLabel.bottomAnchor, 10)
+        timeLabel.pinLeft(to: descriptionLabel)
+        
+        tagImage = UIImageView(image: UIImage(systemName: "tag"))
+        tagImage.tintColor = .red
+        contentView.addSubview(tagImage)
+        tagImage.pinTop(to: timeImage.bottomAnchor, 10)
+        tagImage.pinLeft(to: timeImage)
+        
+        tagsStackView = UIStackView()
+        tagsStackView.clearsContextBeforeDrawing = true
+        tagsStackView.axis = .vertical
+        tagsStackView.clipsToBounds = true
+        tagsStackView.distribution = .fillEqually
+        contentView.addSubview(tagsStackView)
+        tagsStackView.pinTop(to: tagImage)
+        tagsStackView.pinLeft(to: tagImage.trailingAnchor, 5)
+        tagsStackView.setWidth(view.bounds.width)
+        tagsStackView.setHeight(Double(task.tags.count) * 20.0)
+        for tag in task.tags {
+            let tagView = TagView()
+            tagView.configure(with: tag.name, color: UIColor(tag.color))
+            tagsStackView.addArrangedSubview(tagView)
+        }
+        if (task.tags.count == 0){
+            tagImage.isHidden = true
+        }
         
         deleteButton = UIButton(type: .system)
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular, scale: .large)
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 23, weight: .regular, scale: .large)
         deleteButton.setImage(UIImage(systemName: "trash", withConfiguration: largeConfig), for: .normal)
         deleteButton.tintColor = .red
-        deleteButton.setTitle("Удалить", for: .normal)
-        deleteButton.contentHorizontalAlignment = .center
-        deleteButton.contentVerticalAlignment = .center
+        deleteButton.addTarget(self, action: #selector(handleTouchDown(_:)), for: .touchDown)
+        deleteButton.addTarget(self, action: #selector(handleTouchUpInside(_:)), for: [.touchUpInside, .touchUpOutside])
         
         editButton = UIButton(type: .system)
         editButton.setImage(UIImage(systemName: "pencil.line", withConfiguration: largeConfig), for: .normal)
         editButton.tintColor = .red
+        editButton.addTarget(self, action: #selector(handleTouchDown(_:)), for: .touchDown)
+        editButton.addTarget(self, action: #selector(handleTouchUpInside(_:)), for: [.touchUpInside, .touchUpOutside])
         
-        view.addSubview(actionStackView)
+        deleteButtonLabel = UILabel()
+        deleteButtonLabel.text = "Удалить"
+        deleteButtonLabel.textColor = .red
+        deleteButtonLabel.font = UIFont.systemFont(ofSize: 13)
+        
+        editButtonLabel = UILabel()
+        editButtonLabel.text = "Редактировать"
+        editButtonLabel.textColor = .red
+        editButtonLabel.font = UIFont.systemFont(ofSize: 13)
+        
+        deleteButtonStackView = UIStackView(arrangedSubviews: [deleteButton, deleteButtonLabel])
+        deleteButtonStackView.axis = .vertical
+        deleteButtonStackView.alignment = .center
+        deleteButtonStackView.spacing = 5
+        
+        editButtonStackView = UIStackView(arrangedSubviews: [editButton, editButtonLabel])
+        editButtonStackView.axis = .vertical
+        editButtonStackView.alignment = .center
+        editButtonStackView.spacing = 5
+        
+        actionStackView = UIStackView(arrangedSubviews: [deleteButtonStackView, editButtonStackView])
+        contentView.addSubview(actionStackView)
         actionStackView.axis = .horizontal
-        actionStackView.addArrangedSubview(deleteButton)
-        actionStackView.addArrangedSubview(editButton)
         actionStackView.distribution = .equalSpacing
-        actionStackView.spacing = view.bounds.width / 3
+        actionStackView.spacing = view.bounds.width / 4
         
-        actionStackView.pinCenterX(to: view)
-        actionStackView.pinTop(to: timeLabel.bottomAnchor, 20)
+        actionStackView.pinCenterX(to: contentView)
+        actionStackView.pinTop(to: tagsStackView.bottomAnchor, 20)
+        actionStackView.pinBottom(to: contentView.bottomAnchor, 20)
+        
+        scrollView.contentSize = CGSize(width: contentView.frame.width, height: contentView.frame.height)
+    }
+    
+    @objc private func handleTouchDown(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.35) {
+            sender.alpha = 0.5
+        }
+        // TODO:
+    }
+    
+    
+    @objc private func handleTouchUpInside(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.35) {
+            sender.alpha = 1.0
+        }
+        // TODO:
     }
     
     private func configureSwipeIndicator() {
@@ -111,7 +194,7 @@ final class SpecificTaskDescriptionView: UIViewController {
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDismissGesture(_:)))
         self.view.addGestureRecognizer(panGestureRecognizer)
     }
-
+    
     @objc private func handleDismissGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: gesture.view?.superview)
         

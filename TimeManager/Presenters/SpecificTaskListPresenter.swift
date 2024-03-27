@@ -130,21 +130,27 @@ public final class SpecificTaskListPresenter {
     }
     
     func getTask(index: Int) -> SpecificTaskDto {
-        let formatter = DateFormatter()
-        formatter.dateFormat = Constants.timeFormat
-        let specificTask = tasks[index]
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = Constants.timeFormat
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ru_RU")
         dateFormatter.dateFormat = "d MMMM yyyy, HH:mm"
         
+        let specificTask = tasks[index]
+        
+        let endDate = (specificTask.scheduledDate?.addingTimeInterval(Double(specificTask.duration) * Constants.minutesCount))!
+        let tags = (specificTask.tags!.allObjects as! [Tag]).compactMap { TagDto(name: $0.name!, color: $0.color!) }
         let specificTaskDto = SpecificTaskDto(
+            id: specificTask.id!,
             name: specificTask.name!,
             isCompleted: specificTask.isCompleted,
             taskDescription: specificTask.taskDescription!,
-            scheduledStartTime: formatter.string(from: specificTask.scheduledDate!),
-            scheduledEndTime: formatter.string(from: (specificTask.scheduledDate?.addingTimeInterval(Double(specificTask.duration) * Constants.minutesCount))!),
-            sheduledDate: dateFormatter.string(from: specificTask.scheduledDate!)
+            scheduledStartTime: timeFormatter.string(from: specificTask.scheduledDate!),
+            scheduledEndTime: timeFormatter.string(from: endDate),
+            sheduledDate: dateFormatter.string(from: specificTask.scheduledDate!) + " (\(specificTask.duration / 60) ч, \(specificTask.duration % 60) мин)",
+            skipped: endDate < Date(),
+            tags: tags
         )
         
         return specificTaskDto

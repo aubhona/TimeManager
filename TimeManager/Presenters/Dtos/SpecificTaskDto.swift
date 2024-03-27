@@ -7,20 +7,26 @@
 
 import Foundation
 
-class SpecificTaskDto {
+public final class SpecificTaskDto {
+    public var id: UUID
     public var name: String
     public var isCompleted: Bool
     public var taskDescription: String
     public var scheduledStartTime: String
     public var scheduledEndTime: String
     public var scheduledDate: String
+    public var skipped: Bool
+    public var tags: [TagDto]
     
-    init(name: String, isCompleted: Bool, taskDescription: String, scheduledStartTime: String, scheduledEndTime: String, sheduledDate: String) {
+    init(id: UUID, name: String, isCompleted: Bool, taskDescription: String, scheduledStartTime: String, scheduledEndTime: String, sheduledDate: String, skipped: Bool, tags: [TagDto]) {
+        self.id = id
         self.name = name
         self.isCompleted = isCompleted
         self.taskDescription = taskDescription
         self.scheduledStartTime = scheduledStartTime
         self.scheduledEndTime = scheduledEndTime
         self.scheduledDate = sheduledDate
+        self.skipped = skipped
+        self.tags = tags
     }
 }

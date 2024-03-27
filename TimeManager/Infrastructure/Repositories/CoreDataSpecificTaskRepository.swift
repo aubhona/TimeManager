@@ -85,7 +85,7 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
                 try context.save()
             }
         } catch {
-            print("Ошибка при обновлении задачи: \(error)")
+            print("Error updating task: \(error)")
         }
     }
 

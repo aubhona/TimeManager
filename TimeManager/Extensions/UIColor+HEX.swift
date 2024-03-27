@@ -34,6 +34,7 @@ extension UIColor {
         static let greenPos : UInt64 = 16
         static let bluePos : UInt64 = 8
         
+        static let hexMultiplier = CGFloat(255.999999)
     }
     
     // MARK: init convert hex color to RGB
@@ -60,5 +61,36 @@ extension UIColor {
         }
         hexColor += String(Int.random(in: Constants.minAlphaValue...Constants.maxAlphaValue), radix: Constants.colorBase)
         return hexColor
+    }
+    
+    // MARK: To hex property
+    
+    var hexString: String {
+        var red: CGFloat = .zero
+        var green: CGFloat = .zero
+        var blue: CGFloat = .zero
+        var alpha: CGFloat = .zero
+        
+        guard self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+            return "000000"
+        }
+        
+        if alpha == 1.0 {
+            return String(
+                format: "#%02lX%02lX%02lX",
+                Int(red * Constants.hexMultiplier),
+                Int(green * Constants.hexMultiplier),
+                Int(blue * Constants.hexMultiplier)
+            )
+        }
+        
+        return String(
+            format: "#%02lX%02lX%02lX%02lX",
+            Int(red * Constants.hexMultiplier),
+            Int(green * Constants.hexMultiplier),
+            Int(blue * Constants.hexMultiplier),
+            Int(alpha * Constants.hexMultiplier)
+        )
+        
     }
 }
