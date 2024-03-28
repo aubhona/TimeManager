@@ -13,6 +13,8 @@ protocol SpecificTaskRepository {
     
     func getTasksByDate(date: Date) -> [SpecificTask];
     
+    func getTaskById(id: UUID) -> SpecificTask?;
+    
     func createTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, duration: Int64, scheduledDate: Date?, generalTask: GeneralTask?);
     
     func deleteTask(id: UUID);

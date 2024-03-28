@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0127D3B32BB192F1004C5233 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3B22BB192F1004C5233 /* AppDelegate.swift */; };
 		0127D3B52BB192F1004C5233 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3B42BB192F1004C5233 /* SceneDelegate.swift */; };
-		0127D3B72BB192F1004C5233 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3B62BB192F1004C5233 /* ViewController.swift */; };
 		0127D3BF2BB192F2004C5233 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0127D3BE2BB192F2004C5233 /* Assets.xcassets */; };
 		0127D3CD2BB194BC004C5233 /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3CC2BB194BC004C5233 /* UIColor+HEX.swift */; };
 		0127D3CF2BB194D5004C5233 /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3CE2BB194D5004C5233 /* UIView+Pin.swift */; };
@@ -33,9 +32,9 @@
 		012F96292BB19E850012B8EE /* SpecificTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96282BB19E850012B8EE /* SpecificTaskListViewController.swift */; };
 		012F962B2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F962A2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift */; };
 		012F962D2BB19EE30012B8EE /* AddSpecificTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F962C2BB19EE30012B8EE /* AddSpecificTaskViewController.swift */; };
-		012F962F2BB19F190012B8EE /* WeekDayViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F962E2BB19F190012B8EE /* WeekDayViewCell.swift */; };
+		012F962F2BB19F190012B8EE /* WeekdayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F962E2BB19F190012B8EE /* WeekdayTableViewCell.swift */; };
 		012F96312BB19F2E0012B8EE /* WeekCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96302BB19F2E0012B8EE /* WeekCollectionViewCell.swift */; };
-		012F96332BB19F410012B8EE /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96322BB19F410012B8EE /* TaskCollectionViewCell.swift */; };
+		012F96332BB19F410012B8EE /* SpecificTaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96322BB19F410012B8EE /* SpecificTaskCollectionViewCell.swift */; };
 		012F96352BB19F740012B8EE /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96342BB19F740012B8EE /* MainTabBarViewController.swift */; };
 		012F96372BB1AE080012B8EE /* SpecificTaskDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96362BB1AE080012B8EE /* SpecificTaskDescriptionView.swift */; };
 		01B18ABC2BB2D8350019F040 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ABB2BB2D8350019F040 /* TagView.swift */; };
@@ -45,18 +44,25 @@
 		01B18AC52BB2ED900019F040 /* ReminderEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AC42BB2ED900019F040 /* ReminderEventModel.swift */; };
 		01B18AC72BB2EDB30019F040 /* ReminderManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AC62BB2EDB30019F040 /* ReminderManaging.swift */; };
 		01B18AC92BB2EDD10019F040 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AC82BB2EDD10019F040 /* ReminderManager.swift */; };
-		01B18ACB2BB31FC20019F040 /* TagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ACA2BB31FC20019F040 /* TagViewCell.swift */; };
+		01B18ACB2BB31FC20019F040 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ACA2BB31FC20019F040 /* TagCollectionViewCell.swift */; };
 		01B18ACD2BB326390019F040 /* TagDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ACC2BB326390019F040 /* TagDto.swift */; };
 		01B18AD32BB3C3940019F040 /* AddTagPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AD22BB3C3940019F040 /* AddTagPresenter.swift */; };
 		01B18AD52BB3C7980019F040 /* AddTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AD42BB3C7980019F040 /* AddTagViewController.swift */; };
 		01B18AD72BB3D0E90019F040 /* PopUpPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AD62BB3D0E90019F040 /* PopUpPresentationController.swift */; };
+		01B18AD92BB4747E0019F040 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AD82BB4747E0019F040 /* DatePickerViewController.swift */; };
+		01B18ADB2BB511B20019F040 /* GeneralTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ADA2BB511B20019F040 /* GeneralTaskListViewController.swift */; };
+		01B18ADD2BB516210019F040 /* GeneralTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ADC2BB516210019F040 /* GeneralTaskTableViewCell.swift */; };
+		01B18ADF2BB5283C0019F040 /* GeneralTaskDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ADE2BB5283C0019F040 /* GeneralTaskDto.swift */; };
+		01B18AE12BB541790019F040 /* GeneralTabelViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AE02BB541790019F040 /* GeneralTabelViewHeader.swift */; };
+		01B18AE32BB553130019F040 /* GeneralTaskListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AE22BB553130019F040 /* GeneralTaskListPresenter.swift */; };
+		01B18AE52BB553560019F040 /* AddGeneralTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AE42BB553560019F040 /* AddGeneralTaskViewController.swift */; };
+		01B18AE72BB581F50019F040 /* AddGeneralTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AE62BB581F50019F040 /* AddGeneralTaskPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0127D3AF2BB192F1004C5233 /* TimeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0127D3B22BB192F1004C5233 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0127D3B42BB192F1004C5233 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0127D3B62BB192F1004C5233 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0127D3BE2BB192F2004C5233 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0127D3C32BB192F2004C5233 /* TimeManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeManager.entitlements; sourceTree = "<group>"; };
 		0127D3C42BB192F2004C5233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,9 +88,9 @@
 		012F96282BB19E850012B8EE /* SpecificTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTaskListViewController.swift; sourceTree = "<group>"; };
 		012F962A2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpecificTaskPresenter.swift; sourceTree = "<group>"; };
 		012F962C2BB19EE30012B8EE /* AddSpecificTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpecificTaskViewController.swift; sourceTree = "<group>"; };
-		012F962E2BB19F190012B8EE /* WeekDayViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayViewCell.swift; sourceTree = "<group>"; };
+		012F962E2BB19F190012B8EE /* WeekdayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayTableViewCell.swift; sourceTree = "<group>"; };
 		012F96302BB19F2E0012B8EE /* WeekCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCollectionViewCell.swift; sourceTree = "<group>"; };
-		012F96322BB19F410012B8EE /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
+		012F96322BB19F410012B8EE /* SpecificTaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		012F96342BB19F740012B8EE /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		012F96362BB1AE080012B8EE /* SpecificTaskDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificTaskDescriptionView.swift; sourceTree = "<group>"; };
 		01B18ABB2BB2D8350019F040 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
@@ -94,11 +100,19 @@
 		01B18AC42BB2ED900019F040 /* ReminderEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderEventModel.swift; sourceTree = "<group>"; };
 		01B18AC62BB2EDB30019F040 /* ReminderManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManaging.swift; sourceTree = "<group>"; };
 		01B18AC82BB2EDD10019F040 /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
-		01B18ACA2BB31FC20019F040 /* TagViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCell.swift; sourceTree = "<group>"; };
+		01B18ACA2BB31FC20019F040 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		01B18ACC2BB326390019F040 /* TagDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDto.swift; sourceTree = "<group>"; };
 		01B18AD22BB3C3940019F040 /* AddTagPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagPresenter.swift; sourceTree = "<group>"; };
 		01B18AD42BB3C7980019F040 /* AddTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagViewController.swift; sourceTree = "<group>"; };
 		01B18AD62BB3D0E90019F040 /* PopUpPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpPresentationController.swift; sourceTree = "<group>"; };
+		01B18AD82BB4747E0019F040 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		01B18ADA2BB511B20019F040 /* GeneralTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskListViewController.swift; sourceTree = "<group>"; };
+		01B18ADC2BB516210019F040 /* GeneralTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskTableViewCell.swift; sourceTree = "<group>"; };
+		01B18ADE2BB5283C0019F040 /* GeneralTaskDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskDto.swift; sourceTree = "<group>"; };
+		01B18AE02BB541790019F040 /* GeneralTabelViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabelViewHeader.swift; sourceTree = "<group>"; };
+		01B18AE22BB553130019F040 /* GeneralTaskListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskListPresenter.swift; sourceTree = "<group>"; };
+		01B18AE42BB553560019F040 /* AddGeneralTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeneralTaskViewController.swift; sourceTree = "<group>"; };
+		01B18AE62BB581F50019F040 /* AddGeneralTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeneralTaskPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +151,6 @@
 				0127D3D02BB19538004C5233 /* Resources */,
 				0127D3CB2BB194A3004C5233 /* Extensions */,
 				0127D3CA2BB1948E004C5233 /* App */,
-				0127D3B62BB192F1004C5233 /* ViewController.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -187,6 +200,8 @@
 				012F96232BB19D850012B8EE /* SpecificTaskListPresenter.swift */,
 				012F962A2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift */,
 				01B18AD22BB3C3940019F040 /* AddTagPresenter.swift */,
+				01B18AE22BB553130019F040 /* GeneralTaskListPresenter.swift */,
+				01B18AE62BB581F50019F040 /* AddGeneralTaskPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -233,10 +248,11 @@
 		0127D3D62BB196C2004C5233 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
-				012F962E2BB19F190012B8EE /* WeekDayViewCell.swift */,
+				012F962E2BB19F190012B8EE /* WeekdayTableViewCell.swift */,
 				012F96302BB19F2E0012B8EE /* WeekCollectionViewCell.swift */,
-				012F96322BB19F410012B8EE /* TaskCollectionViewCell.swift */,
-				01B18ACA2BB31FC20019F040 /* TagViewCell.swift */,
+				012F96322BB19F410012B8EE /* SpecificTaskCollectionViewCell.swift */,
+				01B18ACA2BB31FC20019F040 /* TagCollectionViewCell.swift */,
+				01B18ADC2BB516210019F040 /* GeneralTaskTableViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -249,6 +265,9 @@
 				012F96342BB19F740012B8EE /* MainTabBarViewController.swift */,
 				012F96362BB1AE080012B8EE /* SpecificTaskDescriptionView.swift */,
 				01B18AD42BB3C7980019F040 /* AddTagViewController.swift */,
+				01B18AD82BB4747E0019F040 /* DatePickerViewController.swift */,
+				01B18ADA2BB511B20019F040 /* GeneralTaskListViewController.swift */,
+				01B18AE42BB553560019F040 /* AddGeneralTaskViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -260,6 +279,7 @@
 				01B18AC02BB2E9EF0019F040 /* CalendarEventModel.swift */,
 				01B18AC42BB2ED900019F040 /* ReminderEventModel.swift */,
 				01B18ACC2BB326390019F040 /* TagDto.swift */,
+				01B18ADE2BB5283C0019F040 /* GeneralTaskDto.swift */,
 			);
 			path = Dtos;
 			sourceTree = "<group>";
@@ -269,6 +289,7 @@
 			children = (
 				01B18ABB2BB2D8350019F040 /* TagView.swift */,
 				01B18AD62BB3D0E90019F040 /* PopUpPresentationController.swift */,
+				01B18AE02BB541790019F040 /* GeneralTabelViewHeader.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -357,15 +378,18 @@
 				012F96222BB19CF40012B8EE /* CoreDataTagRepository.swift in Sources */,
 				012F96272BB19DDD0012B8EE /* SpecificTaskDto.swift in Sources */,
 				01B18ABC2BB2D8350019F040 /* TagView.swift in Sources */,
+				01B18ADF2BB5283C0019F040 /* GeneralTaskDto.swift in Sources */,
+				01B18AE72BB581F50019F040 /* AddGeneralTaskPresenter.swift in Sources */,
 				012F962B2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift in Sources */,
 				01B18ABF2BB2E9D40019F040 /* CalendarManager.swift in Sources */,
-				0127D3B72BB192F1004C5233 /* ViewController.swift in Sources */,
-				01B18ACB2BB31FC20019F040 /* TagViewCell.swift in Sources */,
-				012F96332BB19F410012B8EE /* TaskCollectionViewCell.swift in Sources */,
+				01B18AE12BB541790019F040 /* GeneralTabelViewHeader.swift in Sources */,
+				01B18ACB2BB31FC20019F040 /* TagCollectionViewCell.swift in Sources */,
+				012F96332BB19F410012B8EE /* SpecificTaskCollectionViewCell.swift in Sources */,
 				012F96352BB19F740012B8EE /* MainTabBarViewController.swift in Sources */,
 				012F96202BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift in Sources */,
 				012F96182BB19C680012B8EE /* SpecificTaskRepository.swift in Sources */,
 				012F96242BB19D850012B8EE /* SpecificTaskListPresenter.swift in Sources */,
+				01B18AE52BB553560019F040 /* AddGeneralTaskViewController.swift in Sources */,
 				012F961C2BB19CAC0012B8EE /* TagRepository.swift in Sources */,
 				01B18AC32BB2EA160019F040 /* CalendarManaging.swift in Sources */,
 				012F96152BB19C090012B8EE /* Task+CoreDataClass.swift in Sources */,
@@ -375,11 +399,13 @@
 				012F96162BB19C090012B8EE /* Task+CoreDataProperties.swift in Sources */,
 				0127D3CD2BB194BC004C5233 /* UIColor+HEX.swift in Sources */,
 				01B18AD52BB3C7980019F040 /* AddTagViewController.swift in Sources */,
+				01B18ADB2BB511B20019F040 /* GeneralTaskListViewController.swift in Sources */,
 				012F961A2BB19C950012B8EE /* GeneralTaskRepository.swift in Sources */,
 				0127D3CF2BB194D5004C5233 /* UIView+Pin.swift in Sources */,
 				012F96102BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift in Sources */,
 				012F96292BB19E850012B8EE /* SpecificTaskListViewController.swift in Sources */,
 				012F96062BB19AE60012B8EE /* TimeManager.xcdatamodeld in Sources */,
+				01B18AD92BB4747E0019F040 /* DatePickerViewController.swift in Sources */,
 				012F96372BB1AE080012B8EE /* SpecificTaskDescriptionView.swift in Sources */,
 				0127D3B32BB192F1004C5233 /* AppDelegate.swift in Sources */,
 				012F961E2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift in Sources */,
@@ -389,12 +415,14 @@
 				012F96132BB19C090012B8EE /* Tag+CoreDataClass.swift in Sources */,
 				01B18AC72BB2EDB30019F040 /* ReminderManaging.swift in Sources */,
 				01B18AC12BB2E9EF0019F040 /* CalendarEventModel.swift in Sources */,
+				01B18ADD2BB516210019F040 /* GeneralTaskTableViewCell.swift in Sources */,
+				01B18AE32BB553130019F040 /* GeneralTaskListPresenter.swift in Sources */,
 				01B18AD72BB3D0E90019F040 /* PopUpPresentationController.swift in Sources */,
 				01B18AC52BB2ED900019F040 /* ReminderEventModel.swift in Sources */,
 				012F96312BB19F2E0012B8EE /* WeekCollectionViewCell.swift in Sources */,
 				012F96122BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift in Sources */,
 				012F960F2BB19C090012B8EE /* GeneralTask+CoreDataClass.swift in Sources */,
-				012F962F2BB19F190012B8EE /* WeekDayViewCell.swift in Sources */,
+				012F962F2BB19F190012B8EE /* WeekdayTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

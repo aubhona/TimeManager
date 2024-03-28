@@ -29,7 +29,6 @@ public final class TagView: UIView {
         circleView.pinCenterY(to: self)
         circleView.pinLeft(to: self, 5)
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleLabel)
         titleLabel.pinLeft(to: circleView.trailingAnchor, 5)
         titleLabel.pinCenterY(to: self)

@@ -10,11 +10,13 @@ import UIKit
 final class SpecificTaskListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITabBarDelegate {
     
     private var addButton: UIBarButtonItem = UIBarButtonItem()
+    private var calendarButton: UIBarButtonItem = UIBarButtonItem()
     private var filterButton: UIBarButtonItem = UIBarButtonItem()
     private var dateLabel: UILabel = UILabel()
     private var weekCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var tasksCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var lineView: UIView = UIView()
+    private var scrollStartPoint: CGPoint?
     
     private var presenter: SpecificTaskListPresenter?
     
@@ -40,11 +42,13 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        weekCollectionView.scrollToItem(at: IndexPath(row: presenter?.getStartWeek() ?? .zero, section: 0), at: .centeredHorizontally, animated: false)
+        weekCollectionView.scrollToItem(at: IndexPath(row: presenter?.currentWeekIndex ?? .zero, section: 0), at: .centeredHorizontally, animated: false)
     }
     
     public func displayCurrentMonth(date: String) {
-        dateLabel.text = date
+        UIView.transition(with: dateLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.dateLabel.text = date
+        }, completion: nil)
     }
     
     private func configureNavigationItem() {
@@ -57,7 +61,10 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
         presenter?.setCurrentMonth()
         dateLabel.font = UIFont.boldSystemFont(ofSize: 25)
         
-        navigationItem.rightBarButtonItems = [addButton, filterButton]
+        calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonTapped))
+        calendarButton.tintColor = .red
+        
+        navigationItem.rightBarButtonItems = [addButton, calendarButton, filterButton]
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
         dateLabel.setWidth(200)
     }
@@ -111,7 +118,7 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
             
             weekCell.configure(
                 dates: presenter?.getWeek(weekIndex: indexPath.row) ?? [(Int, String)](),
-                index: presenter?.getSelectedDay() ?? .zero,
+                index: presenter?.getSelectedWeekDay() ?? .zero,
                 selectedDayChanged: selectedDayChanged
             )
             presenter?.setCurrentMonth()
@@ -119,11 +126,11 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
             return weekCell
             
         } else if collectionView == self.tasksCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaskCollectionViewCell.reuseIdentifier, for: indexPath)
-            guard let taskCell = cell as? TaskCollectionViewCell else { return cell }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SpecificTaskCollectionViewCell.reuseIdentifier, for: indexPath)
+            guard let taskCell = cell as? SpecificTaskCollectionViewCell else { return cell }
             
             guard let presenter = presenter else { return taskCell }
-            taskCell.configure(task: presenter.getTask(index: indexPath.row), taskSelectAction: { self.taskSelected(index: indexPath.row) })
+            taskCell.configure(task: presenter.getTask(index: indexPath.row), taskSelectAction: {[weak self] in self?.taskSelected(index: indexPath.row) })
             
             return taskCell
         }
@@ -165,6 +172,24 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
         // TODO: -
     }
     
+    @objc private func calendarButtonTapped() {
+        let datePickerViewController = DatePickerViewController()
+        datePickerViewController.modalPresentationStyle = .custom
+        datePickerViewController.transitioningDelegate = self
+        datePickerViewController.goToDateAction = {[weak self] date in
+            self?.presenter?.setSelectedDay(date: date)
+        }
+        datePickerViewController.currentDate = presenter?.selectedDay ?? Date()
+        present(datePickerViewController, animated: true)
+    }
+    
+    public func scrollToWeekIndex(weekIndex: Int) {
+        weekCollectionView.scrollToItem(at: IndexPath(row: weekIndex, section: 0), at: .centeredHorizontally, animated: true)
+        tasksCollectionView.performBatchUpdates({
+            tasksCollectionView.reloadSections(IndexSet(integer: 0))
+        }, completion: nil)
+    }
+    
     private func configureTasksView() {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: view.frame.width - 16, height: 100)
@@ -176,7 +201,7 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
         tasksCollectionView.backgroundColor = .clear
         tasksCollectionView.dataSource = self
         tasksCollectionView.delegate = self
-        tasksCollectionView.register(TaskCollectionViewCell.self, forCellWithReuseIdentifier: TaskCollectionViewCell.reuseIdentifier)
+        tasksCollectionView.register(SpecificTaskCollectionViewCell.self, forCellWithReuseIdentifier: SpecificTaskCollectionViewCell.reuseIdentifier)
         
         view.addSubview(tasksCollectionView)
         tasksCollectionView.pinTop(to: weekCollectionView.bottomAnchor, 10)
@@ -193,7 +218,7 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
         if (collectionView == weekCollectionView) {
             return
         }
-        let specificTaskDescriptionView = SpecificTaskDescriptionView(task: presenter!.getTask(index: indexPath.row))
+        let specificTaskDescriptionView = SpecificTaskDescriptionView(task: presenter!.getTask(index: indexPath.row), deleteButtonTapped: deleteTaskAction, editButtonTapped: editTaskAction)
         specificTaskDescriptionView.modalPresentationStyle = .custom
         specificTaskDescriptionView.transitioningDelegate = self
         
@@ -201,14 +226,36 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
     }
     
     private func taskSelected(index: Int) {
-        presenter?.completeTask(index: index)
+        presenter?.toggleTaskComplete(index: index)
+    }
+    
+    private func deleteTaskAction(task: SpecificTaskDto) {
+        presenter?.deleteTask(taskId: task.id)
+        tasksCollectionView.performBatchUpdates({
+            tasksCollectionView.reloadSections(IndexSet(integer: 0))
+        }, completion: nil)
+    }
+    
+    private func editTaskAction(task: SpecificTaskDto) {
+        let addSpecificTaskViewController = AddSpecificTaskViewController(task: task)
+        addSpecificTaskViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(addSpecificTaskViewController, animated: true)
     }
 }
 
 
 extension SpecificTaskListViewController: UIScrollViewDelegate {
+    
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollStartPoint = scrollView.contentOffset
+    }
+    
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if (scrollView == tasksCollectionView) {
+            return
+        }
+        guard let startPoint = scrollStartPoint else { return }
+        if (scrollView.contentOffset == startPoint) {
             return
         }
         presenter?.addWeekToSelectedDay(weekIndex: weekCollectionView.indexPathsForVisibleItems.max()?.row ?? .zero)
@@ -224,6 +271,9 @@ extension SpecificTaskListViewController: UIViewControllerTransitioningDelegate 
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let presentationController = PopUpPresentationController(presentedViewController: presented, presenting: presenting)
+        if (presented is DatePickerViewController) {
+            presentationController.divider = 1.5
+        }
         return presentationController
     }
 }

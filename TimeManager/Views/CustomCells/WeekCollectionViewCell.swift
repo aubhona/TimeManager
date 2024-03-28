@@ -34,7 +34,7 @@ public final class WeekCollectionViewCell: UICollectionViewCell, UITableViewDele
     
     private func configureTableView() {
         weekTableView = UITableView(frame: bounds, style: .plain)
-        weekTableView.register(WeekDayViewCell.self, forCellReuseIdentifier: WeekDayViewCell.reuseIdentifier)
+        weekTableView.register(WeekdayTableViewCell.self, forCellReuseIdentifier: WeekdayTableViewCell.reuseIdentifier)
         weekTableView.delegate = self
         weekTableView.dataSource = self
         weekTableView.transform = CGAffineTransform(rotationAngle: -(.pi / 2))
@@ -61,8 +61,8 @@ public final class WeekCollectionViewCell: UICollectionViewCell, UITableViewDele
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WeekDayViewCell.reuseIdentifier, for: indexPath)
-        guard let weekDayCell = cell as? WeekDayViewCell else { return cell }
+        let cell = tableView.dequeueReusableCell(withIdentifier: WeekdayTableViewCell.reuseIdentifier, for: indexPath)
+        guard let weekDayCell = cell as? WeekdayTableViewCell else { return cell }
         weekDayCell.configure(day: dates[indexPath.row].0, dayOfWeek: dates[indexPath.row].1, isSelected: indexPath.row == selectedDay)
         weekDayCell.transform = CGAffineTransform(rotationAngle: .pi / 2)
         
@@ -71,8 +71,8 @@ public final class WeekCollectionViewCell: UICollectionViewCell, UITableViewDele
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.selectionStyle = .none
-        guard let weekDayCell = tableView.cellForRow(at: indexPath) as? WeekDayViewCell else { return }
-        guard let selectedWeekDayCell = tableView.cellForRow(at: IndexPath(row: selectedDay, section: .zero)) as? WeekDayViewCell else { return }
+        guard let weekDayCell = tableView.cellForRow(at: indexPath) as? WeekdayTableViewCell else { return }
+        guard let selectedWeekDayCell = tableView.cellForRow(at: IndexPath(row: selectedDay, section: .zero)) as? WeekdayTableViewCell else { return }
         weekDayCell.isSelected = true
         selectedWeekDayCell.isSelected = false
         selectedDay = indexPath.row
@@ -81,7 +81,7 @@ public final class WeekCollectionViewCell: UICollectionViewCell, UITableViewDele
     
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.selectionStyle = .none
-        guard let weekDayCell = tableView.cellForRow(at: indexPath) as? WeekDayViewCell else { return  }
+        guard let weekDayCell = tableView.cellForRow(at: indexPath) as? WeekdayTableViewCell else { return  }
         weekDayCell.isSelected = false
     }
 }

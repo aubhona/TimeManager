@@ -23,6 +23,20 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
         appDelegate.persistentContainer.viewContext
     }
     
+    func getTaskById(id: UUID) -> SpecificTask? {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+
+        do {
+            let results = try context.fetch(request) as? [SpecificTask]
+            return results?.first
+        } catch let error as NSError {
+            print("Error fetching task by ID: \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
+    
     func getTaskByDateTime(date: Date) -> SpecificTask? {
         return nil
     }
@@ -30,13 +44,13 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
     func getTasksByDate(date: Date) -> [SpecificTask] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
         let calendar = Calendar.current
-
+        
         let startDate = calendar.startOfDay(for: date)
         let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
-
+        
         let predicate = NSPredicate(format: "(scheduledDate >= %@) AND (scheduledDate < %@)", startDate as NSDate, endDate as NSDate)
         request.predicate = predicate
-
+        
         do {
             guard let result = try context.fetch(request) as? [SpecificTask] else { return [] }
             return result
@@ -45,7 +59,7 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
             return []
         }
     }
-
+    
     
     func createTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, duration: Int64, scheduledDate: Date?, generalTask: GeneralTask?) {
         guard let taskEntityDescription = NSEntityDescription.entity(forEntityName: "SpecificTask", in: context) else { return }
@@ -63,7 +77,19 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
     }
     
     func deleteTask(id: UUID) {
-        return
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            let results = try context.fetch(request) as? [SpecificTask]
+            if let taskToDelete = results?.first {
+                context.delete(taskToDelete)
+                
+                try context.save()
+            }
+        } catch let error as NSError {
+            print("Error deleting task: \(error), \(error.userInfo)")
+        }
     }
     
     func updateTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, duration: Int64, scheduledDate: Date?, generalTask: GeneralTask?) {
@@ -88,6 +114,5 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
             print("Error updating task: \(error)")
         }
     }
-
     
 }

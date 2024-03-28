@@ -9,31 +9,28 @@ import Foundation
 import UIKit
 
 internal final class MainTabBarController: UITabBarController, UITabBarControllerDelegate  {
+    private var currentIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let specificTaskListViewController = SpecificTaskListViewController()
+        let specificTaskListViewController = UINavigationController(rootViewController: SpecificTaskListViewController())
         specificTaskListViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "checklist"), tag: 0)
         
-        let calendarViewController = UIViewController()
-        calendarViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "calendar"), tag: 1)
+        let delayedSpecificTaskListViewController = UINavigationController(rootViewController: UIViewController())
+        delayedSpecificTaskListViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "tray"), tag: 1)
         
-        let delayedSpecificTaskListViewController = UIViewController()
-        delayedSpecificTaskListViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "tray"), tag: 2)
+        let generalTaskListViewController = UINavigationController(rootViewController: GeneralTaskListViewController())
+        generalTaskListViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "note.text"), tag: 2)
         
-        let generalViewController = UIViewController()
-        generalViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "note.text"), tag: 3)
-        
-        let settingsViewController = UIViewController()
+        let settingsViewController = UINavigationController(rootViewController: UIViewController())
         settingsViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "gear"), tag: 3)
         
         viewControllers = [
-            UINavigationController(rootViewController: specificTaskListViewController),
-            UINavigationController(rootViewController: calendarViewController),
-            UINavigationController(rootViewController: delayedSpecificTaskListViewController),
-            UINavigationController(rootViewController: generalViewController),
-            UINavigationController(rootViewController: settingsViewController)
+            specificTaskListViewController,
+            delayedSpecificTaskListViewController,
+            generalTaskListViewController,
+            settingsViewController
         ]
         
         tabBar.backgroundColor = .white
@@ -41,13 +38,32 @@ internal final class MainTabBarController: UITabBarController, UITabBarControlle
         self.delegate = self
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        currentIndex = self.selectedIndex
+    }
+    
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return TabBarTransition()
+        guard let viewControllers = viewControllers else { return nil }
+        guard let toIndex = viewControllers.firstIndex(of: toVC) else { return nil }
+        
+        
+        let direction: TabBarTransition.SwipeDirection = toIndex > currentIndex ? .left : .right
+        return TabBarTransition(direction: direction)
     }
 }
 
 class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
+    enum SwipeDirection {
+        case left, right
+    }
+    
     private let duration: TimeInterval = 0.3
+    private var direction: SwipeDirection
+    
+    init(direction: SwipeDirection) {
+        self.direction = direction
+        super.init()
+    }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
@@ -63,13 +79,16 @@ class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView
         containerView.addSubview(destinationVC.view)
         
+        let screenWidth = UIScreen.main.bounds.width
+        let transform = CGAffineTransform(translationX: direction == .right ? screenWidth : -screenWidth, y: 0)
         
-        destinationVC.view.alpha = 0
+        destinationVC.view.transform = transform.inverted()
+        
         UIView.animate(withDuration: duration, animations: {
-            destinationVC.view.alpha = 1
-            sourceVC.view.alpha = 0
+            sourceVC.view.transform = transform
+            destinationVC.view.transform = .identity
         }) { finished in
-            sourceVC.view.alpha = 1
+            sourceVC.view.transform = .identity
             transitionContext.completeTransition(finished)
         }
     }

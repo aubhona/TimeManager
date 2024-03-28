@@ -8,7 +8,7 @@
 import UIKit
 
 
-public final class TaskCollectionViewCell: UICollectionViewCell {
+internal final class SpecificTaskCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier: String = "TaskCollectionViewCell"
     
     // MARK: - Constants
@@ -35,7 +35,7 @@ public final class TaskCollectionViewCell: UICollectionViewCell {
     private var timeLabelStart: UILabel = UILabel()
     private var timeLabelEnd: UILabel = UILabel()
     private var taskWrapperView: UIView = UIView()
-    private var taskLabel: UILabel = UILabel()
+    private var titleLabel: UILabel = UILabel()
     private var checkBox: UIButton = UIButton()
     private var lineView: UIView = UIView()
     private var taskSelectAction: (() -> ())?
@@ -105,14 +105,14 @@ public final class TaskCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureTaskLabel() {
-        taskLabel = UILabel()
+        titleLabel = UILabel()
         
-        taskWrapperView.addSubview(taskLabel)
+        taskWrapperView.addSubview(titleLabel)
         
-        taskLabel.pinLeft(to: taskWrapperView, 10)
-        taskLabel.pinRight(to: checkBox.leadingAnchor)
-        taskLabel.pinTop(to: taskWrapperView, 10)
-        taskLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        titleLabel.pinLeft(to: taskWrapperView, 10)
+        titleLabel.pinRight(to: checkBox.leadingAnchor)
+        titleLabel.pinTop(to: taskWrapperView, 10)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
     }
     
     private func configureTagsStackView() {
@@ -126,7 +126,7 @@ public final class TaskCollectionViewCell: UICollectionViewCell {
         
         tagsStackView.pinLeft(to: taskWrapperView, 10)
         tagsStackView.pinRight(to: checkBox.leadingAnchor)
-        tagsStackView.pinTop(to: taskLabel.bottomAnchor, 5)
+        tagsStackView.pinTop(to: titleLabel.bottomAnchor, 5)
         tagsStackView.pinBottom(to: taskWrapperView, 5)
     }
     
@@ -148,16 +148,18 @@ public final class TaskCollectionViewCell: UICollectionViewCell {
     }
     
     private func conifgureSelectionState(isSelected: Bool) {
-        taskWrapperView.backgroundColor = isSelected || changeBackColor ? UIColor("d4d4de") : .white
+        taskWrapperView.backgroundColor = isSelected || changeBackColor ? UIColor("DCDCDC") : .white
         checkBox.isSelected = isSelected
         timeLabelStart.textColor = isSelected || changeBackColor ? .lightGray : .black
         timeLabelEnd.textColor = isSelected || changeBackColor ? .lightGray : .black
     }
     
     public func configure(task: SpecificTaskDto, taskSelectAction: @escaping () -> ()) {
-        taskLabel.removeFromSuperview()
+        titleLabel.removeFromSuperview()
+        tagsStackView.removeFromSuperview()
         configureTaskLabel()
-        taskLabel.text = task.name
+        configureTagsStackView()
+        titleLabel.text = task.name
         timeLabelStart.text = task.scheduledStartTime
         timeLabelEnd.text = task.scheduledEndTime
         self.taskSelectAction = taskSelectAction
@@ -191,21 +193,21 @@ public final class TaskCollectionViewCell: UICollectionViewCell {
         animation.type = CATransitionType.fade
         animation.duration = 0.25
         
-        taskLabel.layer.add(animation, forKey: CATransitionType.fade.rawValue)
+        titleLabel.layer.add(animation, forKey: CATransitionType.fade.rawValue)
 
-        let attributeString = NSMutableAttributedString(string: taskLabel.text ?? "")
+        let attributeString = NSMutableAttributedString(string: titleLabel.text ?? "")
 
         if isSelected {
             attributeString.addAttribute(
                 NSAttributedString.Key.strikethroughStyle,
                 value: NSUnderlineStyle.single.rawValue,
                 range: NSRange(location: 0, length: attributeString.length))
-            taskLabel.attributedText = attributeString
+            titleLabel.attributedText = attributeString
         } else {
-            if let attributedStringText = taskLabel.attributedText {
+            if let attributedStringText = titleLabel.attributedText {
                 let text = attributedStringText.string
-                taskLabel.attributedText = nil
-                taskLabel.text = text
+                titleLabel.attributedText = nil
+                titleLabel.text = text
             }
         }
     }

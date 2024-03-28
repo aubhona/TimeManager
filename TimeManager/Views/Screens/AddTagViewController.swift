@@ -7,7 +7,7 @@
 
 import UIKit
 
-internal final class AddTagViewController: ViewController {
+internal final class AddTagViewController: UIViewController {
     private var presenter: AddTagPresenter?
     private var titleLabel: UILabel = UILabel()
     private var nameLabel: UILabel = UILabel()

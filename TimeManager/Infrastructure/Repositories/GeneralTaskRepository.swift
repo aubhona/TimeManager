@@ -9,11 +9,15 @@ import Foundation
 
 protocol GeneralTaskRepository {
     
-    func getTasksByDate(date: Date) -> [GeneralTaskRepository];
+    func getExistingDates() -> [Date]
     
-    func createTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, duration: Int64, deadlineDate: Date, specificTasks: NSSet?);
+    func getTaskById(id: UUID) -> GeneralTask?
     
-    func deleteTask(id: UUID);
+    func getTasksByDate(date: Date) -> [GeneralTask]
     
-    func updateTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, duration: Int64, deadlineDate: Date, specificTasks: NSSet?);
+    func createTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, deadlineDate: Date, specificTasks: NSSet?)
+    
+    func deleteTask(id: UUID)
+    
+    func updateTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, deadlineDate: Date, specificTasks: NSSet?)
 }

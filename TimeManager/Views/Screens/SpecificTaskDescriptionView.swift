@@ -30,9 +30,13 @@ final class SpecificTaskDescriptionView: UIViewController {
     private var tagsStackView: UIStackView = UIStackView()
     private var tagImage: UIImageView = UIImageView()
     
-    init(task: SpecificTaskDto) {
+    public var deleteButtonTappedAction: ((SpecificTaskDto) -> Void)?
+    public var editButtonTappedAction: ((SpecificTaskDto) -> Void)?
+    
+    init(task: SpecificTaskDto, deleteButtonTapped: ((SpecificTaskDto) -> Void)? = nil, editButtonTapped: ((SpecificTaskDto) -> Void)? = nil) {
         self.task = task
-        
+        self.deleteButtonTappedAction = deleteButtonTapped
+        self.editButtonTappedAction = editButtonTapped
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -126,14 +130,12 @@ final class SpecificTaskDescriptionView: UIViewController {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 23, weight: .regular, scale: .large)
         deleteButton.setImage(UIImage(systemName: "trash", withConfiguration: largeConfig), for: .normal)
         deleteButton.tintColor = .red
-        deleteButton.addTarget(self, action: #selector(handleTouchDown(_:)), for: .touchDown)
-        deleteButton.addTarget(self, action: #selector(handleTouchUpInside(_:)), for: [.touchUpInside, .touchUpOutside])
+        deleteButton.addTarget(self, action: #selector(deleteButtonTapped(_:)), for: [.touchUpInside, .touchUpOutside])
         
         editButton = UIButton(type: .system)
         editButton.setImage(UIImage(systemName: "pencil.line", withConfiguration: largeConfig), for: .normal)
         editButton.tintColor = .red
-        editButton.addTarget(self, action: #selector(handleTouchDown(_:)), for: .touchDown)
-        editButton.addTarget(self, action: #selector(handleTouchUpInside(_:)), for: [.touchUpInside, .touchUpOutside])
+        editButton.addTarget(self, action: #selector(editButtonTapped(_:)), for: [.touchUpInside, .touchUpOutside])
         
         deleteButtonLabel = UILabel()
         deleteButtonLabel.text = "Удалить"
@@ -168,11 +170,24 @@ final class SpecificTaskDescriptionView: UIViewController {
         scrollView.contentSize = CGSize(width: contentView.frame.width, height: contentView.frame.height)
     }
     
+    @objc private func deleteButtonTapped(_ sender: UIButton) {
+        handleTouchDown(sender)
+        handleTouchUpInside(sender)
+        deleteButtonTappedAction?(task)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func editButtonTapped(_ sender: UIButton) {
+        handleTouchDown(sender)
+        handleTouchUpInside(sender)
+        editButtonTappedAction?(task)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @objc private func handleTouchDown(_ sender: UIButton) {
         UIView.animate(withDuration: 0.35) {
             sender.alpha = 0.5
         }
-        // TODO:
     }
     
     
@@ -180,7 +195,6 @@ final class SpecificTaskDescriptionView: UIViewController {
         UIView.animate(withDuration: 0.35) {
             sender.alpha = 1.0
         }
-        // TODO:
     }
     
     private func configureSwipeIndicator() {

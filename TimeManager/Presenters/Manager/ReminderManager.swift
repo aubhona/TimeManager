@@ -32,10 +32,15 @@ final class ReminderManager: ReminderManaging {
             reminder.title = reminderModel.title
             reminder.notes = reminderModel.note
             reminder.calendar = self.eventStore.defaultCalendarForNewReminders()
-            let startDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: reminderModel.startDate)
+            var alarm: EKAlarm = EKAlarm(relativeOffset: -24 * 3600)
+            if let date = reminderModel.startDate {
+                let startDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+                reminder.startDateComponents = startDateComponents
+                alarm = EKAlarm(relativeOffset: -15 * 60)
+            }
             let dueDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: reminderModel.dueDate)
-            reminder.startDateComponents = startDateComponents
             reminder.dueDateComponents = dueDateComponents
+            reminder.addAlarm(alarm)
             do {
                 try self.eventStore.save(reminder, commit: true)
             } catch let error as NSError {

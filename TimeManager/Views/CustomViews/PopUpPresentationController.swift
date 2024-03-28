@@ -8,9 +8,11 @@
 import UIKit
 
 internal final class PopUpPresentationController: UIPresentationController {
+    public var divider = 2.5
+    
     override var frameOfPresentedViewInContainerView: CGRect {
         guard let containerViewBounds = containerView?.bounds else { return .zero }
-        let height = containerViewBounds.height / 2.5
+        let height = containerViewBounds.height / divider
         return CGRect(x: 0, y: containerViewBounds.height - height, width: containerViewBounds.width, height: height)
     }
 }

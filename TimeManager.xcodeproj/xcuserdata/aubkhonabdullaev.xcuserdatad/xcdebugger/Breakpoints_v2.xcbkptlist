@@ -3,4 +3,260 @@
    uuid = "41F218C8-98FF-4EF1-8381-D9FEE98DAF59"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4D8E6C4D-556D-44CC-8C5C-A019DD43B9CB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/SpecificTaskListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "scrollViewDidEndDecelerating(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80DB184B-602F-40A5-AF38-9D84DAFE00A8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "addWeekToSelectedDay(weekIndex:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "80DB184B-602F-40A5-AF38-9D84DAFE00A8 - c7856f83709abc3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.addWeekToSelectedDay(weekIndex: Swift.Int) -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "500">
+               </Location>
+               <Location
+                  uuid = "80DB184B-602F-40A5-AF38-9D84DAFE00A8 - c7856f83709abc3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.addWeekToSelectedDay(weekIndex: Swift.Int) -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "80DB184B-602F-40A5-AF38-9D84DAFE00A8 - 99619cb71ea1edd8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.addWeekToSelectedDay(weekIndex: Swift.Int, _: Swift.Int) -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "484">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8A93AC36-8A0A-4833-9E7E-2E0434ADA8A8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/MainTabBarViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8A93AC36-8A0A-4833-9E7E-2E0434ADA8A8 - 88c58f962cd8470a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.MainTabBarController.viewDidLoad() -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Views/Screens/MainTabBarViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "8A93AC36-8A0A-4833-9E7E-2E0434ADA8A8 - 88c58f962cd8447f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.MainTabBarController.viewDidLoad() -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Views/Screens/MainTabBarViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "049D1735-B16F-46AD-AB87-594C5670515D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/GeneralTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "getTaskByDate(dateIndex:taskIndex:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "049D1735-B16F-46AD-AB87-594C5670515D - 2b85bd65fee5263f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.GeneralTaskListPresenter.getTaskByDate(dateIndex: Swift.Int, taskIndex: Swift.Int) -&gt; Swift.Optional&lt;TimeManager.GeneralTaskDto&gt;"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/GeneralTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "1648">
+               </Location>
+               <Location
+                  uuid = "049D1735-B16F-46AD-AB87-594C5670515D - 50eb7739aa709f53"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (TimeManager.Tag) -&gt; Swift.Optional&lt;TimeManager.TagDto&gt; in TimeManager.GeneralTaskListPresenter.getTaskByDate(dateIndex: Swift.Int, taskIndex: Swift.Int) -&gt; Swift.Optional&lt;TimeManager.GeneralTaskDto&gt;"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/GeneralTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  uuid = "049D1735-B16F-46AD-AB87-594C5670515D - 2b85bd65fee5261e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.GeneralTaskListPresenter.getTaskByDate(dateIndex: Swift.Int, taskIndex: Swift.Int) -&gt; Swift.Optional&lt;TimeManager.GeneralTaskDto&gt;"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/GeneralTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "1032">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41F64279-4E8D-4AEA-B218-C19984F442CD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/GeneralTaskListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CFC12A5-74AF-442C-80D6-3FEDC54AB429"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/GeneralTaskListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3EEAD75D-D54C-4F43-AD22-915B85F48549"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/GeneralTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "updateTasks()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7089134D-05E8-4324-9B3B-BD24546794F9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/GeneralTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "updateTasks()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

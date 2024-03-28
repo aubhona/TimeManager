@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class WeekDayViewCell: UITableViewCell {
+public final class WeekdayTableViewCell: UITableViewCell {
     static let reuseIdentifier: String = "WeekDayViewCell"
     
     // MARK: - Constants

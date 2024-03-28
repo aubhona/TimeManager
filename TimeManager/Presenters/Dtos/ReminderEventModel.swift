@@ -9,7 +9,7 @@ import Foundation
 
 struct ReminderEventModel {
     var title: String
-    var startDate: Date
+    var startDate: Date?
     var dueDate: Date
     var note: String
 }

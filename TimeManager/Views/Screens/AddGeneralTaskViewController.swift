@@ -7,31 +7,26 @@
 
 import UIKit
 
-internal final class AddSpecificTaskViewController: UIViewController {
+internal final class AddGeneralTaskViewController: UIViewController {
     private var titleLabel: UILabel = UILabel()
     private var nameLabel: UILabel = UILabel()
     private var nameTextField: UITextField = UITextField()
     private var descriptionLabel: UILabel = UILabel()
     private var descriptionTextView: UITextView = UITextView()
     private var dateTimePickerLabel: UILabel = UILabel()
-    private var scheduledDatePicker = UIDatePicker()
-    private var durationLabel: UILabel = UILabel()
-    private var durationHourTextField: UITextField = UITextField()
-    private var durationHourLabel: UILabel = UILabel()
-    private var durationMinuteLabel: UILabel = UILabel()
-    private var durationMinuteTextField: UITextField = UITextField()
+    private var deadlineDatePicker = UIDatePicker()
     private var saveButton: UIButton = UIButton(type: .system)
     private var addReminderButton: UIButton = UIButton()
     private var addCalendarButton: UIButton = UIButton()
     private var tagsCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var tagLabel: UILabel = UILabel()
     private var addTagButton: UIButton = UIButton(type: .system)
-    private var editTask: SpecificTaskDto?
+    private var editTask: GeneralTaskDto?
     private var selectedTagsCells: Set<IndexPath> = []
     
-    private var presenter: AddSpecificTaskPresenter?
+    private var presenter: AddGeneralTaskPresenter?
     
-    init(task: SpecificTaskDto? = nil) {
+    init(task: GeneralTaskDto? = nil) {
         editTask = task
         
         super.init(nibName: nil, bundle: nil)
@@ -46,10 +41,15 @@ internal final class AddSpecificTaskViewController: UIViewController {
         view.backgroundColor = .white
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(customBackTapped))
         self.navigationItem.leftBarButtonItem?.tintColor = .red
-        presenter = AddSpecificTaskPresenter(self, CoreDataSpecificTaskRepository.shared, ReminderManager(), CalendarManager(), CoreDataTagRepository.shared)
+        if let navigationBar = self.navigationController?.navigationBar {
+            navigationBar.isTranslucent = true
+            navigationBar.backgroundColor = .white
+        }
+        presenter = AddGeneralTaskPresenter(self, CoreDataGeneralTaskRepository.shared, ReminderManager(), CalendarManager(), CoreDataTagRepository.shared)
         configureViews()
         configureTaskEdit()
     }
+    
     
     @objc private func customBackTapped() {
         _ = navigationController?.popViewController(animated: true)
@@ -60,7 +60,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
         titleLabel.setWidth(view.bounds.width)
         titleLabel.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
         titleLabel.pinLeft(to: view, 30)
-        titleLabel.text = "Конкретная задача"
+        titleLabel.text = "Общая задача"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
         
         view.addSubview(nameLabel)
@@ -92,19 +92,19 @@ internal final class AddSpecificTaskViewController: UIViewController {
         dateTimePickerLabel.font = UIFont.boldSystemFont(ofSize: 17)
         
         
-        view.addSubview(scheduledDatePicker)
-        scheduledDatePicker.pinTop(to: dateTimePickerLabel.bottomAnchor, 10)
-        scheduledDatePicker.pinLeft(to: view, 30)
-        scheduledDatePicker.locale = Locale(identifier: "ru")
-        scheduledDatePicker.tintColor = .red
+        view.addSubview(deadlineDatePicker)
+        deadlineDatePicker.pinTop(to: dateTimePickerLabel.bottomAnchor, 10)
+        deadlineDatePicker.pinLeft(to: view, 30)
+        deadlineDatePicker.locale = Locale(identifier: "ru")
+        deadlineDatePicker.tintColor = .red
         
         addCalendarButton.setImage(UIImage(systemName: "square"), for: .normal)
         addCalendarButton.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
         addCalendarButton.setTitle(" Добавить в Календарь", for: .normal)
         addCalendarButton.setTitleColor(.red, for: .normal)
         view.addSubview(addCalendarButton)
-        addCalendarButton.pinLeft(to: scheduledDatePicker)
-        addCalendarButton.pinTop(to: scheduledDatePicker.bottomAnchor, 10)
+        addCalendarButton.pinLeft(to: deadlineDatePicker)
+        addCalendarButton.pinTop(to: deadlineDatePicker.bottomAnchor, 10)
         addCalendarButton.tintColor = .red
         addCalendarButton.addTarget(self, action: #selector(checkBoxButtonTapped), for: .touchUpInside)
         addCalendarButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
@@ -120,59 +120,9 @@ internal final class AddSpecificTaskViewController: UIViewController {
         addReminderButton.addTarget(self, action: #selector(checkBoxButtonTapped), for: .touchUpInside)
         addReminderButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
-        view.addSubview(durationLabel)
-        durationLabel.pinTop(to: addReminderButton.bottomAnchor, 10)
-        durationLabel.pinLeft(to: view, 30)
-        durationLabel.text = "Продолжительность"
-        durationLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        
-        view.addSubview(durationHourTextField)
-        view.addSubview(durationMinuteTextField)
-        view.addSubview(durationHourLabel)
-        view.addSubview(durationMinuteLabel)
-        durationHourTextField.pinLeft(to: view, 30)
-        durationHourTextField.pinTop(to: durationLabel.bottomAnchor, 10)
-        durationHourTextField.attributedPlaceholder = NSAttributedString(string: "00",
-                                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        durationHourTextField.backgroundColor = UIColor("f2f2f7")
-        durationHourTextField.layer.cornerRadius = 5
-        durationHourTextField.setHeight(30)
-        durationHourTextField.setWidth(30)
-        durationHourTextField.contentVerticalAlignment = .center
-        durationHourTextField.contentHorizontalAlignment = .center
-        durationHourTextField.textAlignment = .center
-        durationHourTextField.keyboardType = .numberPad
-        durationHourTextField.tintColor = .red
-        durationHourTextField.delegate = self
-        
-        durationHourLabel.pinLeft(to: durationHourTextField.trailingAnchor, 3)
-        durationHourLabel.pinVertical(to: durationHourTextField)
-        durationHourLabel.text = "ч"
-        durationHourLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        
-        durationMinuteTextField.pinLeft(to: durationHourLabel.trailingAnchor, 5)
-        durationMinuteTextField.pinVertical(to: durationHourLabel)
-        durationMinuteTextField.setHeight(30)
-        durationMinuteTextField.setWidth(30)
-        durationMinuteTextField.contentVerticalAlignment = .center
-        durationMinuteTextField.contentHorizontalAlignment = .center
-        durationMinuteTextField.textAlignment = .center
-        durationMinuteTextField.keyboardType = .numberPad
-        durationMinuteTextField.attributedPlaceholder = NSAttributedString(string: "00",
-                                                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        durationMinuteTextField.backgroundColor = UIColor("f2f2f7")
-        durationMinuteTextField.layer.cornerRadius = 5
-        durationMinuteTextField.tintColor = .red
-        durationMinuteTextField.delegate = self
-        
-        durationMinuteLabel.pinLeft(to: durationMinuteTextField.trailingAnchor, 3)
-        durationMinuteLabel.pinVertical(to: durationMinuteTextField)
-        durationMinuteLabel.text = "мин"
-        durationMinuteLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        
         view.addSubview(descriptionLabel)
         descriptionLabel.setWidth(view.bounds.width)
-        descriptionLabel.pinTop(to: durationMinuteLabel.bottomAnchor, 10)
+        descriptionLabel.pinTop(to: addReminderButton.bottomAnchor, 10)
         descriptionLabel.pinLeft(to: view, 30)
         descriptionLabel.text = "Описание"
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: 17)
@@ -214,8 +164,9 @@ internal final class AddSpecificTaskViewController: UIViewController {
         addTagButton.addTarget(self, action: #selector(addTagButtonTapped), for: .touchUpInside)
         
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 100, height: 15)
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: self.view.bounds.width - 55, height: 25)
+        layout.minimumLineSpacing = 5
         tagsCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         tagsCollectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: TagCollectionViewCell.reuseIdentifier)
         tagsCollectionView.delegate = self
@@ -235,11 +186,9 @@ internal final class AddSpecificTaskViewController: UIViewController {
         presenter?.fillInputFileds(task: task)
     }
     
-    public func setInputFields(name: String, description: String, date: Date, hourDuration: String, minuteDuration: String, selectedTagsIndexes: [Int]) {
+    public func setInputFields(name: String, description: String, date: Date, selectedTagsIndexes: [Int]) {
         nameTextField.text = name
-        scheduledDatePicker.date = date
-        durationHourTextField.text = hourDuration
-        durationMinuteTextField.text = minuteDuration
+        deadlineDatePicker.date = date
         descriptionTextView.text = description
         descriptionTextView.textColor = .black
         selectCells(withIndexes: selectedTagsIndexes)
@@ -272,20 +221,15 @@ internal final class AddSpecificTaskViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped() {
-        guard let name = nameTextField.text, !name.isEmpty,
-              let taskDescription = descriptionTextView.text, taskDescription != "Введите описание",
-              let durationHoursText = durationHourTextField.text, let durationHours = Int64(durationHoursText),
-              let durationMinutesText = durationMinuteTextField.text, let durationMinutes = Int64(durationMinutesText) else {
+        guard let name = nameTextField.text, !name.isEmpty, descriptionTextView.text != "Введите описание" else {
             showAlert(title: "Ошибка ввода", message: "Заполните все поля")
             return
         }
-        let totalDuration = (durationHours * 60) + durationMinutes
         do {
             try presenter?.addTask(
                 name: name,
-                description: taskDescription,
-                scheduledDate: scheduledDatePicker.date,
-                duration: totalDuration,
+                description: descriptionTextView.text,
+                deadlineDate: deadlineDatePicker.date,
                 addToReminder: addReminderButton.isSelected,
                 addToCalendar: addCalendarButton.isSelected,
                 tagsIndexes: getSelectedCellsIndex()
@@ -312,7 +256,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
     
 }
 
-extension AddSpecificTaskViewController: UITextFieldDelegate {
+extension AddGeneralTaskViewController: UITextFieldDelegate {
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -320,7 +264,7 @@ extension AddSpecificTaskViewController: UITextFieldDelegate {
     }
 }
 
-extension AddSpecificTaskViewController: UITextViewDelegate {
+extension AddGeneralTaskViewController: UITextViewDelegate {
     
     public func textViewDidBeginEditing(_ textView: UITextView) {
         if descriptionTextView.textColor != .lightGray {
@@ -340,7 +284,7 @@ extension AddSpecificTaskViewController: UITextViewDelegate {
 }
 
 // MARK: - UICollectionViewDelegate
-extension AddSpecificTaskViewController: UICollectionViewDelegate {
+extension AddGeneralTaskViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.3) {
@@ -368,7 +312,7 @@ extension AddSpecificTaskViewController: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-extension AddSpecificTaskViewController: UICollectionViewDataSource {
+extension AddGeneralTaskViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.getTagsCount() ?? 0
@@ -390,7 +334,7 @@ extension AddSpecificTaskViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
-extension AddSpecificTaskViewController: UIViewControllerTransitioningDelegate {
+extension AddGeneralTaskViewController: UIViewControllerTransitioningDelegate {
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let presentationController = PopUpPresentationController(presentedViewController: presented, presenting: presenting)

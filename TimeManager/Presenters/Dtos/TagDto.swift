@@ -8,6 +8,7 @@
 import Foundation
 
 public struct TagDto {
+    var id: UUID
     var name: String
     var color: String
 }
