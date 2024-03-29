@@ -10,12 +10,12 @@ import UIKit
 internal final class GeneralTaskSearchViewController: UIViewController {
     private var taskSearchBar: UISearchBar = UISearchBar()
     private var taskTableView: UITableView = UITableView()
-    private var isSearching: Bool = false
     private var swipeIndicatorView: UIView = UIView()
     private var panGestureRecognizer: UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var initialPosition: CGFloat = 0
     private var presenter: GeneralTaskSearchPresenter?
     private var smallCells: [Bool] = [Bool]()
+    public var actionBeforeClose: ((GeneralTaskDto) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,6 +138,13 @@ extension GeneralTaskSearchViewController: UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return smallCells[indexPath.row] ? 80 : 130
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let task = presenter?.getFoundTask(index: indexPath.row) else { return }
+        actionBeforeClose?(task)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

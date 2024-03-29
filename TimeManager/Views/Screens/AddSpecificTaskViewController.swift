@@ -26,7 +26,10 @@ internal final class AddSpecificTaskViewController: UIViewController {
     private var tagsCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var tagLabel: UILabel = UILabel()
     private var addTagButton: UIButton = UIButton(type: .system)
+    private var generalTaskLabel: UILabel = UILabel()
+    private var generalTaskTextField: UITextField = UITextField()
     private var editTask: SpecificTaskDto?
+    private var generalTask: GeneralTaskDto?
     private var selectedTagsCells: Set<IndexPath> = []
     
     private var presenter: AddSpecificTaskPresenter?
@@ -44,8 +47,8 @@ internal final class AddSpecificTaskViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        presenter = AddSpecificTaskPresenter(self, CoreDataSpecificTaskRepository.shared, ReminderManager(), CalendarManager(), CoreDataTagRepository.shared)
-        configureNavigationItem() 
+        presenter = AddSpecificTaskPresenter(self, CoreDataSpecificTaskRepository.shared, CoreDataGeneralTaskRepository.shared,ReminderManager(), CalendarManager(), CoreDataTagRepository.shared)
+        configureNavigationItem()
         configureViews()
         configureTaskEdit()
     }
@@ -81,7 +84,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
         nameTextField.layer.cornerRadius = 12
         nameTextField.tintColor = .red
         nameTextField.delegate = self
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: nameTextField.frame.height))
+        var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: nameTextField.frame.height))
         nameTextField.leftView = paddingView
         nameTextField.leftViewMode = .always
         nameTextField.attributedPlaceholder = NSAttributedString(string: "Введите текст",
@@ -124,17 +127,18 @@ internal final class AddSpecificTaskViewController: UIViewController {
         addReminderButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
         view.addSubview(durationLabel)
-        durationLabel.pinTop(to: addReminderButton.bottomAnchor, 10)
+        durationLabel.pinTop(to: addReminderButton.bottomAnchor, 15)
         durationLabel.pinLeft(to: view, 30)
-        durationLabel.text = "Продолжительность"
+        durationLabel.text = "Продолжительность:"
         durationLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        durationLabel.sizeToFit()
         
         view.addSubview(durationHourTextField)
         view.addSubview(durationMinuteTextField)
         view.addSubview(durationHourLabel)
         view.addSubview(durationMinuteLabel)
-        durationHourTextField.pinLeft(to: view, 30)
-        durationHourTextField.pinTop(to: durationLabel.bottomAnchor, 10)
+        durationHourTextField.pinLeft(to: durationLabel.trailingAnchor, 10)
+        durationHourTextField.pinCenterY(to: durationLabel)
         durationHourTextField.attributedPlaceholder = NSAttributedString(string: "00",
                                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         durationHourTextField.backgroundColor = UIColor("f2f2f7")
@@ -175,14 +179,14 @@ internal final class AddSpecificTaskViewController: UIViewController {
         
         view.addSubview(descriptionLabel)
         descriptionLabel.setWidth(view.bounds.width)
-        descriptionLabel.pinTop(to: durationMinuteLabel.bottomAnchor, 10)
+        descriptionLabel.pinTop(to: durationLabel.bottomAnchor, 10)
         descriptionLabel.pinLeft(to: view, 30)
         descriptionLabel.text = "Описание"
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: 17)
         
         view.addSubview(descriptionTextView)
         descriptionTextView.pinHorizontal(to: view, 30)
-        descriptionTextView.setHeight(100)
+        descriptionTextView.setHeight(90)
         descriptionTextView.pinTop(to: descriptionLabel.bottomAnchor, 10)
         descriptionTextView.backgroundColor = UIColor("f2f2f7")
         descriptionTextView.layer.cornerRadius = 12
@@ -202,8 +206,29 @@ internal final class AddSpecificTaskViewController: UIViewController {
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         
+        view.addSubview(generalTaskLabel)
+        generalTaskLabel.pinTop(to: descriptionTextView.bottomAnchor, 15)
+        generalTaskLabel.pinLeft(to: view, 30)
+        generalTaskLabel.text = "Общая задача"
+        generalTaskLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        generalTaskLabel.sizeToFit()
+        
+        view.addSubview(generalTaskTextField)
+        generalTaskTextField.pinHorizontal(to: view, 30)
+        generalTaskTextField.setHeight(40)
+        generalTaskTextField.pinTop(to: generalTaskLabel.bottomAnchor, 10)
+        generalTaskTextField.backgroundColor = UIColor("f2f2f7")
+        generalTaskTextField.layer.cornerRadius = 12
+        generalTaskTextField.tintColor = .red
+        paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: generalTaskTextField.frame.height))
+        generalTaskTextField.leftView = paddingView
+        generalTaskTextField.delegate = self
+        generalTaskTextField.leftViewMode = .always
+        generalTaskTextField.attributedPlaceholder = NSAttributedString(string: "Укажите общую задачу",
+                                                                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        
         view.addSubview(tagLabel)
-        tagLabel.pinTop(to: descriptionTextView.bottomAnchor, 10)
+        tagLabel.pinTop(to: generalTaskTextField.bottomAnchor, 10)
         tagLabel.pinLeft(to: view, 30)
         tagLabel.text = "Теги"
         tagLabel.font = UIFont.boldSystemFont(ofSize: 17)
@@ -238,13 +263,17 @@ internal final class AddSpecificTaskViewController: UIViewController {
         presenter?.fillInputFileds(task: task)
     }
     
-    public func setInputFields(name: String, description: String, date: Date, hourDuration: String, minuteDuration: String, selectedTagsIndexes: [Int]) {
+    public func setInputFields(name: String, description: String, date: Date, hourDuration: String, minuteDuration: String, generalTask: GeneralTaskDto?, selectedTagsIndexes: [Int]) {
         nameTextField.text = name
         scheduledDatePicker.date = date
         durationHourTextField.text = hourDuration
         durationMinuteTextField.text = minuteDuration
         descriptionTextView.text = description
         descriptionTextView.textColor = .black
+        self.generalTask = generalTask
+        if let generalTaskName = generalTask?.name {
+            generalTaskLabel.text = generalTaskName
+        }
         selectCells(withIndexes: selectedTagsIndexes)
     }
     
@@ -291,6 +320,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
                 duration: totalDuration,
                 addToReminder: addReminderButton.isSelected,
                 addToCalendar: addCalendarButton.isSelected,
+                generalTaskId: generalTask?.id,
                 tagsIndexes: getSelectedCellsIndex()
             )
         } catch let error as NSError  {
@@ -322,9 +352,18 @@ extension AddSpecificTaskViewController: UITextFieldDelegate {
         return true
     }
     
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        <#code#>
-//    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if (textField == generalTaskTextField) {
+            let generalTaskSearchViewController = GeneralTaskSearchViewController()
+            generalTaskSearchViewController.actionBeforeClose = {[weak self] generalTask in
+                self?.generalTask = generalTask
+                self?.generalTaskTextField.text = generalTask.name
+            }
+            present(generalTaskSearchViewController, animated: true)
+            return false
+        }
+        return true
+    }
 }
 
 extension AddSpecificTaskViewController: UITextViewDelegate {

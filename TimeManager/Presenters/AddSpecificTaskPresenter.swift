@@ -10,16 +10,18 @@ import EventKit
 
 public final class AddSpecificTaskPresenter {
     private weak var view: AddSpecificTaskViewController?
-    private var taskRepository: SpecificTaskRepository
+    private var specificTaskRepository: SpecificTaskRepository
+    private var generalTaskRepository: GeneralTaskRepository
     private var reminderManager: ReminderManaging
     private var calendarManager: CalendarManaging
     private var tagRepository: TagRepository
     private var tags: [Tag]
     private var task: SpecificTaskDto?
     
-    init(_ view: AddSpecificTaskViewController, _ taskRepository: SpecificTaskRepository, _ reminderManager: ReminderManaging, _ calendarManager: CalendarManaging, _ tagRepository: TagRepository) {
+    init(_ view: AddSpecificTaskViewController, _ specificTaskRepository: SpecificTaskRepository, _ generalTaskRepository: GeneralTaskRepository, _ reminderManager: ReminderManaging, _ calendarManager: CalendarManaging, _ tagRepository: TagRepository) {
         self.view = view
-        self.taskRepository = taskRepository
+        self.specificTaskRepository = specificTaskRepository
+        self.generalTaskRepository = generalTaskRepository
         self.calendarManager = calendarManager
         self.reminderManager = reminderManager
         self.tagRepository = tagRepository
@@ -38,9 +40,9 @@ public final class AddSpecificTaskPresenter {
         return TagDto(id: tag.id!, name: tag.name!, color: tag.color!)
     }
     
-    public func fillInputFileds(task: SpecificTaskDto) {
+    public func fillInputFileds(task: SpecificTaskDto, generalTaskDto: GeneralTaskDto? = nil) {
         self.task = task
-        guard let specificTask = taskRepository.getTaskById(id: task.id) else { return }
+        guard let specificTask = specificTaskRepository.getTaskById(id: task.id) else { return }
         let selectedTagsIndexes = task.tags.compactMap { tag in
             tags.firstIndex(where: { $0.id == tag.id })
         }
@@ -49,12 +51,13 @@ public final class AddSpecificTaskPresenter {
             description: task.taskDescription,
             date: specificTask.scheduledDate ?? Date(),
             hourDuration: String(specificTask.duration / 60),
-            minuteDuration: String(specificTask.duration % 60),
+            minuteDuration: String(specificTask.duration % 60), 
+            generalTask: generalTaskDto,
             selectedTagsIndexes: selectedTagsIndexes
         )
     }
     
-    public func addTask(name: String, description: String, scheduledDate: Date, duration: Int64, addToReminder: Bool, addToCalendar: Bool, tagsIndexes: [Int]) throws  {
+    public func addTask(name: String, description: String, scheduledDate: Date, duration: Int64, addToReminder: Bool, addToCalendar: Bool, generalTaskId: UUID? = nil, tagsIndexes: [Int]) throws  {
         let selectedTags = tagsIndexes.map { tags[$0] }
         let tagsSet = NSSet(array: selectedTags)
         let endDate = scheduledDate.addingTimeInterval(Double(duration) * 60)
@@ -70,11 +73,16 @@ public final class AddSpecificTaskPresenter {
                 throw error
             }
         }
+        var generalTask: GeneralTask? = nil
+        if let generalTaskId = generalTaskId {
+            generalTask = generalTaskRepository.getTaskById(id: generalTaskId)
+        }
+        
         if (task != nil) {
-            taskRepository.updateTask(id: task!.id, name: name, isCompleted: false, taskDescription: description, tags: tagsSet, duration: duration, scheduledDate: scheduledDate, generalTask: nil)
+            specificTaskRepository.updateTask(id: task!.id, name: name, isCompleted: generalTask?.isCompleted ?? false, taskDescription: description, tags: tagsSet, duration: duration, scheduledDate: scheduledDate, generalTask: generalTask)
             return
         }
         let id = UUID()
-        taskRepository.createTask(id: id, name: name, isCompleted: false, taskDescription: description, tags: tagsSet, duration: duration, scheduledDate: scheduledDate, generalTask: nil)
+        specificTaskRepository.createTask(id: id, name: name, isCompleted: generalTask?.isCompleted ?? false, taskDescription: description, tags: tagsSet, duration: duration, scheduledDate: scheduledDate, generalTask: generalTask)
     }
 }

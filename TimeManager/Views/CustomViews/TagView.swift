@@ -34,6 +34,7 @@ public final class TagView: UIView {
         titleLabel.pinCenterY(to: self)
         titleLabel.pinRight(to: self, 5)
         titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.sizeToFit()
     }
     
     public func configure(with title: String, color: UIColor) {

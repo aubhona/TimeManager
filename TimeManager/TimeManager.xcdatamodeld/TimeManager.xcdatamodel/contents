@@ -7,7 +7,7 @@
     <entity name="SpecificTask" representedClassName="SpecificTask" parentEntity="Task" syncable="YES">
         <attribute name="duration" optional="YES" attributeType="Integer 64" minValueString="0" maxValueString="1440" defaultValueString="0" allowsCloudEncryption="YES" usesScalarValueType="YES"/>
         <attribute name="scheduledDate" optional="YES" attributeType="Date" allowsCloudEncryption="YES" usesScalarValueType="NO"/>
-        <relationship name="generalTask" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="GeneralTask" inverseName="specificTasks" inverseEntity="GeneralTask"/>
+        <relationship name="generalTask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GeneralTask" inverseName="specificTasks" inverseEntity="GeneralTask"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String" allowsCloudEncryption="YES"/>
