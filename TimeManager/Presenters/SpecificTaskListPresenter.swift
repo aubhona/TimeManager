@@ -110,9 +110,9 @@ internal final class SpecificTaskListPresenter {
     }
     
     func setSelectedDay(date: Date) {
-        let weekDiff = (Calendar.current.dateComponents([.weekOfYear], from: firstWeekDay(), to: getFirstWeekDay(date: date)).weekOfYear ?? 0)
-        view?.scrollToWeekIndex(weekIndex: currentWeekIndex + weekDiff)
-        addWeekToSelectedDay(weekIndex: currentWeekIndex + weekDiff, getWeekDay(date: date))
+        let weekDifference = (Calendar.current.dateComponents([.weekOfYear], from: firstWeekDay(), to: getFirstWeekDay(date: date)).weekOfYear ?? 0)
+        view?.scrollToWeekIndex(weekIndex: currentWeekIndex + weekDifference)
+        addWeekToSelectedDay(weekIndex: currentWeekIndex + weekDifference, getWeekDay(date: date))
     }
     
     func setSelectedDay(weekDay: Int) {
@@ -127,11 +127,13 @@ internal final class SpecificTaskListPresenter {
     
     func addWeekToSelectedDay(weekIndex: Int, _ weekday: Int = -1) {
         let weeksDifference = weekIndex - currentWeekIndex
-        guard let weekStartDate = Calendar.current.date(byAdding: .weekOfYear, value: weeksDifference, to: firstWeekDay()) else {
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
+        guard let weekStartDate = calendar.date(byAdding: .weekOfYear, value: weeksDifference, to: firstWeekDay()) else {
             return
         }
         let weekdayOffset = weekday == -1 ? getSelectedWeekDay() : weekday
-        if let newSelectedDay = Calendar.current.date(byAdding: .day, value: weekdayOffset, to: weekStartDate) {
+        if let newSelectedDay = calendar.date(byAdding: .day, value: weekdayOffset, to: weekStartDate) {
             selectedDay = newSelectedDay
             currentWeekIndex = weekIndex
         }

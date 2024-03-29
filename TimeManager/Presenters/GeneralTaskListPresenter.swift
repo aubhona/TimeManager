@@ -42,6 +42,9 @@ internal final class GeneralTaskListPresenter {
             } else {
                 tasks[$0] = tasksForDate
             }
+            tasks[$0]?.sort(by: { (task1, task2) -> Bool in
+                return task1.deadlineDate! < task2.deadlineDate!
+            })
         }
     }
     

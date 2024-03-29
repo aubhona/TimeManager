@@ -44,28 +44,31 @@ internal final class AddSpecificTaskViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(customBackTapped))
-        self.navigationItem.leftBarButtonItem?.tintColor = .red
         presenter = AddSpecificTaskPresenter(self, CoreDataSpecificTaskRepository.shared, ReminderManager(), CalendarManager(), CoreDataTagRepository.shared)
+        configureNavigationItem() 
         configureViews()
         configureTaskEdit()
     }
     
+    private func configureNavigationItem() {
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(customBackTapped))
+        backButton.tintColor = .red
+        titleLabel.text = "Конкретная задача"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.textColor = .black
+        titleLabel.sizeToFit()
+        self.navigationItem.titleView = titleLabel
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+        
     @objc private func customBackTapped() {
         _ = navigationController?.popViewController(animated: true)
     }
     
     private func configureViews() {
-        view.addSubview(titleLabel)
-        titleLabel.setWidth(view.bounds.width)
-        titleLabel.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
-        titleLabel.pinLeft(to: view, 30)
-        titleLabel.text = "Конкретная задача"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
-        
         view.addSubview(nameLabel)
         nameLabel.setWidth(view.bounds.width)
-        nameLabel.pinTop(to: titleLabel.bottomAnchor, 10)
+        nameLabel.pinTop(to: view.safeAreaLayoutGuide.topAnchor, 5)
         nameLabel.pinLeft(to: view, 30)
         nameLabel.text = "Название"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 17)
@@ -318,6 +321,10 @@ extension AddSpecificTaskViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        <#code#>
+//    }
 }
 
 extension AddSpecificTaskViewController: UITextViewDelegate {
@@ -394,6 +401,9 @@ extension AddSpecificTaskViewController: UIViewControllerTransitioningDelegate {
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let presentationController = PopUpPresentationController(presentedViewController: presented, presenting: presenting)
+        if (presented is GeneralTaskSearchViewController) {
+            presentationController.divider = 1
+        }
         return presentationController
     }
 }

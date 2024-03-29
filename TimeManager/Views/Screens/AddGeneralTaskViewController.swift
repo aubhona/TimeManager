@@ -39,33 +39,34 @@ internal final class AddGeneralTaskViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        configureNavigationItem()
+        presenter = AddGeneralTaskPresenter(self, CoreDataGeneralTaskRepository.shared, ReminderManager(), CalendarManager(), CoreDataTagRepository.shared)
+        configureViews()
+        configureTaskEdit()
+    }
+    
+    private func configureNavigationItem() {
+        titleLabel.text = "Общая задача"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.textColor = .black
+        titleLabel.sizeToFit()
+        self.navigationItem.titleView = titleLabel
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(customBackTapped))
         self.navigationItem.leftBarButtonItem?.tintColor = .red
         if let navigationBar = self.navigationController?.navigationBar {
             navigationBar.isTranslucent = true
             navigationBar.backgroundColor = .white
         }
-        presenter = AddGeneralTaskPresenter(self, CoreDataGeneralTaskRepository.shared, ReminderManager(), CalendarManager(), CoreDataTagRepository.shared)
-        configureViews()
-        configureTaskEdit()
     }
-    
     
     @objc private func customBackTapped() {
         _ = navigationController?.popViewController(animated: true)
     }
     
     private func configureViews() {
-        view.addSubview(titleLabel)
-        titleLabel.setWidth(view.bounds.width)
-        titleLabel.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
-        titleLabel.pinLeft(to: view, 30)
-        titleLabel.text = "Общая задача"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
-        
         view.addSubview(nameLabel)
         nameLabel.setWidth(view.bounds.width)
-        nameLabel.pinTop(to: titleLabel.bottomAnchor, 10)
+        nameLabel.pinTop(to: view.safeAreaLayoutGuide.topAnchor, 5)
         nameLabel.pinLeft(to: view, 30)
         nameLabel.text = "Название"
         nameLabel.font = UIFont.boldSystemFont(ofSize: 17)

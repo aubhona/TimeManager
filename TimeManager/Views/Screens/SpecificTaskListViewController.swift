@@ -58,15 +58,15 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
         filterButton = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"), style: .plain, target: self, action: #selector(filterSpecificTaskTapped))
         filterButton.tintColor = .red
         
-        presenter?.setCurrentMonth()
-        dateLabel.font = UIFont.boldSystemFont(ofSize: 25)
-        
         calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonTapped))
         calendarButton.tintColor = .red
         
+        presenter?.setCurrentMonth()
+        dateLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        
         navigationItem.rightBarButtonItems = [addButton, calendarButton, filterButton]
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: dateLabel)
-        dateLabel.setWidth(200)
+        dateLabel.setWidth(190)
     }
     
     private func configureWeekView() {
@@ -185,6 +185,7 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
     
     public func scrollToWeekIndex(weekIndex: Int) {
         weekCollectionView.scrollToItem(at: IndexPath(row: weekIndex, section: 0), at: .centeredHorizontally, animated: true)
+        weekCollectionView.reloadData()
         tasksCollectionView.performBatchUpdates({
             tasksCollectionView.reloadSections(IndexSet(integer: 0))
         }, completion: nil)

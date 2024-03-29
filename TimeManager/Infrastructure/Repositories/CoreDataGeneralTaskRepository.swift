@@ -22,6 +22,20 @@ public final class CoreDataGeneralTaskRepository: GeneralTaskRepository {
         appDelegate.persistentContainer.viewContext
     }
     
+    func getTasksByName(name: String) -> [GeneralTask] {
+        let request: NSFetchRequest<GeneralTask> = GeneralTask.fetchRequest()
+        request.predicate = NSPredicate(format: "name BEGINSWITH[c] %@", name)
+        
+        do {
+            let tasks = try context.fetch(request)
+            return tasks
+        } catch {
+            print("Error fetching tasks by name: \(error)")
+            return []
+        }
+    }
+
+    
     func getExistingDates() -> [Date] {
         var dates: [Date] = []
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GeneralTask")

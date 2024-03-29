@@ -57,6 +57,9 @@
 		01B18AE32BB553130019F040 /* GeneralTaskListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AE22BB553130019F040 /* GeneralTaskListPresenter.swift */; };
 		01B18AE52BB553560019F040 /* AddGeneralTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AE42BB553560019F040 /* AddGeneralTaskViewController.swift */; };
 		01B18AE72BB581F50019F040 /* AddGeneralTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AE62BB581F50019F040 /* AddGeneralTaskPresenter.swift */; };
+		01B18AE92BB651C40019F040 /* GeneralTaskSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AE82BB651C40019F040 /* GeneralTaskSearchViewController.swift */; };
+		01B18AEB2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AEA2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift */; };
+		01B18AED2BB659300019F040 /* GeneralTaskSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AEC2BB659300019F040 /* GeneralTaskSearchPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +116,9 @@
 		01B18AE22BB553130019F040 /* GeneralTaskListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskListPresenter.swift; sourceTree = "<group>"; };
 		01B18AE42BB553560019F040 /* AddGeneralTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeneralTaskViewController.swift; sourceTree = "<group>"; };
 		01B18AE62BB581F50019F040 /* AddGeneralTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeneralTaskPresenter.swift; sourceTree = "<group>"; };
+		01B18AE82BB651C40019F040 /* GeneralTaskSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskSearchViewController.swift; sourceTree = "<group>"; };
+		01B18AEA2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGeneralTaskTableViewCell.swift; sourceTree = "<group>"; };
+		01B18AEC2BB659300019F040 /* GeneralTaskSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskSearchPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +208,7 @@
 				01B18AD22BB3C3940019F040 /* AddTagPresenter.swift */,
 				01B18AE22BB553130019F040 /* GeneralTaskListPresenter.swift */,
 				01B18AE62BB581F50019F040 /* AddGeneralTaskPresenter.swift */,
+				01B18AEC2BB659300019F040 /* GeneralTaskSearchPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -253,6 +260,7 @@
 				012F96322BB19F410012B8EE /* SpecificTaskCollectionViewCell.swift */,
 				01B18ACA2BB31FC20019F040 /* TagCollectionViewCell.swift */,
 				01B18ADC2BB516210019F040 /* GeneralTaskTableViewCell.swift */,
+				01B18AEA2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -268,6 +276,7 @@
 				01B18AD82BB4747E0019F040 /* DatePickerViewController.swift */,
 				01B18ADA2BB511B20019F040 /* GeneralTaskListViewController.swift */,
 				01B18AE42BB553560019F040 /* AddGeneralTaskViewController.swift */,
+				01B18AE82BB651C40019F040 /* GeneralTaskSearchViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -382,6 +391,7 @@
 				01B18AE72BB581F50019F040 /* AddGeneralTaskPresenter.swift in Sources */,
 				012F962B2BB19EC90012B8EE /* AddSpecificTaskPresenter.swift in Sources */,
 				01B18ABF2BB2E9D40019F040 /* CalendarManager.swift in Sources */,
+				01B18AED2BB659300019F040 /* GeneralTaskSearchPresenter.swift in Sources */,
 				01B18AE12BB541790019F040 /* GeneralTabelViewHeader.swift in Sources */,
 				01B18ACB2BB31FC20019F040 /* TagCollectionViewCell.swift in Sources */,
 				012F96332BB19F410012B8EE /* SpecificTaskCollectionViewCell.swift in Sources */,
@@ -411,6 +421,7 @@
 				012F961E2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift in Sources */,
 				012F962D2BB19EE30012B8EE /* AddSpecificTaskViewController.swift in Sources */,
 				0127D3B52BB192F1004C5233 /* SceneDelegate.swift in Sources */,
+				01B18AE92BB651C40019F040 /* GeneralTaskSearchViewController.swift in Sources */,
 				01B18ACD2BB326390019F040 /* TagDto.swift in Sources */,
 				012F96132BB19C090012B8EE /* Tag+CoreDataClass.swift in Sources */,
 				01B18AC72BB2EDB30019F040 /* ReminderManaging.swift in Sources */,
@@ -422,6 +433,7 @@
 				012F96312BB19F2E0012B8EE /* WeekCollectionViewCell.swift in Sources */,
 				012F96122BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift in Sources */,
 				012F960F2BB19C090012B8EE /* GeneralTask+CoreDataClass.swift in Sources */,
+				01B18AEB2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift in Sources */,
 				012F962F2BB19F190012B8EE /* WeekdayTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

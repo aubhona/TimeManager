@@ -203,4 +203,8 @@ internal final class GeneralTaskTableViewCell: UITableViewCell {
         animateStrikethrough(isSelected: checkBox.isSelected)
         taskSelectAction?()
     }
+    
+    public var isSmall: Bool {
+        return progressLabel.isHidden
+    }
 }

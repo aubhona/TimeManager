@@ -14,7 +14,7 @@ internal final class GeneralTaskListViewController: UIViewController {
     private var filterButton: UIBarButtonItem = UIBarButtonItem()
     private var titleLabel: UILabel = UILabel()
     private var presenter: GeneralTaskListPresenter?
-    private var sections: [Bool] = [Bool]()
+    private var smallCells: [[Bool]] = [[Bool]]()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ internal final class GeneralTaskListViewController: UIViewController {
         
         navigationItem.rightBarButtonItems = [addButton, calendarButton, filterButton]
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
-        titleLabel.setWidth(200)
+        titleLabel.setWidth(190)
     }
     
     
@@ -91,6 +91,7 @@ internal final class GeneralTaskListViewController: UIViewController {
         datePickerViewController.transitioningDelegate = self
         datePickerViewController.goToDateAction = {[weak self] date in
             self?.presenter?.setStartDate(date: date)
+            self?.generalTaskTableView.reloadData()
         }
         datePickerViewController.currentDate = presenter?.startDate ?? Date()
         present(datePickerViewController, animated: true)
@@ -102,7 +103,9 @@ internal final class GeneralTaskListViewController: UIViewController {
 extension GeneralTaskListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.getTaskCountByDate(dateIndex: section) ?? 0
+        let count = presenter?.getTaskCountByDate(dateIndex: section) ?? 0
+        smallCells[section] = Array(repeating: false, count: count)
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -110,15 +113,18 @@ extension GeneralTaskListViewController: UITableViewDataSource {
         guard let generalTaskCell = cell as? GeneralTaskTableViewCell else { return cell }
         guard let task = presenter?.getTaskByDate(dateIndex: indexPath.section, taskIndex: indexPath.row) else { return cell }
         generalTaskCell.configure(task: task, taskSelectAction: { [weak self] in self?.taskSelected(indexPath: indexPath) })
+        smallCells[indexPath.section][indexPath.row] = generalTaskCell.isSmall
         return generalTaskCell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter?.getDatesCount() ?? 0
+        let count = presenter?.getDatesCount() ?? 0
+        smallCells = Array(repeating: [], count: count)
+        return count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 170
+        return smallCells[indexPath.section][indexPath.row] ? 150 : 170
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

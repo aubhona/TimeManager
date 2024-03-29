@@ -13,11 +13,13 @@ protocol GeneralTaskRepository {
     
     func getTaskById(id: UUID) -> GeneralTask?
     
+    func getTasksByName(name: String) -> [GeneralTask]
+    
     func getTasksByDate(date: Date) -> [GeneralTask]
     
     func createTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, deadlineDate: Date, specificTasks: NSSet?)
     
-    func deleteTask(id: UUID)
-    
     func updateTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, deadlineDate: Date, specificTasks: NSSet?)
+    
+    func deleteTask(id: UUID)
 }

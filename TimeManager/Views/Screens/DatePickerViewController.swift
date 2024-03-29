@@ -28,12 +28,13 @@ internal final class DatePickerViewController: UIViewController {
     
     private func configureDatePicker() {
         datePicker = UIDatePicker()
+        datePicker.calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
+        datePicker.calendar.firstWeekday = 2
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
         datePicker.tintColor = .red
         datePicker.date = currentDate
-        datePicker.calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
-        
+        datePicker.locale = Locale(identifier: "ru_RU")
         view.addSubview(datePicker)
         datePicker.pinTop(to: swipeIndicatorView.bottomAnchor, 10)
         datePicker.pinBottom(to: goToDateButton.topAnchor, 10)
