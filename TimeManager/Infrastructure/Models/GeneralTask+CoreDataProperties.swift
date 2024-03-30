@@ -2,7 +2,7 @@
 //  GeneralTask+CoreDataProperties.swift
 //  TimeManager
 //
-//  Created by Aubkhon Abdullaev on 25.03.2024.
+//  Created by Aubkhon Abdullaev on 29.03.2024.
 //
 //
 

@@ -31,6 +31,9 @@ internal final class AddSpecificTaskViewController: UIViewController {
     private var editTask: SpecificTaskDto?
     private var generalTask: GeneralTaskDto?
     private var selectedTagsCells: Set<IndexPath> = []
+    private var isDelayedButton: UIButton = UIButton(type: .custom)
+    private var dateStackView = UIStackView()
+    private var generalStackView = UIStackView()
     
     private var presenter: AddSpecificTaskPresenter?
     
@@ -63,7 +66,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
         self.navigationItem.titleView = titleLabel
         self.navigationItem.leftBarButtonItem = backButton
     }
-        
+    
     @objc private func customBackTapped() {
         _ = navigationController?.popViewController(animated: true)
     }
@@ -91,16 +94,30 @@ internal final class AddSpecificTaskViewController: UIViewController {
                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         
         view.addSubview(dateTimePickerLabel)
-        dateTimePickerLabel.setWidth(view.bounds.width)
         dateTimePickerLabel.pinTop(to: nameTextField.bottomAnchor, 10)
         dateTimePickerLabel.pinLeft(to: view, 30)
         dateTimePickerLabel.text = "Время и дата"
         dateTimePickerLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        dateTimePickerLabel.sizeToFit()
         
+        view.addSubview(isDelayedButton)
+        isDelayedButton.pinLeft(to: dateTimePickerLabel.trailingAnchor, 5)
+        isDelayedButton.pinCenterY(to: dateTimePickerLabel)
+        isDelayedButton.setTitle("Отложить задачу", for: .normal)
+        isDelayedButton.setTitle("Установить дату", for: .selected)
+        isDelayedButton.setTitleColor(.red, for: .normal)
+        isDelayedButton.backgroundColor = .white
+        isDelayedButton.addTarget(self, action: #selector(isDelayedButtonTapped), for: .touchUpInside)
         
-        view.addSubview(scheduledDatePicker)
-        scheduledDatePicker.pinTop(to: dateTimePickerLabel.bottomAnchor, 10)
-        scheduledDatePicker.pinLeft(to: view, 30)
+        view.addSubview(dateStackView)
+        dateStackView.pinLeft(to: view, 30)
+        dateStackView.pinRight(to: view)
+        dateStackView.pinTop(to: dateTimePickerLabel.bottomAnchor, 10)
+        dateStackView.axis = .vertical
+        dateStackView.alignment = .leading
+        dateStackView.spacing = 10
+        
+        dateStackView.addArrangedSubview(scheduledDatePicker)
         scheduledDatePicker.locale = Locale(identifier: "ru")
         scheduledDatePicker.tintColor = .red
         
@@ -108,9 +125,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
         addCalendarButton.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
         addCalendarButton.setTitle(" Добавить в Календарь", for: .normal)
         addCalendarButton.setTitleColor(.red, for: .normal)
-        view.addSubview(addCalendarButton)
-        addCalendarButton.pinLeft(to: scheduledDatePicker)
-        addCalendarButton.pinTop(to: scheduledDatePicker.bottomAnchor, 10)
+        dateStackView.addArrangedSubview(addCalendarButton)
         addCalendarButton.tintColor = .red
         addCalendarButton.addTarget(self, action: #selector(checkBoxButtonTapped), for: .touchUpInside)
         addCalendarButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
@@ -119,15 +134,13 @@ internal final class AddSpecificTaskViewController: UIViewController {
         addReminderButton.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
         addReminderButton.setTitle(" Добавить в Напоминания", for: .normal)
         addReminderButton.setTitleColor(.red, for: .normal)
-        view.addSubview(addReminderButton)
-        addReminderButton.pinLeft(to: addCalendarButton)
-        addReminderButton.pinTop(to: addCalendarButton.bottomAnchor, 5)
+        dateStackView.addArrangedSubview(addReminderButton)
         addReminderButton.tintColor = .red
         addReminderButton.addTarget(self, action: #selector(checkBoxButtonTapped), for: .touchUpInside)
         addReminderButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
         view.addSubview(durationLabel)
-        durationLabel.pinTop(to: addReminderButton.bottomAnchor, 15)
+        durationLabel.pinTop(to: dateStackView.bottomAnchor, 10)
         durationLabel.pinLeft(to: view, 30)
         durationLabel.text = "Продолжительность:"
         durationLabel.font = UIFont.boldSystemFont(ofSize: 17)
@@ -206,17 +219,22 @@ internal final class AddSpecificTaskViewController: UIViewController {
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         
-        view.addSubview(generalTaskLabel)
-        generalTaskLabel.pinTop(to: descriptionTextView.bottomAnchor, 15)
-        generalTaskLabel.pinLeft(to: view, 30)
+        view.addSubview(generalStackView)
+        generalStackView.pinLeft(to: view, 30)
+        generalStackView.pinRight(to: view)
+        generalStackView.pinTop(to: descriptionTextView.bottomAnchor, 10)
+        generalStackView.axis = .vertical
+        generalStackView.alignment = .leading
+        generalStackView.spacing = 10
+        
+        generalStackView.addArrangedSubview(generalTaskLabel)
         generalTaskLabel.text = "Общая задача"
         generalTaskLabel.font = UIFont.boldSystemFont(ofSize: 17)
         generalTaskLabel.sizeToFit()
         
-        view.addSubview(generalTaskTextField)
-        generalTaskTextField.pinHorizontal(to: view, 30)
+        generalStackView.addArrangedSubview(generalTaskTextField)
         generalTaskTextField.setHeight(40)
-        generalTaskTextField.pinTop(to: generalTaskLabel.bottomAnchor, 10)
+        generalTaskTextField.setWidth(view.bounds.width - CGFloat(60))
         generalTaskTextField.backgroundColor = UIColor("f2f2f7")
         generalTaskTextField.layer.cornerRadius = 12
         generalTaskTextField.tintColor = .red
@@ -225,10 +243,10 @@ internal final class AddSpecificTaskViewController: UIViewController {
         generalTaskTextField.delegate = self
         generalTaskTextField.leftViewMode = .always
         generalTaskTextField.attributedPlaceholder = NSAttributedString(string: "Укажите общую задачу",
-                                                                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+                                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         
         view.addSubview(tagLabel)
-        tagLabel.pinTop(to: generalTaskTextField.bottomAnchor, 10)
+        tagLabel.pinTop(to: generalStackView.bottomAnchor, 10)
         tagLabel.pinLeft(to: view, 30)
         tagLabel.text = "Теги"
         tagLabel.font = UIFont.boldSystemFont(ofSize: 17)
@@ -261,6 +279,23 @@ internal final class AddSpecificTaskViewController: UIViewController {
     private func configureTaskEdit() {
         guard let task = editTask else { return }
         presenter?.fillInputFileds(task: task)
+    }
+    
+    @objc public func isDelayedButtonTapped() {
+        isDelayedButton.isSelected = !isDelayedButton.isSelected
+        let newTitle = isDelayedButton.isSelected ? "Отложенная задача" : "Конкретная задача"
+        UIView.animate(withDuration: 0.3) {
+            self.scheduledDatePicker.isHidden = self.isDelayedButton.isSelected
+            self.addCalendarButton.isHidden = self.isDelayedButton.isSelected
+            self.addReminderButton.isHidden = self.isDelayedButton.isSelected
+            self.generalTaskLabel.isHidden = self.isDelayedButton.isSelected
+            self.generalTaskTextField.isHidden = self.isDelayedButton.isSelected
+            self.view.layoutIfNeeded()
+        }
+        UIView.transition(with: titleLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.titleLabel.text = newTitle
+            self.titleLabel.sizeToFit()
+        }, completion: nil)
     }
     
     public func setInputFields(name: String, description: String, date: Date, hourDuration: String, minuteDuration: String, generalTask: GeneralTaskDto?, selectedTagsIndexes: [Int]) {
@@ -316,11 +351,11 @@ internal final class AddSpecificTaskViewController: UIViewController {
             try presenter?.addTask(
                 name: name,
                 description: taskDescription,
-                scheduledDate: scheduledDatePicker.date,
+                scheduledDate: isDelayedButton.isSelected ? nil : scheduledDatePicker.date,
                 duration: totalDuration,
-                addToReminder: addReminderButton.isSelected,
-                addToCalendar: addCalendarButton.isSelected,
-                generalTaskId: generalTask?.id,
+                addToReminder: isDelayedButton.isSelected ? nil : addReminderButton.isSelected,
+                addToCalendar: isDelayedButton.isSelected ? nil : addCalendarButton.isSelected,
+                generalTaskId: isDelayedButton.isSelected ? nil : generalTask?.id,
                 tagsIndexes: getSelectedCellsIndex()
             )
         } catch let error as NSError  {
@@ -331,7 +366,6 @@ internal final class AddSpecificTaskViewController: UIViewController {
     
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in }
         
         alert.addAction(okAction)

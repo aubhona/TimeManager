@@ -15,7 +15,6 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
     private var dateLabel: UILabel = UILabel()
     private var weekCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var tasksCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-    private var lineView: UIView = UIView()
     private var scrollStartPoint: CGPoint?
     
     private var presenter: SpecificTaskListPresenter?
@@ -130,7 +129,8 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
             guard let taskCell = cell as? SpecificTaskCollectionViewCell else { return cell }
             
             guard let presenter = presenter else { return taskCell }
-            taskCell.configure(task: presenter.getTask(index: indexPath.row), taskSelectAction: {[weak self] in self?.taskSelected(index: indexPath.row) })
+            let task = presenter.getTask(index: indexPath.row)
+            taskCell.configure(task: task, taskSelectAction: { [weak self] in self?.taskSelected(index: indexPath.row) })
             
             return taskCell
         }

@@ -43,7 +43,8 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
     
     func getTasksByDate(date: Date) -> [SpecificTask] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
         
         let startDate = calendar.startOfDay(for: date)
         let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
@@ -115,4 +116,17 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
         }
     }
     
+    func getDelayedTasks() -> [SpecificTask] {
+        let fetchRequest: NSFetchRequest<SpecificTask> = SpecificTask.fetchRequest()
+        
+        fetchRequest.predicate = NSPredicate(format: "scheduledDate == nil")
+        
+        do {
+            let tasks = try context.fetch(fetchRequest)
+            return tasks
+        } catch {
+            print("Error fetching delayed tasks: \(error)")
+            return []
+        }
+    }
 }

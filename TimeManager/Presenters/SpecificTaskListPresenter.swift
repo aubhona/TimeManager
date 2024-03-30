@@ -111,8 +111,9 @@ internal final class SpecificTaskListPresenter {
     
     func setSelectedDay(date: Date) {
         let weekDifference = (Calendar.current.dateComponents([.weekOfYear], from: firstWeekDay(), to: getFirstWeekDay(date: date)).weekOfYear ?? 0)
-        view?.scrollToWeekIndex(weekIndex: currentWeekIndex + weekDifference)
         addWeekToSelectedDay(weekIndex: currentWeekIndex + weekDifference, getWeekDay(date: date))
+        view?.scrollToWeekIndex(weekIndex: currentWeekIndex + weekDifference)
+        
     }
     
     func setSelectedDay(weekDay: Int) {
@@ -136,6 +137,8 @@ internal final class SpecificTaskListPresenter {
         if let newSelectedDay = calendar.date(byAdding: .day, value: weekdayOffset, to: weekStartDate) {
             selectedDay = newSelectedDay
             currentWeekIndex = weekIndex
+            tasks = taskRepository.getTasksByDate(date: selectedDay)
+            tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
         }
     }
     

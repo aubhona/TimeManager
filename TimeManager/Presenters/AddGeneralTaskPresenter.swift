@@ -52,7 +52,14 @@ internal final class AddGeneralTaskPresenter {
         )
     }
     
-    public func addTask(name: String, description: String, deadlineDate: Date, addToReminder: Bool, addToCalendar: Bool, tagsIndexes: [Int]) throws  {
+    public func addTask(
+        name: String,
+        description: String,
+        deadlineDate: Date,
+        addToReminder: Bool,
+        addToCalendar: Bool,
+        tagsIndexes: [Int]
+    ) throws  {
         let selectedTags = tagsIndexes.map { tags[$0] }
         let tagsSet = NSSet(array: selectedTags)
         if (addToCalendar) {

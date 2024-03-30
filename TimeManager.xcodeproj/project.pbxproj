@@ -13,8 +13,6 @@
 		0127D3CD2BB194BC004C5233 /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3CC2BB194BC004C5233 /* UIColor+HEX.swift */; };
 		0127D3CF2BB194D5004C5233 /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0127D3CE2BB194D5004C5233 /* UIView+Pin.swift */; };
 		012F96062BB19AE60012B8EE /* TimeManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 012F96042BB19AE60012B8EE /* TimeManager.xcdatamodeld */; };
-		012F960F2BB19C090012B8EE /* GeneralTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96072BB19C090012B8EE /* GeneralTask+CoreDataClass.swift */; };
-		012F96102BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96082BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift */; };
 		012F96112BB19C090012B8EE /* SpecificTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F96092BB19C090012B8EE /* SpecificTask+CoreDataClass.swift */; };
 		012F96122BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F960A2BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift */; };
 		012F96132BB19C090012B8EE /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F960B2BB19C090012B8EE /* Tag+CoreDataClass.swift */; };
@@ -60,6 +58,11 @@
 		01B18AE92BB651C40019F040 /* GeneralTaskSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AE82BB651C40019F040 /* GeneralTaskSearchViewController.swift */; };
 		01B18AEB2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AEA2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift */; };
 		01B18AED2BB659300019F040 /* GeneralTaskSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AEC2BB659300019F040 /* GeneralTaskSearchPresenter.swift */; };
+		01B18AF02BB67FE80019F040 /* GeneralTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AEE2BB67FE80019F040 /* GeneralTask+CoreDataClass.swift */; };
+		01B18AF12BB67FE80019F040 /* GeneralTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AEF2BB67FE80019F040 /* GeneralTask+CoreDataProperties.swift */; };
+		01B18AF32BB692BA0019F040 /* DelayedSpecificTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AF22BB692BA0019F040 /* DelayedSpecificTaskListViewController.swift */; };
+		01B18AF52BB69A020019F040 /* DelayedSpecificTaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AF42BB69A020019F040 /* DelayedSpecificTaskCollectionViewCell.swift */; };
+		01B18AF72BB706550019F040 /* DelayedSpecificTaskListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AF62BB706550019F040 /* DelayedSpecificTaskListPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,8 +75,6 @@
 		0127D3CC2BB194BC004C5233 /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
 		0127D3CE2BB194D5004C5233 /* UIView+Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Pin.swift"; sourceTree = "<group>"; };
 		012F96052BB19AE60012B8EE /* TimeManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeManager.xcdatamodel; sourceTree = "<group>"; };
-		012F96072BB19C090012B8EE /* GeneralTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralTask+CoreDataClass.swift"; sourceTree = "<group>"; };
-		012F96082BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		012F96092BB19C090012B8EE /* SpecificTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpecificTask+CoreDataClass.swift"; sourceTree = "<group>"; };
 		012F960A2BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpecificTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		012F960B2BB19C090012B8EE /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -119,6 +120,11 @@
 		01B18AE82BB651C40019F040 /* GeneralTaskSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskSearchViewController.swift; sourceTree = "<group>"; };
 		01B18AEA2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGeneralTaskTableViewCell.swift; sourceTree = "<group>"; };
 		01B18AEC2BB659300019F040 /* GeneralTaskSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskSearchPresenter.swift; sourceTree = "<group>"; };
+		01B18AEE2BB67FE80019F040 /* GeneralTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		01B18AEF2BB67FE80019F040 /* GeneralTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		01B18AF22BB692BA0019F040 /* DelayedSpecificTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedSpecificTaskListViewController.swift; sourceTree = "<group>"; };
+		01B18AF42BB69A020019F040 /* DelayedSpecificTaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedSpecificTaskCollectionViewCell.swift; sourceTree = "<group>"; };
+		01B18AF62BB706550019F040 /* DelayedSpecificTaskListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedSpecificTaskListPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +215,7 @@
 				01B18AE22BB553130019F040 /* GeneralTaskListPresenter.swift */,
 				01B18AE62BB581F50019F040 /* AddGeneralTaskPresenter.swift */,
 				01B18AEC2BB659300019F040 /* GeneralTaskSearchPresenter.swift */,
+				01B18AF62BB706550019F040 /* DelayedSpecificTaskListPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -226,8 +233,8 @@
 		0127D3D42BB195F6004C5233 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				012F96072BB19C090012B8EE /* GeneralTask+CoreDataClass.swift */,
-				012F96082BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift */,
+				01B18AEE2BB67FE80019F040 /* GeneralTask+CoreDataClass.swift */,
+				01B18AEF2BB67FE80019F040 /* GeneralTask+CoreDataProperties.swift */,
 				012F96092BB19C090012B8EE /* SpecificTask+CoreDataClass.swift */,
 				012F960A2BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift */,
 				012F960B2BB19C090012B8EE /* Tag+CoreDataClass.swift */,
@@ -261,6 +268,7 @@
 				01B18ACA2BB31FC20019F040 /* TagCollectionViewCell.swift */,
 				01B18ADC2BB516210019F040 /* GeneralTaskTableViewCell.swift */,
 				01B18AEA2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift */,
+				01B18AF42BB69A020019F040 /* DelayedSpecificTaskCollectionViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -277,6 +285,7 @@
 				01B18ADA2BB511B20019F040 /* GeneralTaskListViewController.swift */,
 				01B18AE42BB553560019F040 /* AddGeneralTaskViewController.swift */,
 				01B18AE82BB651C40019F040 /* GeneralTaskSearchViewController.swift */,
+				01B18AF22BB692BA0019F040 /* DelayedSpecificTaskListViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -383,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B18AF72BB706550019F040 /* DelayedSpecificTaskListPresenter.swift in Sources */,
 				012F96112BB19C090012B8EE /* SpecificTask+CoreDataClass.swift in Sources */,
 				012F96222BB19CF40012B8EE /* CoreDataTagRepository.swift in Sources */,
 				012F96272BB19DDD0012B8EE /* SpecificTaskDto.swift in Sources */,
@@ -395,12 +405,14 @@
 				01B18AE12BB541790019F040 /* GeneralTabelViewHeader.swift in Sources */,
 				01B18ACB2BB31FC20019F040 /* TagCollectionViewCell.swift in Sources */,
 				012F96332BB19F410012B8EE /* SpecificTaskCollectionViewCell.swift in Sources */,
+				01B18AF02BB67FE80019F040 /* GeneralTask+CoreDataClass.swift in Sources */,
 				012F96352BB19F740012B8EE /* MainTabBarViewController.swift in Sources */,
 				012F96202BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift in Sources */,
 				012F96182BB19C680012B8EE /* SpecificTaskRepository.swift in Sources */,
 				012F96242BB19D850012B8EE /* SpecificTaskListPresenter.swift in Sources */,
 				01B18AE52BB553560019F040 /* AddGeneralTaskViewController.swift in Sources */,
 				012F961C2BB19CAC0012B8EE /* TagRepository.swift in Sources */,
+				01B18AF12BB67FE80019F040 /* GeneralTask+CoreDataProperties.swift in Sources */,
 				01B18AC32BB2EA160019F040 /* CalendarManaging.swift in Sources */,
 				012F96152BB19C090012B8EE /* Task+CoreDataClass.swift in Sources */,
 				01B18AC92BB2EDD10019F040 /* ReminderManager.swift in Sources */,
@@ -408,11 +420,11 @@
 				01B18AD32BB3C3940019F040 /* AddTagPresenter.swift in Sources */,
 				012F96162BB19C090012B8EE /* Task+CoreDataProperties.swift in Sources */,
 				0127D3CD2BB194BC004C5233 /* UIColor+HEX.swift in Sources */,
+				01B18AF32BB692BA0019F040 /* DelayedSpecificTaskListViewController.swift in Sources */,
 				01B18AD52BB3C7980019F040 /* AddTagViewController.swift in Sources */,
 				01B18ADB2BB511B20019F040 /* GeneralTaskListViewController.swift in Sources */,
 				012F961A2BB19C950012B8EE /* GeneralTaskRepository.swift in Sources */,
 				0127D3CF2BB194D5004C5233 /* UIView+Pin.swift in Sources */,
-				012F96102BB19C090012B8EE /* GeneralTask+CoreDataProperties.swift in Sources */,
 				012F96292BB19E850012B8EE /* SpecificTaskListViewController.swift in Sources */,
 				012F96062BB19AE60012B8EE /* TimeManager.xcdatamodeld in Sources */,
 				01B18AD92BB4747E0019F040 /* DatePickerViewController.swift in Sources */,
@@ -431,8 +443,8 @@
 				01B18AD72BB3D0E90019F040 /* PopUpPresentationController.swift in Sources */,
 				01B18AC52BB2ED900019F040 /* ReminderEventModel.swift in Sources */,
 				012F96312BB19F2E0012B8EE /* WeekCollectionViewCell.swift in Sources */,
+				01B18AF52BB69A020019F040 /* DelayedSpecificTaskCollectionViewCell.swift in Sources */,
 				012F96122BB19C090012B8EE /* SpecificTask+CoreDataProperties.swift in Sources */,
-				012F960F2BB19C090012B8EE /* GeneralTask+CoreDataClass.swift in Sources */,
 				01B18AEB2BB654D50019F040 /* SearchGeneralTaskTableViewCell.swift in Sources */,
 				012F962F2BB19F190012B8EE /* WeekdayTableViewCell.swift in Sources */,
 			);

@@ -17,7 +17,7 @@ internal final class MainTabBarController: UITabBarController, UITabBarControlle
         let specificTaskListViewController = UINavigationController(rootViewController: SpecificTaskListViewController())
         specificTaskListViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "checklist"), tag: 0)
         
-        let delayedSpecificTaskListViewController = UINavigationController(rootViewController: UIViewController())
+        let delayedSpecificTaskListViewController = UINavigationController(rootViewController: DelayedSpecificTaskListViewController())
         delayedSpecificTaskListViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "tray"), tag: 1)
         
         let generalTaskListViewController = UINavigationController(rootViewController: GeneralTaskListViewController())

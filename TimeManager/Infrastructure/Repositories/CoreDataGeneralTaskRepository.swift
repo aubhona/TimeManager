@@ -121,6 +121,22 @@ public final class CoreDataGeneralTaskRepository: GeneralTaskRepository {
         }
     }
     
+    func toggleAllSpecificTasksComplete(for generalTask: GeneralTask) {
+        guard let specificTasks = generalTask.specificTasks as? Set<SpecificTask> else { return }
+
+        let isCompletedStatus = !specificTasks.allSatisfy { $0.isCompleted }
+        
+        specificTasks.forEach { specificTask in
+            specificTask.isCompleted = isCompletedStatus
+        }
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Cannot save specific task changes: \(error), \(error.userInfo)")
+        }
+    }
+    
     func updateTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, deadlineDate: Date, specificTasks: NSSet?) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GeneralTask")
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
@@ -138,6 +154,8 @@ public final class CoreDataGeneralTaskRepository: GeneralTaskRepository {
                 task.specificTasks = specificTasks
                 
                 try context.save()
+                
+                toggleAllSpecificTasksComplete(for: task)
             }
         } catch {
             print("Error updating task: \(error)")

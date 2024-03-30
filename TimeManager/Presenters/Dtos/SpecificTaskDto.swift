@@ -16,6 +16,7 @@ public final class SpecificTaskDto {
     public var scheduledEndTime: String
     public var scheduledDate: String
     public var skipped: Bool
+    public var generalTask: GeneralTaskDto?
     public var tags: [TagDto]
     
     init(id: UUID, name: String, isCompleted: Bool, taskDescription: String, scheduledStartTime: String, scheduledEndTime: String, sheduledDate: String, skipped: Bool, tags: [TagDto]) {

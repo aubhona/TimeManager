@@ -27,7 +27,7 @@ public final class TagView: UIView {
         circleView.setHeight(10)
         circleView.layer.cornerRadius = 5
         circleView.pinCenterY(to: self)
-        circleView.pinLeft(to: self, 5)
+        circleView.pinLeft(to: self)
         
         addSubview(titleLabel)
         titleLabel.pinLeft(to: circleView.trailingAnchor, 5)

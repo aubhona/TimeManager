@@ -57,18 +57,27 @@ public final class AddSpecificTaskPresenter {
         )
     }
     
-    public func addTask(name: String, description: String, scheduledDate: Date, duration: Int64, addToReminder: Bool, addToCalendar: Bool, generalTaskId: UUID? = nil, tagsIndexes: [Int]) throws  {
+    public func addTask(
+        name: String,
+        description: String,
+        scheduledDate: Date?,
+        duration: Int64,
+        addToReminder: Bool?,
+        addToCalendar: Bool?,
+        generalTaskId: UUID? = nil,
+        tagsIndexes: [Int]
+    ) throws  {
         let selectedTags = tagsIndexes.map { tags[$0] }
         let tagsSet = NSSet(array: selectedTags)
-        let endDate = scheduledDate.addingTimeInterval(Double(duration) * 60)
-        if (addToCalendar) {
-            if (!calendarManager.create(eventModel: CalendarEventModel(title: name, startDate: scheduledDate, endDate: endDate, note: description))) {
+        let endDate = scheduledDate?.addingTimeInterval(Double(duration) * 60)
+        if (addToCalendar ?? false) {
+            if (!calendarManager.create(eventModel: CalendarEventModel(title: name, startDate: scheduledDate ?? Date(), endDate: endDate ?? Date(), note: description))) {
                 let error = NSError(domain: "EventKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Ошибка добавления в календарь. Разрешите добавление в календарь и попробуйте снова."])
                 throw error
             }
         }
-        if (addToReminder) {
-            if (!reminderManager.create(reminderModel: ReminderEventModel(title: name, startDate: scheduledDate, dueDate: endDate, note: description))) {
+        if (addToReminder ?? false) {
+            if (!reminderManager.create(reminderModel: ReminderEventModel(title: name, startDate: scheduledDate ?? Date(), dueDate: endDate ?? Date(), note: description))) {
                 let error = NSError(domain: "EventKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Ошибка добавления в напоминания. Разрешите добавление в напоминания и попробуйте снова."])
                 throw error
             }

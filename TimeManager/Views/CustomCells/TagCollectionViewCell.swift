@@ -36,7 +36,9 @@ internal final class TagCollectionViewCell: UICollectionViewCell {
     
     private func configureTagView() {
         addSubview(tagView)
-        tagView.pin(to: self)
+        tagView.pinVertical(to: self)
+        tagView.pinRight(to: self)
+        tagView.pinLeft(to: self, 5)
     }
     
     public func configureTag(name: String, color: UIColor) {
