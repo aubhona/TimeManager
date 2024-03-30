@@ -20,7 +20,7 @@ internal final class GeneralTaskListViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor("f2f2f7")
-        presenter = GeneralTaskListPresenter(self, CoreDataGeneralTaskRepository.shared)
+        presenter = GeneralTaskListPresenter(self, CoreDataGeneralTaskRepository.shared, CoreDataTagRepository.shared)
         
         configureNavigationItem()
         configureTableView()
@@ -35,6 +35,7 @@ internal final class GeneralTaskListViewController: UIViewController {
             navigationBar.backgroundColor = UIColor("f2f2f7")
         }
         
+        presenter?.checkTags()
         presenter?.updateTasks()
         generalTaskTableView.reloadData()
     }
@@ -86,6 +87,10 @@ internal final class GeneralTaskListViewController: UIViewController {
         let tagFilterViewController = TagFilterViewController(nibName: nil, bundle: nil, presenter: presenter, tagRepository: CoreDataTagRepository.shared)
         tagFilterViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(tagFilterViewController, animated: true)
+        if let navigationBar = tagFilterViewController.navigationController?.navigationBar {
+            navigationBar.isTranslucent = true
+            navigationBar.backgroundColor = .white
+        }
     }
     
     @objc private func calendarButtonTapped() {
@@ -152,11 +157,11 @@ extension GeneralTaskListViewController: UITableViewDataSource {
     
     private func toggleSection(index: Int) {
         presenter?.toggleDate(dateIndex: index)
-
+        
         let currentRowCount = generalTaskTableView.numberOfRows(inSection: index)
         let newRowCount = presenter?.getTaskCountByDate(dateIndex: index) ?? 0
         let rowCountDifference = newRowCount - currentRowCount
-
+        
         generalTaskTableView.beginUpdates()
         
         if rowCountDifference > 0 {
@@ -170,10 +175,10 @@ extension GeneralTaskListViewController: UITableViewDataSource {
             }
             generalTaskTableView.deleteRows(at: indexPathsToDelete, with: .fade)
         }
-
+        
         generalTaskTableView.endUpdates()
     }
-
+    
 }
 
 // MARK: - UITableViewDelegate

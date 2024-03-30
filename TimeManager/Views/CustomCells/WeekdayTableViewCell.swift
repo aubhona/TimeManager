@@ -61,7 +61,7 @@ public final class WeekdayTableViewCell: UITableViewCell {
         dayLabel.text = "\(day)"
         dayOfWeekLabel.text = dayOfWeek.uppercased()
         
-       
+        
         self.isSelected = isSelected
     }
     

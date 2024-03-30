@@ -23,7 +23,7 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
         super.viewDidLoad()
         
         view.backgroundColor = UIColor("f2f2f7")
-        presenter = SpecificTaskListPresenter(self, CoreDataSpecificTaskRepository.shared)
+        presenter = SpecificTaskListPresenter(self, CoreDataSpecificTaskRepository.shared, CoreDataTagRepository.shared)
         
         configureNavigationItem()
         configureWeekView()
@@ -33,6 +33,7 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        presenter?.checkTags()
         tasksCollectionView.performBatchUpdates({
             tasksCollectionView.reloadSections(IndexSet(integer: 0))
         }, completion: nil)
@@ -163,7 +164,7 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
     }
     
     @objc private func addSpecificTaskTapped() {
-        let addSpecificTaskViewController = AddSpecificTaskViewController()
+        let addSpecificTaskViewController = AddSpecificTaskViewController(task: nil, presenter?.selectedDay ?? Date())
         addSpecificTaskViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(addSpecificTaskViewController, animated: true)
     }

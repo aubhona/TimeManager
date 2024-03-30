@@ -7,18 +7,20 @@
 
 import Foundation
 
-internal final class GeneralTaskListPresenter: Presenter {
+internal final class GeneralTaskListPresenter: TagFilterPresenter {
     private(set) public var startDate: Date = Date.now
     private var tasks: [Date: [GeneralTask]] = [:]
     private weak var view: GeneralTaskListViewController?
     private var taskRepository: GeneralTaskRepository
     private var uniqueDeadlineDates: [Date] = [Date]()
     private var uniqueDeadlineDatesActivated: [Bool] = [Bool]()
+    private var tagRepository: TagRepository
     var tags: [TagDto]
     
-    init(_ view: GeneralTaskListViewController? = nil, _ taskRepository: GeneralTaskRepository) {
+    init(_ view: GeneralTaskListViewController? = nil, _ taskRepository: GeneralTaskRepository, _ tagRepository: TagRepository) {
         self.view = view
         self.taskRepository = taskRepository
+        self.tagRepository = tagRepository
         tags = []
         updateTasks()
         setUnqueTags()
@@ -39,7 +41,15 @@ internal final class GeneralTaskListPresenter: Presenter {
         filterTasksByTagIDs()
     }
     
+    func checkTags() {
+        tags = tags.filter { tagRepository.getTagById(id: $0.id) != nil }
+    }
+    
     func filterTasksByTagIDs() {
+        if (tags.isEmpty) {
+            updateTasks()
+            return
+        }
         let tagIDs = Set(tags.map { $0.id })
         
         for (date, tasksForDate) in tasks {
@@ -80,16 +90,16 @@ internal final class GeneralTaskListPresenter: Presenter {
                 return task1.deadlineDate! < task2.deadlineDate!
             })
         }
-        
-        filterTasksByTagIDs()
     }
     
     public func setStartDate(date: Date) {
         startDate = date
         updateTasks()
+        filterTasksByTagIDs()
     }
     
     public func getDatesCount() -> Int {
+        filterTasksByTagIDs()
         return uniqueDeadlineDates.count
     }
     
@@ -151,5 +161,6 @@ internal final class GeneralTaskListPresenter: Presenter {
     func deleteTask(taskId: UUID) {
         taskRepository.deleteTask(id: taskId)
         updateTasks()
+        filterTasksByTagIDs()
     }
 }

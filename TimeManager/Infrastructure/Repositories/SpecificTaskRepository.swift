@@ -9,8 +9,6 @@ import Foundation
 
 protocol SpecificTaskRepository {
     
-    func getTaskByDateTime(date: Date) -> SpecificTask?
-    
     func getTasksByDate(date: Date) -> [SpecificTask]
     
     func getTaskById(id: UUID) -> SpecificTask?

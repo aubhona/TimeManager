@@ -9,20 +9,22 @@ import UIKit
 
 
 internal final class TagFilterViewController: UIViewController {
-    private var presenter: Presenter
+    private var presenter: TagFilterPresenter
     private var titleLabel: UILabel = UILabel()
     private var saveButton: UIButton = UIButton(type: .system)
     private var tagsCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private var tagLabel: UILabel = UILabel()
     private var selectedTagsCells: Set<IndexPath> = []
-    private var resetTagsButton: UIButton = UIButton(type: .custom)
+    private var resetTagsButton: UIButton = UIButton(type: .system)
     private var tags: [TagDto]
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, presenter: Presenter, tagRepository: TagRepository) {
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, presenter: TagFilterPresenter, tagRepository: TagRepository) {
         self.presenter = presenter
         tags = tagRepository.getAllTags().compactMap({ TagDto(id: $0.id!, name: $0.name!, color: $0.color!) })
         for i in 0..<presenter.tags.count {
-            selectedTagsCells.insert(IndexPath(row: tags.firstIndex(where: { $0.id == presenter.tags[i].id })!, section: 0))
+            if let index = tags.firstIndex(where: { $0.id == presenter.tags[i].id }) {
+                selectedTagsCells.insert(IndexPath(row: index, section: 0))
+            }
         }
         
         
@@ -49,6 +51,7 @@ internal final class TagFilterViewController: UIViewController {
         resetTagsButton.pinLeft(to: tagLabel.trailingAnchor, 5)
         resetTagsButton.pinCenterY(to: tagLabel)
         resetTagsButton.setTitle("Сбросить фильтр", for: .normal)
+        resetTagsButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         resetTagsButton.setTitleColor(.red, for: .normal)
         resetTagsButton.backgroundColor = .white
         resetTagsButton.addTarget(self, action: #selector(resetTagsButtonTapped), for: .touchUpInside)
@@ -62,9 +65,12 @@ internal final class TagFilterViewController: UIViewController {
             })
         } else {
             for i in 0..<presenter.tags.count {
-                let indexPath = IndexPath(row: tags.firstIndex(where: { $0.id == presenter.tags[i].id })!, section: 0)
-                selectedTagsCells.insert(indexPath)
-                self.collectionView(tagsCollectionView, didSelectItemAt: indexPath)
+                if let index = tags.firstIndex(where: { $0.id == presenter.tags[i].id }) {
+                    let indexPath = IndexPath(row: index, section: 0)
+                    selectedTagsCells.insert(indexPath)
+                    self.collectionView(tagsCollectionView, didSelectItemAt: indexPath)
+                }
+                
             }
         }
     }
@@ -111,7 +117,7 @@ internal final class TagFilterViewController: UIViewController {
     private func configureTagsCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: view.bounds.width - 55, height: 35)
+        layout.itemSize = CGSize(width: view.bounds.width - 55, height: 40)
         layout.minimumLineSpacing = 5
         tagsCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         tagsCollectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: TagCollectionViewCell.reuseIdentifier)

@@ -7,15 +7,17 @@
 
 import Foundation
 
-internal final class DelayedSpecificTaskListPresenter: Presenter {
+internal final class DelayedSpecificTaskListPresenter: TagFilterPresenter {
     private var tasks: [SpecificTask] = [SpecificTask]()
     private weak var view: DelayedSpecificTaskListViewController?
     private var taskRepository: SpecificTaskRepository
+    private var tagRepository: TagRepository
     var tags: [TagDto]
     
-    init(_ view: DelayedSpecificTaskListViewController?, _ taskRepository: SpecificTaskRepository) {
+    init(_ view: DelayedSpecificTaskListViewController?, _ taskRepository: SpecificTaskRepository, _ tagRepository: TagRepository) {
         self.view = view
         self.taskRepository = taskRepository
+        self.tagRepository = tagRepository
         tasks = taskRepository.getDelayedTasks()
         tags = []
         setUnqueTags()
@@ -28,12 +30,20 @@ internal final class DelayedSpecificTaskListPresenter: Presenter {
                 uniqueTagsSet.formUnion(taskTags)
             }
         }
-
+        
         tags = uniqueTagsSet.compactMap({ TagDto(id: $0.id!, name: $0.name!, color: $0.color!) })
         filterTasksByTagIDs()
     }
     
+    func checkTags() {
+        tags = tags.filter { tagRepository.getTagById(id: $0.id) != nil }
+    }
+    
     func filterTasksByTagIDs() {
+        if (tags.isEmpty) {
+            tasks = taskRepository.getDelayedTasks()
+            return
+        }
         let tagIDs = Set(tags.map { $0.id })
         tasks = tasks.filter { task in
             guard let taskTags = task.tags as? Set<Tag> else { return false }

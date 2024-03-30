@@ -207,9 +207,7 @@ internal final class GeneralTaskDescriptionViewController: UIViewController {
             tagView.configure(with: tag.name, color: UIColor(tag.color))
             tagsStackView.addArrangedSubview(tagView)
         }
-        if (task.tags.count == 0){
-            tagImage.isHidden = true
-        }
+        tagImage.isHidden = task.tags.count == 0
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: view.bounds.width - 30, height: 90)

@@ -82,5 +82,5 @@ internal final class AddGeneralTaskPresenter {
         let id = UUID()
         taskRepository.createTask(id: id, name: name, isCompleted: false, taskDescription: description, tags: tagsSet, deadlineDate: deadlineDate, specificTasks: nil)
     }
-
+    
 }

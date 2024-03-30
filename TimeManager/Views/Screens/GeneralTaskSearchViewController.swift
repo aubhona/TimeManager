@@ -69,7 +69,7 @@ internal final class GeneralTaskSearchViewController: UIViewController {
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
-
+    
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -105,9 +105,9 @@ extension GeneralTaskSearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter?.filterTask(searchName: searchText)
         UIView.transition(with: taskTableView,
-                              duration: 0.35,
-                              options: .transitionCrossDissolve,
-                              animations: { self.taskTableView.reloadData() })
+                          duration: 0.35,
+                          options: .transitionCrossDissolve,
+                          animations: { self.taskTableView.reloadData() })
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

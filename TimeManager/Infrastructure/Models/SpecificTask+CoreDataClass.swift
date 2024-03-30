@@ -11,5 +11,5 @@ import CoreData
 
 @objc(SpecificTask)
 public class SpecificTask: Task {
-
+    
 }

@@ -26,7 +26,7 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
     func getTaskById(id: UUID) -> SpecificTask? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-
+        
         do {
             let results = try context.fetch(request) as? [SpecificTask]
             return results?.first
@@ -34,11 +34,6 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
             print("Error fetching task by ID: \(error), \(error.userInfo)")
             return nil
         }
-    }
-
-    
-    func getTaskByDateTime(date: Date) -> SpecificTask? {
-        return nil
     }
     
     func getTasksByDate(date: Date) -> [SpecificTask] {

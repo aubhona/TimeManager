@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal final class SpecificTaskListPresenter : Presenter {
+internal final class SpecificTaskListPresenter : TagFilterPresenter {
     private enum Constants {
         static let identidier: String = "ru"
         
@@ -30,10 +30,12 @@ internal final class SpecificTaskListPresenter : Presenter {
     private var tasks: [SpecificTask] = [SpecificTask]()
     private weak var view: SpecificTaskListViewController?
     private var taskRepository: SpecificTaskRepository
+    private var tagRepository: TagRepository
     
-    init(_ view: SpecificTaskListViewController, _ taskRepository: SpecificTaskRepository) {
+    init(_ view: SpecificTaskListViewController, _ taskRepository: SpecificTaskRepository, _ tagRepository: TagRepository) {
         self.view = view
         self.taskRepository = taskRepository
+        self.tagRepository = tagRepository
         tasks = taskRepository.getTasksByDate(date: selectedDay)
         tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
         tags = []
@@ -47,12 +49,20 @@ internal final class SpecificTaskListPresenter : Presenter {
                 uniqueTagsSet.formUnion(taskTags)
             }
         }
-
+        
         tags = uniqueTagsSet.compactMap({ TagDto(id: $0.id!, name: $0.name!, color: $0.color!) })
         filterTasksByTagIDs()
     }
     
+    func checkTags() {
+        tags = tags.filter { tagRepository.getTagById(id: $0.id) != nil }
+    }
+    
     func filterTasksByTagIDs() {
+        if (tags.isEmpty) {
+            tasks = taskRepository.getTasksByDate(date: selectedDay)
+            return
+        }
         let tagIDs = Set(tags.map { $0.id })
         tasks = tasks.filter { task in
             guard let taskTags = task.tags as? Set<Tag> else { return false }
@@ -77,18 +87,11 @@ internal final class SpecificTaskListPresenter : Presenter {
     
     private func getFirstWeekDay(date: Date) -> Date {
         var calendar = Calendar.current
-        calendar.firstWeekday = 2
-        
-        let currentDate = date
-        if let sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)) {
-            let sundayStartOfDay = calendar.startOfDay(for: sunday)
-            
-            if let firstWeekDay = calendar.date(byAdding: .day, value: 1, to: sundayStartOfDay) {
-                return firstWeekDay
-            }
-        }
-        
-        return calendar.startOfDay(for: currentDate)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
+        var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+        components.weekday = 2
+        let startOfWeek = calendar.date(from: components)!
+        return calendar.startOfDay(for: startOfWeek)
     }
     
     private func firstWeekDay() -> Date {
@@ -136,14 +139,17 @@ internal final class SpecificTaskListPresenter : Presenter {
     }
     
     func setSelectedDay(date: Date) {
-        let weekDifference = (Calendar.current.dateComponents([.weekOfYear], from: firstWeekDay(), to: getFirstWeekDay(date: date)).weekOfYear ?? 0)
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
+        let weekDifference = (calendar.dateComponents([.weekOfYear], from: firstWeekDay(), to: getFirstWeekDay(date: date)).weekOfYear ?? 0)
         addWeekToSelectedDay(weekIndex: currentWeekIndex + weekDifference, getWeekDay(date: date))
         view?.scrollToWeekIndex(weekIndex: currentWeekIndex + weekDifference)
         
     }
     
     func setSelectedDay(weekDay: Int) {
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
         let currentWeekday = getSelectedWeekDay()
         let dayOffset = weekDay - currentWeekday
         

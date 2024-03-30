@@ -11,9 +11,9 @@ protocol TagRepository {
     
     func createTag(id: UUID, name: String, color: String, tasks: NSSet?)
     
-    func deleteTag(id: UUID)
+    func deleteTagById(id: UUID)
     
     func getAllTags() -> [Tag]
     
-    func getTagById() -> Tag?
+    func getTagById(id: UUID) -> Tag?
 }

@@ -16,7 +16,7 @@ internal final class DatePickerViewController: UIViewController {
     private var initialPosition: CGFloat = 0
     public var goToDateAction: ((Date) -> Void)?
     public var currentDate: Date = Date()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

@@ -23,7 +23,7 @@ internal final class MainTabBarController: UITabBarController, UITabBarControlle
         let generalTaskListViewController = UINavigationController(rootViewController: GeneralTaskListViewController())
         generalTaskListViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "note.text"), tag: 2)
         
-        let settingsViewController = UINavigationController(rootViewController: UIViewController())
+        let settingsViewController = UINavigationController(rootViewController: SettingsViewController())
         settingsViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "gear"), tag: 3)
         
         viewControllers = [

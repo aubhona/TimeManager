@@ -17,7 +17,7 @@ internal final class DelayedSpecificTaskListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor("f2f2f7")
-        presenter = DelayedSpecificTaskListPresenter(self, CoreDataSpecificTaskRepository.shared)
+        presenter = DelayedSpecificTaskListPresenter(self, CoreDataSpecificTaskRepository.shared, CoreDataTagRepository.shared)
         
         configureNavigationItem()
         configureTasksView()
@@ -26,6 +26,7 @@ internal final class DelayedSpecificTaskListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        presenter?.checkTags()
         tasksCollectionView.performBatchUpdates({
             tasksCollectionView.reloadSections(IndexSet(integer: 0))
         }, completion: nil)

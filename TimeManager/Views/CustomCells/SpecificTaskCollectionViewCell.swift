@@ -194,9 +194,9 @@ internal final class SpecificTaskCollectionViewCell: UICollectionViewCell {
         animation.duration = 0.25
         
         titleLabel.layer.add(animation, forKey: CATransitionType.fade.rawValue)
-
+        
         let attributeString = NSMutableAttributedString(string: titleLabel.text ?? "")
-
+        
         if isSelected {
             attributeString.addAttribute(
                 NSAttributedString.Key.strikethroughStyle,
@@ -211,7 +211,7 @@ internal final class SpecificTaskCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-
+    
     
     @objc private func selectTask() {
         UIView.animate(withDuration: 0.5) { [weak self] in

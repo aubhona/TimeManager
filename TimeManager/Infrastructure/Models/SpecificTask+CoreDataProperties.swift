@@ -11,13 +11,13 @@ import CoreData
 
 
 extension SpecificTask {
-
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<SpecificTask> {
         return NSFetchRequest<SpecificTask>(entityName: "SpecificTask")
     }
-
+    
     @NSManaged public var duration: Int64
     @NSManaged public var scheduledDate: Date?
     @NSManaged public var generalTask: GeneralTask?
-
+    
 }

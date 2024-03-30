@@ -34,7 +34,7 @@ public final class CoreDataGeneralTaskRepository: GeneralTaskRepository {
             return []
         }
     }
-
+    
     
     func getExistingDates() -> [Date] {
         var dates: [Date] = []
@@ -123,7 +123,7 @@ public final class CoreDataGeneralTaskRepository: GeneralTaskRepository {
     
     func toggleAllSpecificTasksComplete(for generalTask: GeneralTask) {
         guard let specificTasks = generalTask.specificTasks as? Set<SpecificTask> else { return }
-
+        
         let isCompletedStatus = !specificTasks.allSatisfy { $0.isCompleted }
         
         specificTasks.forEach { specificTask in

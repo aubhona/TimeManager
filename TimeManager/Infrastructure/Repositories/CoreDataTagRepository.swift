@@ -34,8 +34,32 @@ public final class CoreDataTagRepository: TagRepository {
         appDelegate.saveContext()
     }
     
-    func deleteTag(id: UUID) {
-        return
+    func getTagById(id: UUID) -> Tag? {
+        let fetchRequest: NSFetchRequest<Tag> = Tag.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            let result = try context.fetch(fetchRequest)
+            return result.first
+        } catch let error as NSError {
+            print("Error fetching tag by ID: \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+    
+    func deleteTagById(id: UUID) {
+        let fetchRequest: NSFetchRequest<Tag> = Tag.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            let tags = try context.fetch(fetchRequest)
+            if let tagToDelete = tags.first {
+                context.delete(tagToDelete)
+                try context.save()
+            }
+        } catch let error as NSError {
+            print("Error deleting tag: \(error), \(error.userInfo)")
+        }
     }
     
     func getAllTags() -> [Tag] {
@@ -47,9 +71,5 @@ public final class CoreDataTagRepository: TagRepository {
             print("Error fetching tags: \(error), \(error.userInfo)")
             return []
         }
-    }
-    
-    func getTagById() -> Tag? {
-        return nil
     }
 }

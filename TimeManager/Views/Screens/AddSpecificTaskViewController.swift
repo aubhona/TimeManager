@@ -37,9 +37,10 @@ internal final class AddSpecificTaskViewController: UIViewController {
     
     private var presenter: AddSpecificTaskPresenter?
     
-    init(task: SpecificTaskDto? = nil) {
+    init(task: SpecificTaskDto? = nil, _ selectedDate: Date = Date()) {
         editTask = task
         generalTask = task?.generalTask
+        scheduledDatePicker.date = selectedDate
         
         super.init(nibName: nil, bundle: nil)
     }

@@ -149,9 +149,9 @@ internal final class DelayedSpecificTaskCollectionViewCell: UICollectionViewCell
         animation.duration = 0.25
         
         titleLabel.layer.add(animation, forKey: CATransitionType.fade.rawValue)
-
+        
         let attributeString = NSMutableAttributedString(string: titleLabel.text ?? "")
-
+        
         if isSelected {
             attributeString.addAttribute(
                 NSAttributedString.Key.strikethroughStyle,

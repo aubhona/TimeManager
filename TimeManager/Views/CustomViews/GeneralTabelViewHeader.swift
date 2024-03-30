@@ -56,7 +56,7 @@ internal final class GeneralTabelViewHeader: UIView {
         rotationAnimation.fillMode = .forwards
         
         openButton.layer.add(rotationAnimation, forKey: "rotationAnimation")
-
+        
         openButton.isSelected = !openButton.isSelected
     }
     
@@ -64,5 +64,5 @@ internal final class GeneralTabelViewHeader: UIView {
         toggleHeader()
         tappedAction?()
     }
-
+    
 }

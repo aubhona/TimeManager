@@ -38,7 +38,10 @@
 		012FF32A2BB7A63000B8773F /* GeneralTaskDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012FF3292BB7A63000B8773F /* GeneralTaskDescriptionViewController.swift */; };
 		012FF32C2BB7B33C00B8773F /* GeneralTaskDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012FF32B2BB7B33C00B8773F /* GeneralTaskDescriptionPresenter.swift */; };
 		012FF3302BB7EDED00B8773F /* TagFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012FF32F2BB7EDED00B8773F /* TagFilterViewController.swift */; };
-		012FF3322BB7EFC500B8773F /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012FF3312BB7EFC500B8773F /* Presenter.swift */; };
+		012FF3322BB7EFC500B8773F /* TagFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012FF3312BB7EFC500B8773F /* TagFilterPresenter.swift */; };
+		012FF3342BB8832500B8773F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012FF3332BB8832500B8773F /* SettingsViewController.swift */; };
+		012FF3362BB88C1D00B8773F /* TagSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012FF3352BB88C1D00B8773F /* TagSettingsViewController.swift */; };
+		012FF3382BB8902A00B8773F /* TagSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012FF3372BB8902A00B8773F /* TagSettingsPresenter.swift */; };
 		01B18ABC2BB2D8350019F040 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ABB2BB2D8350019F040 /* TagView.swift */; };
 		01B18ABF2BB2E9D40019F040 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18ABE2BB2E9D40019F040 /* CalendarManager.swift */; };
 		01B18AC12BB2E9EF0019F040 /* CalendarEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AC02BB2E9EF0019F040 /* CalendarEventModel.swift */; };
@@ -104,7 +107,10 @@
 		012FF3292BB7A63000B8773F /* GeneralTaskDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskDescriptionViewController.swift; sourceTree = "<group>"; };
 		012FF32B2BB7B33C00B8773F /* GeneralTaskDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTaskDescriptionPresenter.swift; sourceTree = "<group>"; };
 		012FF32F2BB7EDED00B8773F /* TagFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFilterViewController.swift; sourceTree = "<group>"; };
-		012FF3312BB7EFC500B8773F /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		012FF3312BB7EFC500B8773F /* TagFilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFilterPresenter.swift; sourceTree = "<group>"; };
+		012FF3332BB8832500B8773F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		012FF3352BB88C1D00B8773F /* TagSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSettingsViewController.swift; sourceTree = "<group>"; };
+		012FF3372BB8902A00B8773F /* TagSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSettingsPresenter.swift; sourceTree = "<group>"; };
 		01B18ABB2BB2D8350019F040 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		01B18ABE2BB2E9D40019F040 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		01B18AC02BB2E9EF0019F040 /* CalendarEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventModel.swift; sourceTree = "<group>"; };
@@ -225,7 +231,8 @@
 				01B18AEC2BB659300019F040 /* GeneralTaskSearchPresenter.swift */,
 				01B18AF62BB706550019F040 /* DelayedSpecificTaskListPresenter.swift */,
 				012FF32B2BB7B33C00B8773F /* GeneralTaskDescriptionPresenter.swift */,
-				012FF3312BB7EFC500B8773F /* Presenter.swift */,
+				012FF3312BB7EFC500B8773F /* TagFilterPresenter.swift */,
+				012FF3372BB8902A00B8773F /* TagSettingsPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -298,6 +305,8 @@
 				01B18AF22BB692BA0019F040 /* DelayedSpecificTaskListViewController.swift */,
 				012FF3292BB7A63000B8773F /* GeneralTaskDescriptionViewController.swift */,
 				012FF32F2BB7EDED00B8773F /* TagFilterViewController.swift */,
+				012FF3332BB8832500B8773F /* SettingsViewController.swift */,
+				012FF3352BB88C1D00B8773F /* TagSettingsViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -422,11 +431,12 @@
 				012F96352BB19F740012B8EE /* MainTabBarViewController.swift in Sources */,
 				012F96202BB19CE20012B8EE /* CoreDataGeneralTaskRepository.swift in Sources */,
 				012F96182BB19C680012B8EE /* SpecificTaskRepository.swift in Sources */,
-				012FF3322BB7EFC500B8773F /* Presenter.swift in Sources */,
+				012FF3322BB7EFC500B8773F /* TagFilterPresenter.swift in Sources */,
 				012F96242BB19D850012B8EE /* SpecificTaskListPresenter.swift in Sources */,
 				01B18AE52BB553560019F040 /* AddGeneralTaskViewController.swift in Sources */,
 				012F961C2BB19CAC0012B8EE /* TagRepository.swift in Sources */,
 				01B18AF12BB67FE80019F040 /* GeneralTask+CoreDataProperties.swift in Sources */,
+				012FF3342BB8832500B8773F /* SettingsViewController.swift in Sources */,
 				01B18AC32BB2EA160019F040 /* CalendarManaging.swift in Sources */,
 				012F96152BB19C090012B8EE /* Task+CoreDataClass.swift in Sources */,
 				01B18AC92BB2EDD10019F040 /* ReminderManager.swift in Sources */,
@@ -443,12 +453,14 @@
 				012F96292BB19E850012B8EE /* SpecificTaskListViewController.swift in Sources */,
 				012F96062BB19AE60012B8EE /* TimeManager.xcdatamodeld in Sources */,
 				01B18AD92BB4747E0019F040 /* DatePickerViewController.swift in Sources */,
+				012FF3382BB8902A00B8773F /* TagSettingsPresenter.swift in Sources */,
 				012F96372BB1AE080012B8EE /* SpecificTaskDescriptionViewController.swift in Sources */,
 				0127D3B32BB192F1004C5233 /* AppDelegate.swift in Sources */,
 				012F961E2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift in Sources */,
 				012F962D2BB19EE30012B8EE /* AddSpecificTaskViewController.swift in Sources */,
 				012FF32C2BB7B33C00B8773F /* GeneralTaskDescriptionPresenter.swift in Sources */,
 				0127D3B52BB192F1004C5233 /* SceneDelegate.swift in Sources */,
+				012FF3362BB88C1D00B8773F /* TagSettingsViewController.swift in Sources */,
 				01B18AE92BB651C40019F040 /* GeneralTaskSearchViewController.swift in Sources */,
 				01B18ACD2BB326390019F040 /* TagDto.swift in Sources */,
 				012F96132BB19C090012B8EE /* Tag+CoreDataClass.swift in Sources */,
