@@ -38,7 +38,7 @@ internal final class GeneralTaskSearchPresenter {
             id: generalTask.id!,
             name: generalTask.name!,
             isCompleted: generalTask.isCompleted,
-            taskDescription: generalTask.description,
+            taskDescription: generalTask.taskDescription!,
             deadlineDate: dateFormatter.string(from: generalTask.deadlineDate!),
             skipped: generalTask.deadlineDate! < Date(),
             tags: tags,

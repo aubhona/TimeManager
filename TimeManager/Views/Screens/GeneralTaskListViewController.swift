@@ -82,7 +82,10 @@ internal final class GeneralTaskListViewController: UIViewController {
     }
     
     @objc private func filterSpecificTaskTapped() {
-        // TODO: -
+        guard let presenter = presenter else { return }
+        let tagFilterViewController = TagFilterViewController(nibName: nil, bundle: nil, presenter: presenter, tagRepository: CoreDataTagRepository.shared)
+        tagFilterViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(tagFilterViewController, animated: true)
     }
     
     @objc private func calendarButtonTapped() {
@@ -91,7 +94,13 @@ internal final class GeneralTaskListViewController: UIViewController {
         datePickerViewController.transitioningDelegate = self
         datePickerViewController.goToDateAction = {[weak self] date in
             self?.presenter?.setStartDate(date: date)
-            self?.generalTaskTableView.reloadData()
+            if let tableView = self?.generalTaskTableView{
+                UIView.transition(with: tableView, duration: 0.35, options: .transitionCrossDissolve, animations: {
+                    self?.generalTaskTableView.reloadData()
+                    self?.generalTaskTableView.layoutIfNeeded()
+                }, completion: nil)
+            }
+            
         }
         datePickerViewController.currentDate = presenter?.startDate ?? Date()
         present(datePickerViewController, animated: true)
@@ -170,6 +179,21 @@ extension GeneralTaskListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension GeneralTaskListViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let generalTaskDescriptionViewController = GeneralTaskDescriptionViewController(task: (presenter?.getTaskByDate(dateIndex: indexPath.section, taskIndex: indexPath.row))!, deleteButtonTapped: deleteTaskAction(task:), editButtonTapped: editTaskAction(task:))
+        generalTaskDescriptionViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(generalTaskDescriptionViewController, animated: true)
+    }
+    
+    private func deleteTaskAction(task: GeneralTaskDto) {
+        presenter?.deleteTask(taskId: task.id)
+    }
+    
+    private func editTaskAction(task: GeneralTaskDto) {
+        let addSpecificTaskViewController = AddGeneralTaskViewController(task: task)
+        addSpecificTaskViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(addSpecificTaskViewController, animated: true)
+    }
 }
 
 // MARK: - UIViewControllerTransitioningDelegate

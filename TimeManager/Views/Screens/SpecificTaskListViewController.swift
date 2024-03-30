@@ -169,7 +169,10 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
     }
     
     @objc private func filterSpecificTaskTapped() {
-        // TODO: -
+        guard let presenter = presenter else { return }
+        let tagFilterViewController = TagFilterViewController(nibName: nil, bundle: nil, presenter: presenter, tagRepository: CoreDataTagRepository.shared)
+        tagFilterViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(tagFilterViewController, animated: true)
     }
     
     @objc private func calendarButtonTapped() {
@@ -219,7 +222,7 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
         if (collectionView == weekCollectionView) {
             return
         }
-        let specificTaskDescriptionView = SpecificTaskDescriptionView(task: presenter!.getTask(index: indexPath.row), deleteButtonTapped: deleteTaskAction, editButtonTapped: editTaskAction)
+        let specificTaskDescriptionView = SpecificTaskDescriptionViewController(task: presenter!.getTask(index: indexPath.row), deleteButtonTapped: deleteTaskAction, editButtonTapped: editTaskAction)
         specificTaskDescriptionView.modalPresentationStyle = .custom
         specificTaskDescriptionView.transitioningDelegate = self
         

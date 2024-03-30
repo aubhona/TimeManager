@@ -78,7 +78,10 @@ internal final class DelayedSpecificTaskListViewController: UIViewController {
     }
     
     @objc private func filterSpecificTaskTapped() {
-        // TODO: -
+        guard let presenter = presenter else { return }
+        let tagFilterViewController = TagFilterViewController(nibName: nil, bundle: nil, presenter: presenter, tagRepository: CoreDataTagRepository.shared)
+        tagFilterViewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(tagFilterViewController, animated: true)
     }
     
     private func taskSelected(index: Int) {
@@ -106,7 +109,7 @@ extension DelayedSpecificTaskListViewController: UICollectionViewDataSource {
 extension DelayedSpecificTaskListViewController: UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let specificTaskDescriptionView = SpecificTaskDescriptionView(task: presenter!.getTask(index: indexPath.row), deleteButtonTapped: deleteTaskAction, editButtonTapped: editTaskAction)
+        let specificTaskDescriptionView = SpecificTaskDescriptionViewController(task: presenter!.getTask(index: indexPath.row), deleteButtonTapped: deleteTaskAction, editButtonTapped: editTaskAction)
         specificTaskDescriptionView.modalPresentationStyle = .custom
         specificTaskDescriptionView.transitioningDelegate = self
         

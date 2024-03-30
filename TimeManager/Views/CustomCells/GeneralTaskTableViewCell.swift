@@ -103,7 +103,7 @@ internal final class GeneralTaskTableViewCell: UITableViewCell {
         tagsStackView.clipsToBounds = true
         tagsStackView.distribution = .fillEqually
         wrapperView.addSubview(tagsStackView)
-        tagsStackView.pinLeft(to: deadlineLabel, -3)
+        tagsStackView.pinLeft(to: deadlineLabel)
         tagsStackView.pinRight(to: deadlineLabel)
         tagsStackView.pinTop(to: deadlineLabel.bottomAnchor, 5)
         tagsStackView.pinBottom(to: wrapperView, 10)

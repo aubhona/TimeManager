@@ -14,8 +14,8 @@
             filePath = "TimeManager/Views/Screens/SpecificTaskListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "scrollViewDidEndDecelerating(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "TimeManager/Presenters/GeneralTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "getTaskByDate(dateIndex:taskIndex:)"
             landmarkType = "7">
             <Locations>
@@ -141,8 +141,8 @@
             filePath = "TimeManager/Presenters/GeneralTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "updateTasks()"
             landmarkType = "7">
          </BreakpointContent>
@@ -157,8 +157,8 @@
             filePath = "TimeManager/Presenters/GeneralTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "updateTasks()"
             landmarkType = "7">
          </BreakpointContent>
@@ -173,8 +173,8 @@
             filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "setSelectedDay(weekDay:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -189,8 +189,8 @@
             filePath = "TimeManager/Views/Screens/SpecificTaskListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "scrollToWeekIndex(weekIndex:)"
             landmarkType = "7">
             <Locations>
@@ -300,9 +300,185 @@
             filePath = "TimeManager/Presenters/DelayedSpecificTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "getTasksCount()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F9ADD6BD-F9C6-46B2-86B5-1F0E1FF13A28"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/GeneralTaskDescriptionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "configureViews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "00BDCF0B-3C81-41EA-B9AE-735AF862BA96"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Infrastructure/Repositories/CoreDataGeneralTaskRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "updateTask(id:name:isCompleted:taskDescription:tags:deadlineDate:specificTasks:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A46BBC7-4C23-4DD1-9EFF-408E08491133"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "filterTasksByTagIDs()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9A46BBC7-4C23-4DD1-9EFF-408E08491133 - 6c91416d7f13b41e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.filterTasksByTagIDs() -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "464">
+               </Location>
+               <Location
+                  uuid = "9A46BBC7-4C23-4DD1-9EFF-408E08491133 - cf5ab11cf9dba399"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (TimeManager.SpecificTask) -&gt; Swift.Bool in TimeManager.SpecificTaskListPresenter.filterTasksByTagIDs() -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5825D912-2241-4AFA-B4ED-4EFF4A2FC7EE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/TagFilterViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "saveButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B4F2738-4B48-4E08-89E2-DF5397FF7227"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/TagFilterViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "35FCE433-14E0-416C-80DB-5AEC51BB1739"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/TagFilterViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "collectionView(_:didDeselectItemAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "35FCE433-14E0-416C-80DB-5AEC51BB1739 - d627e3d17965d1b8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.TagFilterViewController.collectionView(_: __C.UICollectionView, didDeselectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Views/Screens/TagFilterViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "276">
+               </Location>
+               <Location
+                  uuid = "35FCE433-14E0-416C-80DB-5AEC51BB1739 - d627e3d17965d15f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.TagFilterViewController.collectionView(_: __C.UICollectionView, didDeselectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Views/Screens/TagFilterViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "164">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8882D8CD-96AB-4ACE-B7DF-44710E616A54"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/TagFilterViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

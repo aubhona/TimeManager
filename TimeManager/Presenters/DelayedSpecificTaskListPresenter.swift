@@ -7,19 +7,46 @@
 
 import Foundation
 
-internal final class DelayedSpecificTaskListPresenter {
+internal final class DelayedSpecificTaskListPresenter: Presenter {
     private var tasks: [SpecificTask] = [SpecificTask]()
     private weak var view: DelayedSpecificTaskListViewController?
     private var taskRepository: SpecificTaskRepository
+    var tags: [TagDto]
     
     init(_ view: DelayedSpecificTaskListViewController?, _ taskRepository: SpecificTaskRepository) {
         self.view = view
         self.taskRepository = taskRepository
         tasks = taskRepository.getDelayedTasks()
+        tags = []
+        setUnqueTags()
+    }
+    
+    func setUnqueTags() {
+        var uniqueTagsSet = Set<Tag>()
+        for task in tasks {
+            if let taskTags = task.tags as? Set<Tag> {
+                uniqueTagsSet.formUnion(taskTags)
+            }
+        }
+
+        tags = uniqueTagsSet.compactMap({ TagDto(id: $0.id!, name: $0.name!, color: $0.color!) })
+        filterTasksByTagIDs()
+    }
+    
+    func filterTasksByTagIDs() {
+        let tagIDs = Set(tags.map { $0.id })
+        tasks = tasks.filter { task in
+            guard let taskTags = task.tags as? Set<Tag> else { return false }
+            
+            return taskTags.contains(where: { tag in
+                tagIDs.contains(tag.id ?? UUID())
+            })
+        }
     }
     
     func getTasksCount() -> Int {
         tasks = taskRepository.getDelayedTasks()
+        filterTasksByTagIDs()
         
         return tasks.count
     }

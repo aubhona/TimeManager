@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SpecificTaskDescriptionView: UIViewController {
+internal final class SpecificTaskDescriptionViewController: UIViewController {
     
     private var initialPosition: CGFloat = 0
     private var panGestureRecognizer: UIPanGestureRecognizer = UIPanGestureRecognizer()
@@ -32,6 +32,7 @@ final class SpecificTaskDescriptionView: UIViewController {
     
     public var deleteButtonTappedAction: ((SpecificTaskDto) -> Void)?
     public var editButtonTappedAction: ((SpecificTaskDto) -> Void)?
+    public var actionBeforeClose: (() -> Void)?
     
     init(task: SpecificTaskDto, deleteButtonTapped: ((SpecificTaskDto) -> Void)? = nil, editButtonTapped: ((SpecificTaskDto) -> Void)? = nil) {
         self.task = task
@@ -56,30 +57,31 @@ final class SpecificTaskDescriptionView: UIViewController {
     }
     
     private func configureViews() {
+        titleLabel = UILabel()
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        view.addSubview(titleLabel)
+        titleLabel.pinTop(to: swipeIndicatorView, 10)
+        titleLabel.pinCenterX(to: view)
+        titleLabel.text = task.name
+        titleLabel.sizeToFit()
+        
         scrollView = UIScrollView()
         view.addSubview(scrollView)
         scrollView.pinHorizontal(to: view)
         scrollView.pinBottom(to: view)
-        scrollView.pinTop(to: swipeIndicatorView.bottomAnchor, 5)
+        scrollView.pinTop(to: titleLabel.bottomAnchor, 5)
+        
+        scrollView.isScrollEnabled = true
         
         contentView = UIView()
         scrollView.addSubview(contentView)
         contentView.pin(to: scrollView)
         contentView.setWidth(view.frame.width)
         
-        scrollView.isScrollEnabled = true
-        
-        titleLabel = UILabel()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        contentView.addSubview(titleLabel)
-        titleLabel.pinTop(to: contentView, 20)
-        titleLabel.pinLeft(to: contentView, 20)
-        titleLabel.setWidth(contentView.bounds.width)
-        
         descriptionImage = UIImageView(image: UIImage(systemName: "text.quote"))
         contentView.addSubview(descriptionImage)
-        descriptionImage.pinLeft(to: titleLabel)
-        descriptionImage.pinTop(to: titleLabel.bottomAnchor, 10)
+        descriptionImage.pinLeft(to: contentView, 20)
+        descriptionImage.pinTop(to: contentView, 5)
         descriptionImage.tintColor = .red
         
         descriptionLabel = UILabel()
@@ -87,7 +89,7 @@ final class SpecificTaskDescriptionView: UIViewController {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.text = task.taskDescription
         descriptionLabel.pinLeft(to: descriptionImage.trailingAnchor, 5)
-        descriptionLabel.pinTop(to: titleLabel.bottomAnchor, 10)
+        descriptionLabel.pinTop(to: descriptionImage)
         
         timeImage = UIImageView(image: UIImage(systemName: "clock.arrow.circlepath"))
         contentView.addSubview(timeImage)
@@ -174,6 +176,7 @@ final class SpecificTaskDescriptionView: UIViewController {
         handleTouchDown(sender)
         handleTouchUpInside(sender)
         deleteButtonTappedAction?(task)
+        actionBeforeClose?()
         self.dismiss(animated: true, completion: nil)
     }
     

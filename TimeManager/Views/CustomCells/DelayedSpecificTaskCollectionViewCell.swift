@@ -33,10 +33,10 @@ internal final class DelayedSpecificTaskCollectionViewCell: UICollectionViewCell
     
     private var taskWrapperView: UIView = UIView()
     private var titleLabel: UILabel = UILabel()
-    private var durationLabel: UILabel = UILabel()
     private var checkBox: UIButton = UIButton()
     private var taskSelectAction: (() -> ())?
     private var tagsStackView: UIStackView = UIStackView()
+    private var backColor: UIColor = .white
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +44,6 @@ internal final class DelayedSpecificTaskCollectionViewCell: UICollectionViewCell
         configureTaskWrapperView()
         configureCheckBox()
         configureTaskLabel()
-        configureDurationLabel()
         configureTagsStackView()
     }
     
@@ -75,17 +74,6 @@ internal final class DelayedSpecificTaskCollectionViewCell: UICollectionViewCell
         titleLabel.sizeToFit()
     }
     
-    private func configureDurationLabel() {
-        durationLabel = UILabel()
-        
-        taskWrapperView.addSubview(durationLabel)
-        
-        durationLabel.pinLeft(to: titleLabel.trailingAnchor, 10)
-        durationLabel.pinCenterY(to: titleLabel)
-        durationLabel.font = UIFont.systemFont(ofSize: 14)
-        durationLabel.sizeToFit()
-    }
-    
     private func configureTagsStackView() {
         tagsStackView = UIStackView()
         tagsStackView.clearsContextBeforeDrawing = true
@@ -97,7 +85,7 @@ internal final class DelayedSpecificTaskCollectionViewCell: UICollectionViewCell
         
         tagsStackView.pinLeft(to: taskWrapperView, 10)
         tagsStackView.pinRight(to: checkBox.leadingAnchor)
-        tagsStackView.pinTop(to: durationLabel.bottomAnchor, 5)
+        tagsStackView.pinTop(to: titleLabel.bottomAnchor, 5)
         tagsStackView.pinBottom(to: taskWrapperView, 5)
     }
     
@@ -119,19 +107,17 @@ internal final class DelayedSpecificTaskCollectionViewCell: UICollectionViewCell
     }
     
     private func conifgureSelectionState(isSelected: Bool) {
-        taskWrapperView.backgroundColor = isSelected ? UIColor("DCDCDC") : .white
+        taskWrapperView.backgroundColor = isSelected ? UIColor("DCDCDC") : backColor
         checkBox.isSelected = isSelected
     }
     
-    public func configure(task: SpecificTaskDto, taskSelectAction: @escaping () -> ()) {
+    public func configure(task: SpecificTaskDto, taskSelectAction: @escaping () -> (), _ backColor: UIColor = .white) {
         titleLabel.removeFromSuperview()
         tagsStackView.removeFromSuperview()
-        durationLabel.removeFromSuperview()
         configureTaskLabel()
-        configureDurationLabel()
         configureTagsStackView()
         titleLabel.text = task.name
-        durationLabel.text = task.scheduledDate
+        self.backColor = backColor
         self.taskSelectAction = taskSelectAction
         clearTagsStackView()
         for i in 0..<min(task.tags.count, 2) {

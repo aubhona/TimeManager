@@ -75,7 +75,8 @@ internal final class AddGeneralTaskPresenter {
             }
         }
         if (task != nil) {
-            taskRepository.updateTask(id: task!.id, name: name, isCompleted: false, taskDescription: description, tags: tagsSet, deadlineDate: deadlineDate, specificTasks: nil)
+            let generalTask = taskRepository.getTaskById(id: task!.id)
+            taskRepository.updateTask(id: task!.id, name: name, isCompleted: task!.isCompleted, taskDescription: description, tags: tagsSet, deadlineDate: deadlineDate, specificTasks: generalTask?.specificTasks)
             return
         }
         let id = UUID()

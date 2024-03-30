@@ -7,18 +7,52 @@
 
 import Foundation
 
-internal final class GeneralTaskListPresenter {
+internal final class GeneralTaskListPresenter: Presenter {
     private(set) public var startDate: Date = Date.now
     private var tasks: [Date: [GeneralTask]] = [:]
     private weak var view: GeneralTaskListViewController?
     private var taskRepository: GeneralTaskRepository
     private var uniqueDeadlineDates: [Date] = [Date]()
     private var uniqueDeadlineDatesActivated: [Bool] = [Bool]()
+    var tags: [TagDto]
     
     init(_ view: GeneralTaskListViewController? = nil, _ taskRepository: GeneralTaskRepository) {
         self.view = view
         self.taskRepository = taskRepository
+        tags = []
         updateTasks()
+        setUnqueTags()
+    }
+    
+    func setUnqueTags() {
+        var uniqueTagsSet = Set<Tag>()
+        
+        for (_, tasksForDate) in tasks {
+            for task in tasksForDate {
+                if let taskTags = task.tags as? Set<Tag> {
+                    uniqueTagsSet.formUnion(taskTags)
+                }
+            }
+        }
+        
+        tags = uniqueTagsSet.compactMap({ TagDto(id: $0.id!, name: $0.name!, color: $0.color!) })
+        filterTasksByTagIDs()
+    }
+    
+    func filterTasksByTagIDs() {
+        let tagIDs = Set(tags.map { $0.id })
+        
+        for (date, tasksForDate) in tasks {
+            let filteredTasks = tasksForDate.filter { task in
+                guard let taskTags = task.tags as? Set<Tag> else { return false }
+                
+                return taskTags.contains(where: { tag in
+                    tagIDs.contains(tag.id ?? UUID())
+                })
+            }
+            
+            tasks[date] = filteredTasks
+        }
     }
     
     public func updateTasks() {
@@ -46,6 +80,8 @@ internal final class GeneralTaskListPresenter {
                 return task1.deadlineDate! < task2.deadlineDate!
             })
         }
+        
+        filterTasksByTagIDs()
     }
     
     public func setStartDate(date: Date) {
@@ -70,15 +106,15 @@ internal final class GeneralTaskListPresenter {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ru_RU")
         dateFormatter.dateFormat = "d MMMM yyyy, HH:mm"
-        let tags = (generalTask.tags!.allObjects as! [Tag]).compactMap { TagDto(id: $0.id!, name: $0.name!, color: $0.color!) }
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
+        let tags = (generalTask.tags!.allObjects as! [Tag]).compactMap { TagDto(id: $0.id!, name: $0.name!, color: $0.color!) }
         let specificTasks = generalTask.specificTasks!.allObjects.compactMap { $0 as? SpecificTask }
         let taskDto = GeneralTaskDto(
             id: generalTask.id!,
             name: generalTask.name!,
             isCompleted: generalTask.isCompleted,
-            taskDescription: generalTask.description,
+            taskDescription: generalTask.taskDescription!,
             deadlineDate: dateFormatter.string(from: generalTask.deadlineDate!),
             skipped: generalTask.deadlineDate! < Date(),
             tags: tags,
@@ -110,5 +146,10 @@ internal final class GeneralTaskListPresenter {
             deadlineDate: task.deadlineDate!,
             specificTasks: task.specificTasks ?? NSSet()
         )
+    }
+    
+    func deleteTask(taskId: UUID) {
+        taskRepository.deleteTask(id: taskId)
+        updateTasks()
     }
 }

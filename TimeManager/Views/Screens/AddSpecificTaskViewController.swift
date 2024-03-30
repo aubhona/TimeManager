@@ -39,6 +39,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
     
     init(task: SpecificTaskDto? = nil) {
         editTask = task
+        generalTask = task?.generalTask
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -261,7 +262,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 100, height: 15)
+        layout.itemSize = CGSize(width: 100, height: 21)
         tagsCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         tagsCollectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: TagCollectionViewCell.reuseIdentifier)
         tagsCollectionView.delegate = self
@@ -278,7 +279,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
     
     private func configureTaskEdit() {
         guard let task = editTask else { return }
-        presenter?.fillInputFileds(task: task)
+        presenter?.fillInputFileds(task: task, generalTaskDto: generalTask)
     }
     
     @objc public func isDelayedButtonTapped() {
@@ -307,7 +308,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
         descriptionTextView.textColor = .black
         self.generalTask = generalTask
         if let generalTaskName = generalTask?.name {
-            generalTaskLabel.text = generalTaskName
+            generalTaskTextField.text = generalTaskName
         }
         selectCells(withIndexes: selectedTagsIndexes)
     }
@@ -423,24 +424,32 @@ extension AddSpecificTaskViewController: UITextViewDelegate {
 extension AddSpecificTaskViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell, cell.isTapped {
+            self.collectionView(collectionView, didDeselectItemAt: indexPath)
+            return
+        }
         UIView.animate(withDuration: 0.3) {
-            if let cell = collectionView.cellForItem(at: indexPath) {
+            if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell {
                 cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
                 cell.layer.borderColor = UIColor.red.cgColor
                 cell.layer.borderWidth = 1
-                cell.isSelected = true
+                cell.isTapped = true
                 self.selectedTagsCells.insert(indexPath)
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell, !cell.isTapped {
+            self.collectionView(collectionView, didSelectItemAt: indexPath)
+            return
+        }
         UIView.animate(withDuration: 0.3) {
-            if let cell = collectionView.cellForItem(at: indexPath) {
+            if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell {
                 cell.transform = CGAffineTransform.identity
                 cell.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.borderWidth = 0
-                cell.isSelected = false
+                cell.isTapped = false
                 self.selectedTagsCells.remove(indexPath)
             }
         }
@@ -463,7 +472,12 @@ extension AddSpecificTaskViewController: UICollectionViewDataSource {
             cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
             cell.layer.borderColor = UIColor.red.cgColor
             cell.layer.borderWidth = 1
-            cell.isSelected = true
+            tagViewCell.isTapped = true
+        } else {
+            cell.transform = CGAffineTransform.identity
+            cell.layer.borderColor = UIColor.clear.cgColor
+            cell.layer.borderWidth = 0
+            tagViewCell.isTapped = false
         }
         return tagViewCell
     }

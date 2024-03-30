@@ -288,24 +288,32 @@ extension AddGeneralTaskViewController: UITextViewDelegate {
 extension AddGeneralTaskViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell, cell.isTapped {
+            self.collectionView(collectionView, didDeselectItemAt: indexPath)
+            return
+        }
         UIView.animate(withDuration: 0.3) {
-            if let cell = collectionView.cellForItem(at: indexPath) {
+            if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell {
                 cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
                 cell.layer.borderColor = UIColor.red.cgColor
                 cell.layer.borderWidth = 1
-                cell.isSelected = true
+                cell.isTapped = true
                 self.selectedTagsCells.insert(indexPath)
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell, !cell.isTapped {
+            self.collectionView(collectionView, didSelectItemAt: indexPath)
+            return
+        }
         UIView.animate(withDuration: 0.3) {
-            if let cell = collectionView.cellForItem(at: indexPath) {
+            if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell {
                 cell.transform = CGAffineTransform.identity
                 cell.layer.borderColor = UIColor.clear.cgColor
                 cell.layer.borderWidth = 0
-                cell.isSelected = false
+                cell.isTapped = false
                 self.selectedTagsCells.remove(indexPath)
             }
         }
@@ -328,7 +336,12 @@ extension AddGeneralTaskViewController: UICollectionViewDataSource {
             cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
             cell.layer.borderColor = UIColor.red.cgColor
             cell.layer.borderWidth = 1
-            cell.isSelected = true
+            tagViewCell.isTapped = true
+        } else {
+            cell.transform = CGAffineTransform.identity
+            cell.layer.borderColor = UIColor.clear.cgColor
+            cell.layer.borderWidth = 0
+            tagViewCell.isTapped = false
         }
         return tagViewCell
     }

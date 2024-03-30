@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal final class SpecificTaskListPresenter {
+internal final class SpecificTaskListPresenter : Presenter {
     private enum Constants {
         static let identidier: String = "ru"
         
@@ -24,6 +24,7 @@ internal final class SpecificTaskListPresenter {
         static let weekOffset: Int = 2
     }
     
+    var tags: [TagDto]
     private(set) public var selectedDay: Date = Date.now
     private(set) public var currentWeekIndex: Int = Constants.startWeek
     private var tasks: [SpecificTask] = [SpecificTask]()
@@ -35,6 +36,31 @@ internal final class SpecificTaskListPresenter {
         self.taskRepository = taskRepository
         tasks = taskRepository.getTasksByDate(date: selectedDay)
         tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
+        tags = []
+        setUnqueTags()
+    }
+    
+    func setUnqueTags() {
+        var uniqueTagsSet = Set<Tag>()
+        for task in tasks {
+            if let taskTags = task.tags as? Set<Tag> {
+                uniqueTagsSet.formUnion(taskTags)
+            }
+        }
+
+        tags = uniqueTagsSet.compactMap({ TagDto(id: $0.id!, name: $0.name!, color: $0.color!) })
+        filterTasksByTagIDs()
+    }
+    
+    func filterTasksByTagIDs() {
+        let tagIDs = Set(tags.map { $0.id })
+        tasks = tasks.filter { task in
+            guard let taskTags = task.tags as? Set<Tag> else { return false }
+            
+            return taskTags.contains(where: { tag in
+                tagIDs.contains(tag.id ?? UUID())
+            })
+        }
     }
     
     func setCurrentMonth() {
@@ -139,12 +165,14 @@ internal final class SpecificTaskListPresenter {
             currentWeekIndex = weekIndex
             tasks = taskRepository.getTasksByDate(date: selectedDay)
             tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
+            filterTasksByTagIDs()
         }
     }
     
     func getTasksCount() -> Int {
         tasks = taskRepository.getTasksByDate(date: selectedDay)
         tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
+        filterTasksByTagIDs()
         
         return tasks.count
     }
@@ -156,6 +184,8 @@ internal final class SpecificTaskListPresenter {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ru_RU")
         dateFormatter.dateFormat = "d MMMM yyyy, HH:mm"
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
         
         let specificTask = tasks[index]
         
@@ -172,6 +202,20 @@ internal final class SpecificTaskListPresenter {
             skipped: endDate < Date(),
             tags: tags
         )
+        if let generalTask = specificTask.generalTask {
+            let specificTasks = generalTask.specificTasks!.allObjects.compactMap { $0 as? SpecificTask }
+            specificTaskDto.generalTask = GeneralTaskDto(
+                id: generalTask.id!,
+                name: generalTask.name!,
+                isCompleted: generalTask.isCompleted,
+                taskDescription: generalTask.taskDescription!,
+                deadlineDate: dateFormatter.string(from: generalTask.deadlineDate!),
+                skipped: generalTask.deadlineDate! < Date(),
+                tags: tags,
+                isFire: calendar.startOfDay(for: generalTask.deadlineDate!) == calendar.startOfDay(for: Date()),
+                doneCount: specificTasks.filter { $0.isCompleted }.count,
+                generalCount: specificTasks.count)
+        }
         
         return specificTaskDto
     }

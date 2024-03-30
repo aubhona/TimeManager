@@ -12,7 +12,7 @@ internal final class TagCollectionViewCell: UICollectionViewCell {
     public static let reuseIdentifier = "TagCollectionViewCell"
     
     private var tagView: TagView = TagView()
-    
+    public var isTapped: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,11 +23,10 @@ internal final class TagCollectionViewCell: UICollectionViewCell {
     
     public override func prepareForReuse() {
         super.prepareForReuse()
-        
         self.transform = CGAffineTransform.identity
         self.layer.borderColor = UIColor.clear.cgColor
         self.layer.borderWidth = 0
-        self.isSelected = false
+        isTapped = false
     }
     
     required init?(coder aDecoder: NSCoder) {
