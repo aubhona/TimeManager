@@ -7,6 +7,6 @@
 
 import Foundation
 
-internal protocol Presenter {
+internal protocol TagFilterPresenter {
     var tags: [TagDto] { get set }
 }
