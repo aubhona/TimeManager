@@ -72,7 +72,7 @@ internal final class DelayedSpecificTaskListPresenter: TagFilterPresenter {
             taskDescription: specificTask.taskDescription!,
             scheduledStartTime: "",
             scheduledEndTime: "",
-            sheduledDate: "(\(specificTask.duration / 60) ч, \(specificTask.duration % 60) мин)",
+            sheduledDate: "\(specificTask.duration / 60) ч, \(specificTask.duration % 60) мин",
             skipped: false,
             tags: tags
         )
