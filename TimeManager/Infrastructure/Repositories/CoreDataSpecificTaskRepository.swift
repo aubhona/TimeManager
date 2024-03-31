@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
+internal final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
     
     public static let shared = CoreDataSpecificTaskRepository()
     
@@ -23,7 +23,7 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
         appDelegate.persistentContainer.viewContext
     }
     
-    func getTaskById(id: UUID) -> SpecificTask? {
+    public func getTaskById(id: UUID) -> SpecificTask? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
@@ -36,7 +36,7 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
         }
     }
     
-    func getTasksByDate(date: Date) -> [SpecificTask] {
+    public func getTasksByDate(date: Date) -> [SpecificTask] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
@@ -57,7 +57,7 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
     }
     
     
-    func createTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, duration: Int64, scheduledDate: Date?, generalTask: GeneralTask?) {
+    public func createTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, duration: Int64, scheduledDate: Date?, generalTask: GeneralTask?) {
         guard let taskEntityDescription = NSEntityDescription.entity(forEntityName: "SpecificTask", in: context) else { return }
         let task = SpecificTask(entity: taskEntityDescription, insertInto: context)
         task.id = id
@@ -72,7 +72,7 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
         appDelegate.saveContext()
     }
     
-    func deleteTask(id: UUID) {
+    public func deleteTask(id: UUID) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
@@ -88,7 +88,7 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
         }
     }
     
-    func updateTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, duration: Int64, scheduledDate: Date?, generalTask: GeneralTask?) {
+    public func updateTask(id: UUID, name: String, isCompleted: Bool, taskDescription: String, tags: NSSet, duration: Int64, scheduledDate: Date?, generalTask: GeneralTask?) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
@@ -111,7 +111,7 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
         }
     }
     
-    func getDelayedTasks() -> [SpecificTask] {
+    public func getDelayedTasks() -> [SpecificTask] {
         let fetchRequest: NSFetchRequest<SpecificTask> = SpecificTask.fetchRequest()
         
         fetchRequest.predicate = NSPredicate(format: "scheduledDate == nil")
@@ -122,6 +122,18 @@ public final class CoreDataSpecificTaskRepository: SpecificTaskRepository {
         } catch {
             print("Error fetching delayed tasks: \(error)")
             return []
+        }
+    }
+    
+    public func deleteAllData() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SpecificTask")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+            print("Error in deleting SpecificTask data : \(error), \(error.userInfo)")
         }
     }
 }

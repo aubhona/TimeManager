@@ -20,4 +20,6 @@ protocol SpecificTaskRepository {
     func deleteTask(id: UUID)
     
     func getDelayedTasks() -> [SpecificTask]
+    
+    func deleteAllData()
 }

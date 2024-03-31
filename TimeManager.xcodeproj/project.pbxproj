@@ -70,6 +70,9 @@
 		01B18AF32BB692BA0019F040 /* DelayedSpecificTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AF22BB692BA0019F040 /* DelayedSpecificTaskListViewController.swift */; };
 		01B18AF52BB69A020019F040 /* DelayedSpecificTaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AF42BB69A020019F040 /* DelayedSpecificTaskCollectionViewCell.swift */; };
 		01B18AF72BB706550019F040 /* DelayedSpecificTaskListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B18AF62BB706550019F040 /* DelayedSpecificTaskListPresenter.swift */; };
+		01C711C12BB8F4510058B07F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 01C711C02BB8F4510058B07F /* README.md */; };
+		01C711C32BB8F4EC0058B07F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 01C711C22BB8F4EC0058B07F /* LICENSE */; };
+		01C711C72BB8F7E40058B07F /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C711C62BB8F7E40058B07F /* SettingsPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +142,9 @@
 		01B18AF22BB692BA0019F040 /* DelayedSpecificTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedSpecificTaskListViewController.swift; sourceTree = "<group>"; };
 		01B18AF42BB69A020019F040 /* DelayedSpecificTaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedSpecificTaskCollectionViewCell.swift; sourceTree = "<group>"; };
 		01B18AF62BB706550019F040 /* DelayedSpecificTaskListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedSpecificTaskListPresenter.swift; sourceTree = "<group>"; };
+		01C711C02BB8F4510058B07F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		01C711C22BB8F4EC0058B07F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		01C711C62BB8F7E40058B07F /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,8 @@
 		0127D3A62BB192F1004C5233 = {
 			isa = PBXGroup;
 			children = (
+				01C711C22BB8F4EC0058B07F /* LICENSE */,
+				01C711C02BB8F4510058B07F /* README.md */,
 				0127D3B12BB192F1004C5233 /* TimeManager */,
 				0127D3B02BB192F1004C5233 /* Products */,
 			);
@@ -233,6 +241,7 @@
 				012FF32B2BB7B33C00B8773F /* GeneralTaskDescriptionPresenter.swift */,
 				012FF3312BB7EFC500B8773F /* TagFilterPresenter.swift */,
 				012FF3372BB8902A00B8773F /* TagSettingsPresenter.swift */,
+				01C711C62BB8F7E40058B07F /* SettingsPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -402,6 +411,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01C711C32BB8F4EC0058B07F /* LICENSE in Resources */,
+				01C711C12BB8F4510058B07F /* README.md in Resources */,
 				0127D3BF2BB192F2004C5233 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,6 +465,7 @@
 				012F96062BB19AE60012B8EE /* TimeManager.xcdatamodeld in Sources */,
 				01B18AD92BB4747E0019F040 /* DatePickerViewController.swift in Sources */,
 				012FF3382BB8902A00B8773F /* TagSettingsPresenter.swift in Sources */,
+				01C711C72BB8F7E40058B07F /* SettingsPresenter.swift in Sources */,
 				012F96372BB1AE080012B8EE /* SpecificTaskDescriptionViewController.swift in Sources */,
 				0127D3B32BB192F1004C5233 /* AppDelegate.swift in Sources */,
 				012F961E2BB19CB90012B8EE /* CoreDataSpecificTaskRepository.swift in Sources */,

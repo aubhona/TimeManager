@@ -16,4 +16,6 @@ protocol TagRepository {
     func getAllTags() -> [Tag]
     
     func getTagById(id: UUID) -> Tag?
+    
+    func deleteAllData()
 }

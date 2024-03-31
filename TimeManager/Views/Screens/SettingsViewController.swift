@@ -14,11 +14,13 @@ internal final class SettingsViewController: UIViewController {
     private var clearDataButton: UIButton = UIButton(type: .system)
     private var termsOfServiceButton: UIButton = UIButton(type: .system)
     private var aboutUsButton: UIButton = UIButton(type: .system)
+    private var presenter: SettingsPresenter?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor("f2f2f7")
+        presenter = SettingsPresenter(self, CoreDataSpecificTaskRepository.shared, CoreDataTagRepository.shared, CoreDataGeneralTaskRepository.shared)
         
         configureNavigationItem()
         configureTagSettingsButton()
@@ -62,6 +64,8 @@ internal final class SettingsViewController: UIViewController {
         view.addSubview(clearDataButton)
         clearDataButton.pinHorizontal(to: aboutUsButton)
         clearDataButton.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor, 10)
+        
+        clearDataButton.addTarget(self, action: #selector(deleteAllDataButtonTapped), for: .touchUpInside)
     }
     
     private func configureTermsOfServiceButton() {
@@ -94,6 +98,19 @@ internal final class SettingsViewController: UIViewController {
         aboutUsButton.pinTop(to: termsOfServiceButton.bottomAnchor, 10)
         
         aboutUsButton.addTarget(self, action: #selector(aboutUsButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func deleteAllDataButtonTapped() {
+        let alertController = UIAlertController(title: "Подтверждение", message: "Вы действительно безвозратно хотите удалить все данные?", preferredStyle: .alert)
+        alertController.view.tintColor = .red
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+            self?.presenter?.deleteAllData()
+        }
+        alertController.addAction(deleteAction)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc private func termsOfServiceButtonTapped() {
