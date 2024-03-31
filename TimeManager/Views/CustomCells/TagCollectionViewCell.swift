@@ -24,8 +24,8 @@ internal final class TagCollectionViewCell: UICollectionViewCell {
     public override func prepareForReuse() {
         super.prepareForReuse()
         self.transform = CGAffineTransform.identity
-        self.layer.borderColor = UIColor.clear.cgColor
-        self.layer.borderWidth = 0
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 1
         isTapped = false
     }
     

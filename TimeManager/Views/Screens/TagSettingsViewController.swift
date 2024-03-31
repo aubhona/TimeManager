@@ -73,7 +73,7 @@ internal final class TagSettingsViewController: UIViewController {
     private func configureTagCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: self.view.bounds.width - 55, height: 40)
+        layout.itemSize = CGSize(width: self.view.bounds.width - 60.5, height: 40)
         layout.minimumLineSpacing = 5
         tagsCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         tagsCollectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: TagCollectionViewCell.reuseIdentifier)
@@ -117,8 +117,8 @@ extension TagSettingsViewController: UICollectionViewDelegate {
         UIView.animate(withDuration: 0.3) {
             if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell {
                 cell.transform = CGAffineTransform.identity
-                cell.layer.borderColor = UIColor.clear.cgColor
-                cell.layer.borderWidth = 0
+                cell.layer.borderColor = UIColor.black.cgColor
+                cell.layer.borderWidth = 1
                 cell.isTapped = false
                 self.selectedTagsCells.remove(indexPath)
             }
@@ -145,8 +145,8 @@ extension TagSettingsViewController: UICollectionViewDataSource {
             tagViewCell.isTapped = true
         } else {
             cell.transform = CGAffineTransform.identity
-            cell.layer.borderColor = UIColor.clear.cgColor
-            cell.layer.borderWidth = 0
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.borderWidth = 1
             tagViewCell.isTapped = false
         }
         return tagViewCell

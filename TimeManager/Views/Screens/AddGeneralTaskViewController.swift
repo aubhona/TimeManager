@@ -139,6 +139,7 @@ internal final class AddGeneralTaskViewController: UIViewController {
         descriptionTextView.text = "Введите описание"
         descriptionTextView.textColor = .lightGray
         descriptionTextView.font = nameTextField.font
+        addDoneButtonOnKeyboard()
         
         view.addSubview(saveButton)
         saveButton.pinHorizontal(to: view, 70)
@@ -166,7 +167,7 @@ internal final class AddGeneralTaskViewController: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: self.view.bounds.width - 55, height: 25)
+        layout.itemSize = CGSize(width: self.view.bounds.width - 60.5, height: 25)
         layout.minimumLineSpacing = 5
         tagsCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         tagsCollectionView.register(TagCollectionViewCell.self, forCellWithReuseIdentifier: TagCollectionViewCell.reuseIdentifier)
@@ -241,6 +242,36 @@ internal final class AddGeneralTaskViewController: UIViewController {
         customBackTapped()
     }
     
+    private func addDoneButtonOnKeyboard() {
+        let customToolbar: UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = customToolbar.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        customToolbar.addSubview(blurEffectView)
+        
+        let toolbar: UIToolbar = UIToolbar(frame: blurEffectView.bounds)
+        toolbar.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"), style: .done, target: self, action: #selector(doneButtonAction))
+        done.tintColor = .red
+        
+        toolbar.items = [flexSpace, done]
+        
+        customToolbar.addSubview(toolbar)
+        
+        descriptionTextView.inputAccessoryView = customToolbar
+    }
+    
+    @objc private func doneButtonAction() {
+        descriptionTextView.resignFirstResponder()
+    }
+    
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in }
@@ -311,8 +342,8 @@ extension AddGeneralTaskViewController: UICollectionViewDelegate {
         UIView.animate(withDuration: 0.3) {
             if let cell = collectionView.cellForItem(at: indexPath) as? TagCollectionViewCell {
                 cell.transform = CGAffineTransform.identity
-                cell.layer.borderColor = UIColor.clear.cgColor
-                cell.layer.borderWidth = 0
+                cell.layer.borderColor = UIColor.black.cgColor
+                cell.layer.borderWidth = 1
                 cell.isTapped = false
                 self.selectedTagsCells.remove(indexPath)
             }
@@ -339,8 +370,8 @@ extension AddGeneralTaskViewController: UICollectionViewDataSource {
             tagViewCell.isTapped = true
         } else {
             cell.transform = CGAffineTransform.identity
-            cell.layer.borderColor = UIColor.clear.cgColor
-            cell.layer.borderWidth = 0
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.borderWidth = 1
             tagViewCell.isTapped = false
         }
         return tagViewCell
