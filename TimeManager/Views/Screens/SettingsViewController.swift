@@ -22,9 +22,9 @@ internal final class SettingsViewController: UIViewController {
         
         configureNavigationItem()
         configureTagSettingsButton()
-        configureClearDataButton()
         configureTermsOfServiceButton()
         configureAboutUsButton()
+        configureClearDataButton()
     }
     
     private func configureNavigationItem() {
@@ -52,17 +52,16 @@ internal final class SettingsViewController: UIViewController {
     }
     
     private func configureClearDataButton() {
-        clearDataButton.setTitle("  Очистить все данные", for: .normal)
+        clearDataButton.setTitle("Очистить все данные", for: .normal)
         clearDataButton.backgroundColor = .white
         clearDataButton.layer.cornerRadius = 11
         clearDataButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        clearDataButton.setTitleColor(.black, for: .normal)
-        clearDataButton.contentHorizontalAlignment = .left
+        clearDataButton.setTitleColor(.red, for: .normal)
         clearDataButton.setHeight(40)
-        
+
         view.addSubview(clearDataButton)
-        clearDataButton.pinHorizontal(to: tagSettingsButton)
-        clearDataButton.pinTop(to: tagSettingsButton.bottomAnchor, 10)
+        clearDataButton.pinHorizontal(to: aboutUsButton)
+        clearDataButton.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor, 10)
     }
     
     private func configureTermsOfServiceButton() {
@@ -75,8 +74,8 @@ internal final class SettingsViewController: UIViewController {
         termsOfServiceButton.setHeight(40)
         
         view.addSubview(termsOfServiceButton)
-        termsOfServiceButton.pinHorizontal(to: clearDataButton)
-        termsOfServiceButton.pinTop(to: clearDataButton.bottomAnchor, 10)
+        termsOfServiceButton.pinHorizontal(to: tagSettingsButton)
+        termsOfServiceButton.pinTop(to: tagSettingsButton.bottomAnchor, 10)
         
         termsOfServiceButton.addTarget(self, action: #selector(termsOfServiceButtonTapped), for: .touchUpInside)
     }

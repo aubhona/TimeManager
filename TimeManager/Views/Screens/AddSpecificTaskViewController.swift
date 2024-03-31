@@ -368,8 +368,9 @@ internal final class AddSpecificTaskViewController: UIViewController {
     
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in }
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in }
         
+        alert.view.tintColor = .red
         alert.addAction(okAction)
         
         present(alert, animated: true, completion: nil)
