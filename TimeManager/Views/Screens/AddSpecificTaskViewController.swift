@@ -493,6 +493,9 @@ extension AddSpecificTaskViewController: UIViewControllerTransitioningDelegate {
         if (presented is GeneralTaskSearchViewController) {
             presentationController.divider = 1
         }
+        if (presented is AddTagViewController) {
+            presentationController.divider = 1.5
+        }
         return presentationController
     }
 }

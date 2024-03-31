@@ -23,7 +23,7 @@ internal final class GeneralTaskDescriptionPresenter {
         tasks = generalTaskRepository.getTaskById(id: generalTaskDto.id)?.specificTasks?.allObjects.compactMap { $0 as? SpecificTask } ?? []
     }
     
-    func updateViewGeneralTask() {
+    public func updateViewGeneralTask() {
         if let task = view?.task {
             guard let generalTask = generalTaskRepository.getTaskById(id: task.id) else { return }
             let dateFormatter = DateFormatter()
@@ -50,13 +50,13 @@ internal final class GeneralTaskDescriptionPresenter {
         }
     }
     
-    func getSpecificTasksCount() -> Int {
+    public func getSpecificTasksCount() -> Int {
         tasks = generalTaskRepository.getTaskById(id: generalTaskDto.id)?.specificTasks?.allObjects.compactMap { $0 as? SpecificTask } ?? []
         
         return tasks.count
     }
     
-    func getSpecificTask(index: Int) -> SpecificTaskDto {
+    public func getSpecificTask(index: Int) -> SpecificTaskDto {
         let specificTask = tasks[index]
         let dateFormatter = DateFormatter()
         let timeFormatter = DateFormatter()
@@ -97,7 +97,7 @@ internal final class GeneralTaskDescriptionPresenter {
         return specificTaskDto
     }
     
-    func toggleTaskComplete(index: Int) {
+    public func toggleSpecificTaskComplete(index: Int) {
         let task = tasks[index]
         task.isCompleted = !task.isCompleted
         
@@ -111,9 +111,25 @@ internal final class GeneralTaskDescriptionPresenter {
             scheduledDate: task.scheduledDate,
             generalTask: task.generalTask
         )
+        if let generalTask = generalTaskRepository.getTaskById(id: task.generalTask?.id ?? UUID()) {
+            guard let specificTasks = generalTask.specificTasks?.allObjects as? [SpecificTask] else { return }
+            let oldValue = generalTask.isCompleted
+            generalTask.isCompleted = specificTasks.allSatisfy{ $0.isCompleted }
+            if  (oldValue != generalTask.isCompleted) {
+                generalTaskRepository.updateTask(
+                    id: generalTask.id!,
+                    name: generalTask.name!,
+                    isCompleted: generalTask.isCompleted,
+                    taskDescription: generalTask.taskDescription!,
+                    tags: generalTask.tags ?? NSSet(),
+                    deadlineDate: generalTask.deadlineDate!,
+                    specificTasks: generalTask.specificTasks
+                )
+            }
+        }
     }
     
-    func deleteSpecificTask(taskId: UUID) {
+    public func deleteSpecificTask(taskId: UUID) {
         specificTaskRepository.deleteTask(id: taskId)
     }
 }

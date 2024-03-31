@@ -126,7 +126,7 @@ internal final class GeneralTaskDescriptionViewController: UIViewController {
         ], animated: false)
         view.addSubview(actionTooolBar)
         actionTooolBar.pinHorizontal(to: view)
-        actionTooolBar.pinBottom(to: view)
+        actionTooolBar.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
         actionTooolBar.setHeight(80)
     }
     
@@ -292,7 +292,7 @@ extension GeneralTaskDescriptionViewController: UICollectionViewDataSource {
     }
     
     private func taskSelected(index: Int) {
-        presenter?.toggleTaskComplete(index: index)
+        presenter?.toggleSpecificTaskComplete(index: index)
     }
 }
 

@@ -173,8 +173,8 @@
             filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "setSelectedDay(weekDay:)"
             landmarkType = "7">
             <Locations>
@@ -206,6 +206,21 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
                   endingLineNumber = "141"
+                  offsetFromSymbolStart = "488">
+               </Location>
+               <Location
+                  uuid = "19662B08-CF23-480D-B71B-B6587647CC1D - 8200bdb6541ab4fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.setSelectedDay(weekDay: Swift.Int) -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
                   offsetFromSymbolStart = "488">
                </Location>
             </Locations>
@@ -364,8 +379,8 @@
             filePath = "TimeManager/Infrastructure/Repositories/CoreDataGeneralTaskRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "updateTask(id:name:isCompleted:taskDescription:tags:deadlineDate:specificTasks:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -380,8 +395,8 @@
             filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "filterTasksByTagIDs()"
             landmarkType = "7">
             <Locations>
@@ -556,8 +571,8 @@
             filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "getWeek(weekIndex:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -572,8 +587,8 @@
             filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "addWeekToSelectedDay(weekIndex:_:)"
             landmarkType = "7">
             <Locations>
@@ -620,8 +635,8 @@
             filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "filterTasksByTagIDs()"
             landmarkType = "7">
          </BreakpointContent>
@@ -636,8 +651,8 @@
             filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "getTasksCount()"
             landmarkType = "7">
             <Locations>
@@ -672,6 +687,165 @@
                   offsetFromSymbolStart = "364">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "337135AA-FA56-4EFF-A9F3-603AF5AB8249"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "getFirstWeekDay(date:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "337135AA-FA56-4EFF-A9F3-603AF5AB8249 - b028250018fe0bec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.getFirstWeekDay(date: Foundation.Date) -&gt; Foundation.Date"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "516">
+               </Location>
+               <Location
+                  uuid = "337135AA-FA56-4EFF-A9F3-603AF5AB8249 - b028250018fe0bec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.getFirstWeekDay(date: Foundation.Date) -&gt; Foundation.Date"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  uuid = "337135AA-FA56-4EFF-A9F3-603AF5AB8249 - b028250018fe0bec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.getFirstWeekDay(date: Foundation.Date) -&gt; Foundation.Date"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "488">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6F62592-8D2F-455D-B1A1-9832D74AE4F3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Views/Screens/GeneralTaskListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D5059E0-AB69-4E7A-8CFB-0D2711910D37"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "toggleTaskComplete(index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A18C2CC5-72DF-47EC-BAF7-B5D04B91E730"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "toggleTaskComplete(index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E37F9E2-D581-463D-8D41-DD59A1C0928F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Infrastructure/Repositories/CoreDataGeneralTaskRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "updateTask(id:name:isCompleted:taskDescription:tags:deadlineDate:specificTasks:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1A8BB26A-F2F7-4D2F-A67D-DCDD7676BBBC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Infrastructure/Repositories/CoreDataGeneralTaskRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "updateTask(id:name:isCompleted:taskDescription:tags:deadlineDate:specificTasks:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "91FFA724-3BBD-4B53-839A-97E46329DD7A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Infrastructure/Repositories/CoreDataGeneralTaskRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "updateTask(id:name:isCompleted:taskDescription:tags:deadlineDate:specificTasks:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

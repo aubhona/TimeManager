@@ -10,7 +10,7 @@
 - Синхронизация с iCloud
 
 ## Установка
-Скачайте из App Store. Требуется iOS 15.0 или новее.
+Склонируйте к себе проект и запустите через xcode. Требуется iOS 17.0 или новее.
 
 ## Использование
 Откройте приложение и начните добавлять свои задачи. По мере необходимости вы можете редактировать или удалять задачи.
@@ -38,7 +38,7 @@ Time Manager is a comprehensive time management app designed to help users effic
 - iCloud synchronization
 
 ## Installation
-Download from the App Store. Requires iOS 15.0 or later.
+Tilt the project to yourself and run it through xcode. Requires iOS 17.0 or later.
 
 ## Usage
 Open the app and start adding your tasks. You can edit or delete tasks as needed.

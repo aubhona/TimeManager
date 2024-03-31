@@ -125,10 +125,12 @@ internal final class CoreDataGeneralTaskRepository: GeneralTaskRepository {
     public func toggleAllSpecificTasksComplete(for generalTask: GeneralTask) {
         guard let specificTasks = generalTask.specificTasks as? Set<SpecificTask> else { return }
         
-        let isCompletedStatus = !specificTasks.allSatisfy { $0.isCompleted }
+        if (!generalTask.isCompleted) {
+            return
+        }
         
         specificTasks.forEach { specificTask in
-            specificTask.isCompleted = isCompletedStatus
+            specificTask.isCompleted = true
         }
         
         do {
@@ -153,10 +155,10 @@ internal final class CoreDataGeneralTaskRepository: GeneralTaskRepository {
                 task.tags = tags
                 task.deadlineDate = deadlineDate
                 task.specificTasks = specificTasks
+                toggleAllSpecificTasksComplete(for: task)
                 
                 try context.save()
                 
-                toggleAllSpecificTasksComplete(for: task)
             }
         } catch {
             print("Error updating task: \(error)")

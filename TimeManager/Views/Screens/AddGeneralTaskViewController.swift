@@ -352,6 +352,9 @@ extension AddGeneralTaskViewController: UIViewControllerTransitioningDelegate {
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let presentationController = PopUpPresentationController(presentedViewController: presented, presenting: presenting)
+        if (presented is AddTagViewController) {
+            presentationController.divider = 1.5
+        }
         return presentationController
     }
 }

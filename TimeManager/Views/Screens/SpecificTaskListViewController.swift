@@ -23,7 +23,7 @@ final class SpecificTaskListViewController: UIViewController, UICollectionViewDa
         super.viewDidLoad()
         
         view.backgroundColor = UIColor("f2f2f7")
-        presenter = SpecificTaskListPresenter(self, CoreDataSpecificTaskRepository.shared, CoreDataTagRepository.shared)
+        presenter = SpecificTaskListPresenter(self, CoreDataSpecificTaskRepository.shared, CoreDataTagRepository.shared, CoreDataGeneralTaskRepository.shared)
         
         configureNavigationItem()
         configureWeekView()

@@ -29,13 +29,15 @@ internal final class SpecificTaskListPresenter : TagFilterPresenter {
     private(set) public var currentWeekIndex: Int = Constants.startWeek
     private var tasks: [SpecificTask] = [SpecificTask]()
     private weak var view: SpecificTaskListViewController?
-    private var taskRepository: SpecificTaskRepository
+    private var specificTaskRepository: SpecificTaskRepository
+    private var generalTaskRepository: GeneralTaskRepository
     private var tagRepository: TagRepository
     
-    init(_ view: SpecificTaskListViewController, _ taskRepository: SpecificTaskRepository, _ tagRepository: TagRepository) {
+    init(_ view: SpecificTaskListViewController, _ taskRepository: SpecificTaskRepository, _ tagRepository: TagRepository, _ generalTaskRepository: GeneralTaskRepository) {
         self.view = view
-        self.taskRepository = taskRepository
+        self.specificTaskRepository = taskRepository
         self.tagRepository = tagRepository
+        self.generalTaskRepository = generalTaskRepository
         tasks = taskRepository.getTasksByDate(date: selectedDay)
         tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
         tags = []
@@ -60,7 +62,7 @@ internal final class SpecificTaskListPresenter : TagFilterPresenter {
     
     func filterTasksByTagIDs() {
         if (tags.isEmpty) {
-            tasks = taskRepository.getTasksByDate(date: selectedDay)
+            tasks = specificTaskRepository.getTasksByDate(date: selectedDay)
             return
         }
         let tagIDs = Set(tags.map { $0.id })
@@ -88,8 +90,8 @@ internal final class SpecificTaskListPresenter : TagFilterPresenter {
     private func getFirstWeekDay(date: Date) -> Date {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
-        var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
-        components.weekday = 2
+        calendar.firstWeekday = 2
+        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
         let startOfWeek = calendar.date(from: components)!
         return calendar.startOfDay(for: startOfWeek)
     }
@@ -169,16 +171,16 @@ internal final class SpecificTaskListPresenter : TagFilterPresenter {
         if let newSelectedDay = calendar.date(byAdding: .day, value: weekdayOffset, to: weekStartDate) {
             selectedDay = newSelectedDay
             currentWeekIndex = weekIndex
-            tasks = taskRepository.getTasksByDate(date: selectedDay)
-            tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
+            tasks = specificTaskRepository.getTasksByDate(date: selectedDay)
             filterTasksByTagIDs()
+            tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
         }
     }
     
     func getTasksCount() -> Int {
-        tasks = taskRepository.getTasksByDate(date: selectedDay)
-        tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
+        tasks = specificTaskRepository.getTasksByDate(date: selectedDay)
         filterTasksByTagIDs()
+        tasks.sort(by: { return $0.scheduledDate ?? Date() < $1.scheduledDate ?? Date() })
         
         return tasks.count
     }
@@ -230,7 +232,7 @@ internal final class SpecificTaskListPresenter : TagFilterPresenter {
         let task = tasks[index]
         task.isCompleted = !task.isCompleted
         
-        taskRepository.updateTask(
+        specificTaskRepository.updateTask(
             id: task.id!,
             name: task.name!,
             isCompleted: task.isCompleted,
@@ -240,9 +242,26 @@ internal final class SpecificTaskListPresenter : TagFilterPresenter {
             scheduledDate: task.scheduledDate,
             generalTask: task.generalTask
         )
+        
+        if let generalTask = generalTaskRepository.getTaskById(id: task.generalTask?.id ?? UUID()) {
+            guard let specificTasks = generalTask.specificTasks?.allObjects as? [SpecificTask] else { return }
+            let oldValue = generalTask.isCompleted
+            generalTask.isCompleted = specificTasks.allSatisfy{ $0.isCompleted }
+            if (oldValue != generalTask.isCompleted) {
+                generalTaskRepository.updateTask(
+                    id: generalTask.id!,
+                    name: generalTask.name!,
+                    isCompleted: generalTask.isCompleted,
+                    taskDescription: generalTask.taskDescription!,
+                    tags: generalTask.tags ?? NSSet(),
+                    deadlineDate: generalTask.deadlineDate!,
+                    specificTasks: generalTask.specificTasks
+                )
+            }
+        }
     }
     
     func deleteTask(taskId: UUID) {
-        taskRepository.deleteTask(id: taskId)
+        specificTaskRepository.deleteTask(id: taskId)
     }
 }
