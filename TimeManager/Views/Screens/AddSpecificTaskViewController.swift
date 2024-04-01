@@ -351,6 +351,7 @@ internal final class AddSpecificTaskViewController: UIViewController {
         }
         if (name.count > 50) {
             showAlert(title: "Ошибка ввода", message: "Название должно быть не длиннее 50 символов")
+            return
         }
         let totalDuration = (durationHours * 60) + durationMinutes
         do {
