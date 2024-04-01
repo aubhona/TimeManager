@@ -627,6 +627,8 @@
 				DEVELOPMENT_TEAM = 7N7ZCU7GNB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimeManager/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Доступ к календарю необходим для создания напоминаний о ваших задачах в приложении";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "Доступ к напоминаниям необходим для создания напоминаний о ваших задачах в приложении";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -662,6 +664,8 @@
 				DEVELOPMENT_TEAM = 7N7ZCU7GNB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimeManager/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Доступ к календарю необходим для создания напоминаний о ваших задачах в приложении";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "Доступ к напоминаниям необходим для создания напоминаний о ваших задачах в приложении";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

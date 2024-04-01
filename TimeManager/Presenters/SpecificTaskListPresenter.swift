@@ -145,7 +145,7 @@ internal final class SpecificTaskListPresenter : TagFilterPresenter {
         calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
         let weekDifference = (calendar.dateComponents([.weekOfYear], from: firstWeekDay(), to: getFirstWeekDay(date: date)).weekOfYear ?? 0)
         addWeekToSelectedDay(weekIndex: currentWeekIndex + weekDifference, getWeekDay(date: date))
-        view?.scrollToWeekIndex(weekIndex: currentWeekIndex + weekDifference)
+        view?.scrollToWeekIndex(weekIndex: currentWeekIndex)
         
     }
     

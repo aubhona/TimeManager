@@ -848,5 +848,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3E8F0AA-F15B-4868-9EF6-4D9375580E59"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "setSelectedDay(date:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2BB42879-150C-4C13-95D0-14F058D226F0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimeManager/Presenters/SpecificTaskListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "filterTasksByTagIDs()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2BB42879-150C-4C13-95D0-14F058D226F0 - 6c91416d7f138b37"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.filterTasksByTagIDs() -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "2BB42879-150C-4C13-95D0-14F058D226F0 - 6c91416d7f138aab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TimeManager.SpecificTaskListPresenter.filterTasksByTagIDs() -&gt; ()"
+                  moduleName = "TimeManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aubkhonabdullaev/CourseWork/TimeManager/TimeManager/TimeManager/Presenters/SpecificTaskListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
