@@ -228,6 +228,9 @@ internal final class AddGeneralTaskViewController: UIViewController {
             return
         }
         do {
+            if (name.count > 50) {
+                showAlert(title: "Ошибка ввода", message: "Название должно быть не длиннее 50 символов")
+            }
             try presenter?.addTask(
                 name: name,
                 description: descriptionTextView.text,

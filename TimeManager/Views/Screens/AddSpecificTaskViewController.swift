@@ -349,6 +349,9 @@ internal final class AddSpecificTaskViewController: UIViewController {
             showAlert(title: "Ошибка ввода", message: "Заполните все поля")
             return
         }
+        if (name.count > 50) {
+            showAlert(title: "Ошибка ввода", message: "Название должно быть не длиннее 50 символов")
+        }
         let totalDuration = (durationHours * 60) + durationMinutes
         do {
             try presenter?.addTask(
