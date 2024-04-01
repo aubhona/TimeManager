@@ -73,6 +73,7 @@
 		01C711C12BB8F4510058B07F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 01C711C02BB8F4510058B07F /* README.md */; };
 		01C711C32BB8F4EC0058B07F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 01C711C22BB8F4EC0058B07F /* LICENSE */; };
 		01C711C72BB8F7E40058B07F /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C711C62BB8F7E40058B07F /* SettingsPresenter.swift */; };
+		01C711CB2BBA46550058B07F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C711CA2BBA46550058B07F /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,7 @@
 		01C711C02BB8F4510058B07F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		01C711C22BB8F4EC0058B07F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		01C711C62BB8F7E40058B07F /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		01C711CA2BBA46550058B07F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 				0127D3C32BB192F2004C5233 /* TimeManager.entitlements */,
 				0127D3B22BB192F1004C5233 /* AppDelegate.swift */,
 				0127D3B42BB192F1004C5233 /* SceneDelegate.swift */,
+				01C711CA2BBA46550058B07F /* Launch Screen.storyboard */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 			files = (
 				01C711C32BB8F4EC0058B07F /* LICENSE in Resources */,
 				01C711C12BB8F4510058B07F /* README.md in Resources */,
+				01C711CB2BBA46550058B07F /* Launch Screen.storyboard in Resources */,
 				0127D3BF2BB192F2004C5233 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,8 +627,10 @@
 				DEVELOPMENT_TEAM = 7N7ZCU7GNB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimeManager/Resources/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Доступ к календарю необходим для создания напоминаний о ваших задачах в приложении";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "Доступ к напоминаниям необходим для создания напоминаний о ваших задачах в приложении";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -656,8 +662,10 @@
 				DEVELOPMENT_TEAM = 7N7ZCU7GNB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimeManager/Resources/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Доступ к календарю необходим для создания напоминаний о ваших задачах в приложении";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "Доступ к напоминаниям необходим для создания напоминаний о ваших задачах в приложении";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;

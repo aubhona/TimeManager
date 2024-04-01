@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSRemindersUsageDescription</key>
-	<string>Доступ к напоминаниям необходим для создания напоминаний о ваших задачах в приложении</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Доступ к календарю необходим для создания напоминаний о ваших задачах в приложении</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

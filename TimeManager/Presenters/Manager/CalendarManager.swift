@@ -31,10 +31,13 @@ final class CalendarManager: CalendarManaging {
             let event: EKEvent = EKEvent(eventStore: self.eventStore)
             event.title = eventModel.title
             event.startDate = eventModel.startDate
+            event.endDate = eventModel.startDate
+            event.isAllDay = true
             var alarm: EKAlarm = EKAlarm(relativeOffset: -24 * 3600)
             if let date = eventModel.endDate {
                 event.endDate = date
                 alarm = EKAlarm(relativeOffset: -15 * 60)
+                event.isAllDay = false
             }
             event.notes = eventModel.note
             event.calendar = self.eventStore.defaultCalendarForNewEvents
