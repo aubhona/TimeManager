@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class WeekCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
+internal final class WeekCollectionViewCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
     static let reuseIdentifier: String = "WeekCollectionViewCell"
     
     private var weekTableView: UITableView = UITableView(frame: .zero, style: .plain)

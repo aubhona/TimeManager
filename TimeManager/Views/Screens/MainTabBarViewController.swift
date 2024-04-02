@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-internal final class MainTabBarController: UITabBarController, UITabBarControllerDelegate  {
+internal final class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate  {
     private var currentIndex: Int = 0
     
     override func viewDidLoad() {

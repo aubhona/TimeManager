@@ -6,7 +6,7 @@
 //
 import Foundation
 
-public final class GeneralTaskDto {
+internal final class GeneralTaskDto {
     public var id: UUID
     public var name: String
     public var isCompleted: Bool

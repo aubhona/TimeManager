@@ -8,7 +8,7 @@
 import Foundation
 import EventKit
 
-public final class AddSpecificTaskPresenter {
+internal final class AddSpecificTaskPresenter {
     private weak var view: AddSpecificTaskViewController?
     private var specificTaskRepository: SpecificTaskRepository
     private var generalTaskRepository: GeneralTaskRepository

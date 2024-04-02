@@ -7,7 +7,7 @@
 
 import EventKit
 
-final class CalendarManager: CalendarManaging {
+internal final class CalendarManager: CalendarManaging {
     private let eventStore : EKEventStore = EKEventStore()
     
     func create(eventModel: CalendarEventModel) -> Bool {

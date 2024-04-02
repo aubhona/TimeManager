@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReminderEventModel {
+internal struct ReminderEventModel {
     var title: String
     var startDate: Date?
     var dueDate: Date

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SpecificTaskListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITabBarDelegate {
+internal final class SpecificTaskListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITabBarDelegate {
     
     private var addButton: UIBarButtonItem = UIBarButtonItem()
     private var calendarButton: UIBarButtonItem = UIBarButtonItem()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class SpecificTaskDto {
+internal final class SpecificTaskDto {
     public var id: UUID
     public var name: String
     public var isCompleted: Bool

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CalendarEventModel {
+internal struct CalendarEventModel {
     var title: String
     var startDate: Date
     var endDate: Date?

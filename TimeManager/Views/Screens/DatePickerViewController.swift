@@ -8,7 +8,6 @@
 import UIKit
 
 internal final class DatePickerViewController: UIViewController {
-    
     private var datePicker = UIDatePicker()
     private var goToDateButton = UIButton()
     private var swipeIndicatorView: UIView = UIView()

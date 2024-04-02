@@ -7,7 +7,7 @@
 
 import EventKit
 
-final class ReminderManager: ReminderManaging {
+internal final class ReminderManager: ReminderManaging {
     private let eventStore = EKEventStore()
     
     func create(reminderModel: ReminderEventModel) -> Bool {

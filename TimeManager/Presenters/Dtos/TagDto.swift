@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct TagDto: Hashable {
+internal struct TagDto: Hashable {
     var id: UUID
     var name: String
     var color: String
